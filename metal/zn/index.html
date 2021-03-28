@@ -1,0 +1,3956 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Zn – Austin</title>
+    
+
+
+<script src="/js/enquire.min.dfb99dee1e029d51d6cfb672d847929890b1585402de17f5ed092edd72a688b4.js"></script>
+
+<script defer src="/js/lazysizes.min.31dd6a2d3a1ec0f78a8df007535cf23f03aeb5c70f026e6d6a19dac3b3acc340.js"></script>
+
+<script defer src="/js/fuse.min.94c78ad70b02749822921660cf4e9f0b3701bc0680c421afb784a78228de0275.js"></script>
+
+<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.9fb19682560d5fa5596fffec85da605067c4acc86aad05add4d8fff9d362a446.js"></script>
+
+<script defer src="/js/helper/closest.min.js"></script>
+  
+<script>
+  "use strict";
+
+  
+  
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
+  
+  if (!String.prototype.includes) {
+    String.prototype.includes = function (search, start) {
+      'use strict';
+
+      if (search instanceof RegExp) {
+        throw TypeError('first argument must not be a RegExp');
+      }
+      if (start === undefined) { start = 0; }
+      return this.indexOf(search, start) !== -1;
+    };
+  }
+
+  
+  Document.prototype.append = Element.prototype.append = function append() {
+    this.appendChild(_mutation(arguments));
+  };
+  function _mutation(nodes) {
+    if (!nodes.length) {
+      throw new Error('DOM Exception 8');
+    } else if (nodes.length === 1) {
+      return typeof nodes[0] === 'string' ? document.createTextNode(nodes[0]) : nodes[0];
+    } else {
+      var
+      fragment = document.createDocumentFragment(),
+      length = nodes.length,
+      index = -1,
+      node;
+
+      while (++index < length) {
+        node = nodes[index];
+
+        fragment.appendChild(typeof node === 'string' ? document.createTextNode(node) : node);
+      }
+
+      return fragment;
+    }
+  }
+
+  
+  if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (searchString, position) {
+      position = position || 0;
+      return this.indexOf(searchString, position) === position;
+    };
+  }
+  
+
+  document.addEventListener('DOMContentLoaded', function () {
+    
+    var summaryContainer = document.querySelector('.summary__container');
+    var searchResult = document.querySelector('.search-result');
+    var searchResultCloseBtn = document.querySelector('.search-result__close');
+    searchResultCloseBtn ? searchResultCloseBtn.addEventListener('click', function (e) {
+      searchResult.setAttribute('data-display', 'none');
+      summaryContainer.setAttribute('data-display', 'block');
+    }) : null;
+    
+
+
+    
+    document.querySelectorAll('.tab') ? 
+    document.querySelectorAll('.tab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var tabLinks = elem.querySelectorAll('.tab__link');
+      var tabContents = elem.querySelectorAll('.tab__content');
+      var ids = [];
+
+      tabLinks && tabLinks.length > 0 ?
+      tabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                tabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              tabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    
+
+
+    
+    document.querySelectorAll('.codetab') ? 
+    document.querySelectorAll('.codetab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var codetabLinks = elem.querySelectorAll('.codetab__link');
+      var codetabContents = elem.querySelectorAll('.codetab__content');
+      var ids = [];
+
+      codetabLinks && codetabLinks.length > 0 ?
+      codetabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                codetabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              codetabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    
+
+
+    
+    var gttBtn = document.getElementById("gtt");
+    gttBtn.style.display = "none";
+    gttBtn.addEventListener('click', function () {
+      if (window.document.documentMode) {
+        document.documentElement.scrollTop = 0;
+      } else {
+        scrollToTop(250);
+      }
+    });
+
+    function scrollToTop(scrollDuration) {
+      var scrollStep = -window.scrollY / (scrollDuration / 15);
+      var scrollInterval = setInterval(function () {
+        if (window.scrollY != 0) {
+          window.scrollBy(0, scrollStep);
+        }
+        else clearInterval(scrollInterval);
+      }, 15);
+    }
+
+    var scrollFunction = function () {
+      if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        gttBtn.style.display = "block";
+      } else {
+        gttBtn.style.display = "none";
+      }
+    }
+    
+
+
+    
+    var expandBtn = document.querySelectorAll('.expand__button');
+
+    for (let i = 0; i < expandBtn.length; i++) {
+      expandBtn[i].addEventListener("click", function () {
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          this.querySelector('svg').classList.add('expand-icon__right');
+          this.querySelector('svg').classList.remove('expand-icon__down');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          this.querySelector('svg').classList.remove('expand-icon__right');
+          this.querySelector('svg').classList.add('expand-icon__down');
+        }
+      });
+    }
+    
+
+
+    
+    var lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var tocElem = document.querySelector('.toc');
+    var tableOfContentsElem = tocElem ? tocElem.querySelector('#TableOfContents') : null;
+    var toggleTocElem = document.getElementById('toggle-toc');
+    var singleContentsElem = document.querySelector('.single__contents');
+    var navbar = document.querySelector('.navbar');
+    var tocFlexbox = document.querySelector('.toc__flexbox');
+    var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
+    var expandContents = document.querySelectorAll('.expand__content');
+    var boxContents = document.querySelectorAll('.box');
+    var notAllowedTitleIds = null;
+
+    
+    var tocFolding = JSON.parse("false");
+    
+    var tocLevels = JSON.parse("[\"h2\",\"h3\",\"h4\"]");
+    
+    if (tocLevels) {
+      tocLevels = tocLevels.toString();
+    } else {
+      tocLevels = "h1, h2, h3, h4, h5, h6";
+    }
+
+    
+    singleContentsElem && singleContentsElem.querySelectorAll(".tab") ?
+    singleContentsElem.querySelectorAll(".tab").forEach(function (elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    expandContents ? expandContents.forEach(function(elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    boxContents ? boxContents.forEach(function(elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    window.onscroll = function () {
+      scrollFunction();
+      
+      var st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) { 
+        if (st < 250) {
+          gttBtn.style.display = "none";
+        } else {
+          gttBtn.style.display = "block";
+        }
+
+        if (st < 45) {
+          return null;
+        }
+        
+        if (!navbar.classList.contains('navbar--hide')) {
+          navbar.classList.add('navbar--hide');
+        } else if (navbar.classList.contains('navbar--show')) {
+          navbar.classList.remove('navbar--show');
+        }
+
+        if (singleContentsElem) {
+          if (singleContentsElem.querySelectorAll(tocLevels).length > 0) {
+            singleContentsElem.querySelectorAll(tocLevels).forEach(function (elem) {
+              if (toggleTocElem && !toggleTocElem.checked) {
+                return null;
+              }
+
+              if (notAllowedTitleIds && notAllowedTitleIds.includes(elem.getAttribute('id'))) {
+                return null;
+              }
+              
+              if (document.documentElement.scrollTop >= elem.offsetTop) {
+                if (tableOfContentsElem) {
+                  var id = elem.getAttribute('id');
+                  tocElem.querySelectorAll('a').forEach(function (elem) {
+                    elem.classList.remove('active');
+                  });
+                  tocElem.querySelector('a[href="#' + id + '"]') ?
+                    tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+
+                  if (false === tocFolding) {
+                    
+                  } else {
+                    tableOfContentsElem.querySelectorAll('ul') ?
+                      tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+                        rootUl.querySelectorAll('li').forEach(function (liElem) {
+                          liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                            ulElem.style.display = 'none';
+                          });
+                        });
+                      }) : null;
+                  }
+
+                  var curElem = tableOfContentsElem.querySelector("[href='#" + id + "']");
+                  if (curElem && curElem.nextElementSibling) {
+                    curElem.nextElementSibling.style.display = 'block';
+                  }
+                  getParents(curElem, 'ul') ?
+                    getParents(curElem, 'ul').forEach(function (elem) {
+                      elem.style.display = 'block';
+                    }) : null;
+                }
+              }
+            });
+          } else {
+            if (tocFlexbox) {
+              tocFlexbox.setAttribute('data-position', '');
+              if (!tocFlexbox.classList.contains('hide')) {
+                tocFlexbox.classList.add('hide');
+              }
+            }
+            if (tocFlexboxOuter) {
+              tocFlexboxOuter.setAttribute('data-position', '');
+              if (!tocFlexboxOuter.classList.contains('hide')) {
+                tocFlexboxOuter.classList.add('hide');
+              }
+            }
+          }
+        }
+      } else { 
+        if (st < 250) {
+          gttBtn.style.display = "none";
+        }
+
+        if (navbar.classList.contains('navbar--hide')) {
+          navbar.classList.remove('navbar--hide');
+        } else if (!navbar.classList.contains('navbar--show')) {
+          navbar.classList.add('navbar--show');
+        }
+
+        if (singleContentsElem) {
+          if (singleContentsElem.querySelectorAll(tocLevels).length > 0) {
+            singleContentsElem.querySelectorAll(tocLevels).forEach(function (elem) {
+              if (toggleTocElem && !toggleTocElem.checked) {
+                return null;
+              }
+              
+              if (notAllowedTitleIds && notAllowedTitleIds.includes(elem.getAttribute('id'))) {
+                return null;
+              }
+
+              if (document.documentElement.scrollTop >= elem.offsetTop) {
+                if (tableOfContentsElem) {
+                  var id = elem.getAttribute('id');
+                  tocElem.querySelectorAll('a').forEach(function (elem) {
+                    elem.classList.remove('active');
+                  });
+                  tocElem.querySelector('a[href="#' + id + '"]') ?
+                    tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+
+                  if (false === tocFolding) {
+                    
+                  } else {
+                    tableOfContentsElem.querySelectorAll('ul') ?
+                      tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+                        rootUl.querySelectorAll('li').forEach(function (liElem) {
+                          liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                            ulElem.style.display = 'none';
+                          });
+                        });
+                      }) : null;
+                  }
+
+                  var curElem = tableOfContentsElem.querySelector("[href='#" + id + "']");
+                  if (curElem && curElem.nextElementSibling) {
+                    curElem.nextElementSibling.style.display = 'block';
+                  }
+                  getParents(curElem, 'ul') ?
+                    getParents(curElem, 'ul').forEach(function (elem) {
+                      elem.style.display = 'block';
+                    }) : null;
+                }
+              }
+            });
+          } else {
+            if (tocFlexbox && !tocFlexbox.classList.contains('hide')) {
+              tocFlexbox.classList.add('hide');
+            }
+            if (tocFlexboxOuter && !tocFlexboxOuter.classList.contains('hide')) {
+              tocFlexboxOuter.classList.add('hide');
+            }
+          }
+          
+        }
+
+        if (tableOfContentsElem && document.documentElement.scrollTop < 250) {
+          if (false === tocFolding) {
+
+          } else {
+            tableOfContentsElem.querySelector('ul') ?
+              tableOfContentsElem.querySelector('ul').querySelectorAll('li').forEach(function (liElem) {
+                liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                  ulElem.style.display = 'none';
+                });
+              }) : null;
+          }
+        }
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+  
+
+
+  
+    var navbarBurgerElem = document.querySelector('.navbar__burger');
+    var navbarMenuElem = document.querySelector('.navbar__menu');
+    navbarBurgerElem ?
+    navbarBurgerElem.addEventListener('click', function () {
+      if (navbarBurgerElem.classList.contains('is-active')) {
+        navbarBurgerElem.classList.remove('is-active');
+        navbarMenuElem.classList.remove('is-active');
+      } else {
+        navbarBurgerElem.classList.add('is-active');
+        navbarMenuElem.classList.add('is-active');
+      }
+    }) : null;
+  
+
+
+  
+    var localTheme = localStorage.getItem('theme');
+    var rootEleme = document.getElementById('root');
+    var selectThemeElem = document.querySelectorAll('.select-theme');
+    var selectThemeItemElem = document.querySelectorAll('.select-theme__item');
+    
+    if (localTheme) {
+      selectThemeItemElem ? 
+      selectThemeItemElem.forEach(function (elem) {
+        if (elem.text.trim() === localTheme) {
+          elem.classList.add('is-active');
+        } else {
+          elem.classList.remove('is-active');
+        }
+      }) : null;
+    }
+
+    selectThemeItemElem ? 
+    selectThemeItemElem.forEach(function (v, i) {
+      v.addEventListener('click', function (e) {
+        var selectedThemeVariant = e.target.text.trim();
+        localStorage.setItem('theme', selectedThemeVariant);
+
+        rootEleme.removeAttribute('class');
+        rootEleme.classList.add('theme__' + selectedThemeVariant);
+        selectThemeElem.forEach(function(rootElem) {
+          rootElem.querySelectorAll('a').forEach(function (elem) {
+            if (elem.classList) {
+              if (elem.text.trim() === selectedThemeVariant) {
+                if (!elem.classList.contains('is-active')) {
+                  elem.classList.add('is-active');
+                }
+              } else {
+                if (elem.classList.contains('is-active')) {
+                  elem.classList.remove('is-active');
+                }
+              }
+            }
+          });
+        });
+
+        if (window.mermaid) {
+          if (selectedThemeVariant === "dark" || selectedThemeVariant === "hacker") {
+            mermaid.initialize({ theme: 'dark' });
+            location.reload();
+          } else {
+            mermaid.initialize({ theme: 'default' });
+            location.reload();
+          }
+        }
+
+        var utterances = document.querySelector('iframe');
+        if (utterances) {
+          utterances.contentWindow.postMessage({
+            type: 'set-theme',
+            theme: selectedThemeVariant === "dark" || selectedThemeVariant === "hacker" ? 'photon-dark' : selectedThemeVariant === 'kimbie' ? 'github-dark-orange' : 'github-light',
+          }, 'https://utteranc.es');
+        }
+      });
+    }) : null;
+  
+
+
+  
+    
+    var permalink = JSON.parse("\"http://austinzgx.github.io/metal/zn/\"");
+    var searchResults = null;
+    var searchMenu = null;
+    var searchText = null;
+    
+    
+    var enableSearchHighlight = JSON.parse("true");
+    
+    var searchResultPosition = JSON.parse("null");
+    
+    var sectionType = JSON.parse("\"metal\"");
+
+    var fuse = null;
+
+    (function initFuse() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', permalink + "index.json");
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
+            keys: sectionType.includes('publication') ? ['title', 'description', 'content'] : ['title', 'abstract'],
+            includeMatches: enableSearchHighlight,
+            shouldSort: true,
+            threshold: 0.4,
+            location: 0,
+            distance: 100,
+            maxPatternLength: 32,
+            minMatchCharLength: 1,
+          });
+          window.fuse = fuse;
+        }
+        else {
+          console.error('[' + xhr.status + ']Error:', xhr.statusText);
+        }
+      };
+      xhr.send();
+    })();
+
+    function makeLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      
+      var a = document.createElement('a');
+      a.innerHTML = obj.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.permalink);
+
+      var descDiv = document.createElement('div');
+      descDiv.setAttribute('class', 'search-result__item--desc');
+      if (obj.description) {
+        descDiv.innerHTML = obj.description;
+      } else if (obj.content) {
+        descDiv.innerHTML = obj.content.substring(0, 225);
+      }
+      
+      li.appendChild(a);
+      li.appendChild(descDiv);
+      ulElem.appendChild(li);
+    }
+
+    function makeHighlightLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      var descDiv = null;
+
+      var a = document.createElement('a');
+      a.innerHTML = obj.item.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.item.uri);
+
+      if (obj.matches && obj.matches.length) {
+        for (var i = 0; i < obj.matches.length; i++) {
+          if ('title' === obj.matches[i].key) {
+            a = document.createElement('a');
+            a.innerHTML = generateHighlightedText(obj.matches[i].value, obj.matches[i].indices);
+            a.setAttribute('class', 'search-result__item--title');
+            a.setAttribute('href', obj.item.uri);
+          }
+          
+          if ('description' === obj.matches[i].key) {
+            descDiv = document.createElement('div');
+            descDiv.setAttribute('class', 'search-result__item--desc');
+            descDiv.innerHTML = generateHighlightedText(obj.item.description, obj.matches[i].indices);
+          } else if ('content' === obj.matches[i].key) {
+            if (!descDiv) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = generateHighlightedText(obj.item.content.substring(0, 150), obj.matches[i].indices);
+            }
+          } else {
+            if (obj.item.description) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.description;
+            } else {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.content.substring(0, 150);
+            }
+          }
+        }
+
+        li.appendChild(a);
+        if (descDiv) {
+          li.appendChild(descDiv);
+        }
+        if (li) {
+          ulElem.appendChild(li);
+        }
+      }
+    }
+
+    function renderSearchResultsSide(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dropdown is-active');
+      
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dropdown-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.setAttribute('href', result.uri);
+          a.setAttribute('class', 'dropdown-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.title;
+          titleDiv.setAttribute('class', 'menu-item__title');
+
+          var descDiv = document.createElement('div');
+          descDiv.setAttribute('class', 'menu-item__desc');
+          if (result.description) {
+            descDiv.innerHTML = result.description;
+          } else if (result.content) {
+            descDiv.innerHTML = result.content.substring(0, 150);
+          }
+
+          li.appendChild(titleDiv);
+          li.appendChild(descDiv);
+          ul.appendChild(a);
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchHighlightResultsSide(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dropdown is-active');
+
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dropdown-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.setAttribute('class', 'dropdown-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'menu-item__title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'menu-item__desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 150), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 150);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var content = document.createElement('div');
+      content.setAttribute('class', 'mobile-search__content');
+
+      if (results.length > 0) {
+        results.forEach(function (result) {
+          var item = document.createElement('a');
+          item.setAttribute('href', result.uri);
+          item.innerHTML = '<div class="mobile-search__item"><div class="mobile-search__item--title">📄 ' + result.title + '</div><div class="mobile-search__item--desc">' + (result.description ? result.description : result.content) + '</div></div>';
+          content.appendChild(item);
+        });
+      } else {
+        var item = document.createElement('span');
+        content.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(content);      
+    }
+
+    function renderSearchHighlightResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var ul = document.createElement('div');
+      ul.setAttribute('class', 'mobile-search__content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.appendChild(li);
+          li.setAttribute('class', 'mobile-search__item');
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'mobile-search__item--title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'mobile-search__item--desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 150), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 150);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var item = document.createElement('span');
+        ul.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(ul);
+    }
+
+    function generateHighlightedText(text, regions) {
+      if (!regions) {
+        return text;
+      }
+
+      var content = '', nextUnhighlightedRegionStartingIndex = 0;
+
+      regions.forEach(function(region) {
+        if (region[0] === region[1]) {
+          return null;
+        }
+        
+        content += '' +
+          text.substring(nextUnhighlightedRegionStartingIndex, region[0]) +
+          '<span class="search__highlight">' +
+            text.substring(region[0], region[1] + 1) +
+          '</span>' +
+        '';
+        nextUnhighlightedRegionStartingIndex = region[1] + 1;
+      });
+
+      content += text.substring(nextUnhighlightedRegionStartingIndex);
+
+      return content;
+    };
+
+    var searchElem = document.getElementById('search');
+    var searchMobile = document.getElementById('search-mobile');
+    var searchResultsContainer = document.getElementById('search-results');
+
+    searchElem ?
+    searchElem.addEventListener('input', function(e) {
+      if (!e.target.value | window.innerWidth < 770) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+      
+      if (searchResultPosition === "main") {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsMain(searchText, results);
+        } else {
+          renderSearchResultsMain(searchText, results);
+        }
+      } else {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsSide(searchText, results);
+        } else {
+          renderSearchResultsSide(searchText, results);
+        }
+        
+        var dropdownItems = searchResultsContainer.querySelectorAll('.dropdown-item');
+        dropdownItems ? dropdownItems.forEach(function(item) {
+          item.addEventListener('mousedown', function(e) {
+            e.target.click();
+          });
+        }) : null;
+      }
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('blur', function() {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('click', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      if (!e.target.value) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+
+      if (searchResultPosition === "main") {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsMain(searchText, results);
+        } else {
+          renderSearchResultsMain(searchText, results);
+        }
+      } else{
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsSide(searchText, results);
+        } else {
+          renderSearchResultsSide(searchText, results);
+        }
+
+        var dropdownItems = searchResultsContainer.querySelectorAll('.dropdown-item');
+        dropdownItems ? dropdownItems.forEach(function (item) {
+          item.addEventListener('mousedown', function (e) {
+            e.target.click();
+          });
+        }) : null;
+      }
+    }) : null;
+
+    var searchMenuElem = document.getElementById("search-menu");
+    var activeItem = document.querySelector('#search-menu .dropdown-item.is-active');
+    var activeIndex = null;
+    var items = null;
+    var searchContainerMaxHeight = 350;
+
+    searchElem ? 
+    searchElem.addEventListener('keydown', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+
+      if (e.key === 'Escape') {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      }
+
+      var items = document.querySelectorAll('#search-menu .dropdown-item');
+      var keyCode = e.which || e.keyCode;
+
+      if (!items || !items.length) {
+        return null;
+      }
+      
+      if (e.key === 'ArrowDown' || keyCode === 40) {
+        if (activeIndex === null) {
+          activeIndex = 0;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        }
+        items[activeIndex].classList.add('is-active');
+
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel > 0) {
+          document.querySelector(".search-content").scrollTop += items[activeIndex].getBoundingClientRect().height;
+        } else if (activeIndex === 0) {
+          document.querySelector(".search-content").scrollTop = 0;
+        }
+      } else if (e.key === 'ArrowUp' || keyCode === 38) {
+        if (activeIndex === null) {
+          activeIndex = items.length - 1;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        }
+        items[activeIndex].classList.add('is-active');
+        
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel < 0) {
+          document.querySelector(".search-content").scrollTop -= items[activeIndex].getBoundingClientRect().height;
+        } else {
+          document.querySelector(".search-content").scrollTop = overflowedPixel + items[activeIndex].getBoundingClientRect().height;
+        }
+      } else if (e.key === 'Enter' || keyCode === 13) {
+        if (items[activeIndex] && items[activeIndex].getAttribute('href')) {
+          location.href = items[activeIndex].getAttribute('href');
+        }
+      } else if (e.key === 'Escape' || keyCode === 27) {
+        e.target.value = null;
+        if (searchResults) {
+          searchResults.classList.remove('is-active');
+        }
+      }
+    }) : null;
+
+    searchMobile ? 
+    searchMobile.addEventListener('input', function(e) {
+      if (!e.target.value) {
+        let wrap = document.getElementById('search-mobile-results');
+        while (wrap.firstChild) {
+          wrap.removeChild(wrap.firstChild);
+        }
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+      renderSearchResultsMobile(searchText, results);
+      if (enableSearchHighlight) {
+        renderSearchHighlightResultsMobile(searchText, results);
+      } else {
+        renderSearchResultsMobile(searchText, results);
+      }
+    }) : null;
+  
+
+
+  
+    var mobileSearchInputElem = document.querySelector('#search-mobile');
+    var mobileSearchClassElem = document.querySelector('.mobile-search');
+    var mobileSearchBtnElem = document.querySelector('#mobileSearchBtn');
+    var mobileSearchCloseBtnElem = document.querySelector('#search-mobile-close');
+    var mobileSearchContainer = document.querySelector('#search-mobile-container');
+    var mobileSearchResultsElem = document.querySelector('#search-mobile-results');
+    var htmlElem = document.querySelector('html');
+
+    if (mobileSearchClassElem) {
+      mobileSearchClassElem.style.display = 'none';
+    }
+
+    mobileSearchBtnElem ? 
+    mobileSearchBtnElem.addEventListener('click', function () {
+      if (mobileSearchContainer) {
+        mobileSearchContainer.style.display = 'block';
+      }
+
+      if (mobileSearchInputElem) {
+        mobileSearchInputElem.focus();
+      }
+
+      if (htmlElem) {
+        htmlElem.style.overflowY = 'hidden';
+      }
+    }) : null;
+
+    mobileSearchCloseBtnElem ? 
+    mobileSearchCloseBtnElem.addEventListener('click', function() {
+      if (mobileSearchContainer) {
+        mobileSearchContainer.style.display = 'none';
+      }
+
+      if (mobileSearchInputElem) {
+        mobileSearchInputElem.value = '';
+      }
+      
+      if (mobileSearchResultsElem) {
+        while (mobileSearchResultsElem.firstChild) {
+          mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+        }
+      }
+
+      if (htmlElem) {
+        htmlElem.style.overflowY = 'visible';
+      }
+    }) : null;
+
+    mobileSearchInputElem ?
+    mobileSearchInputElem.addEventListener('keydown', function(e) {
+      var keyCode = e.which || e.keyCode;
+      if (e.key === 'Escape' || keyCode === 27) {
+        if (mobileSearchContainer) {
+          mobileSearchContainer.style.display = 'none';
+        }
+        
+        if (mobileSearchInputElem) {
+          mobileSearchInputElem.value = '';
+        }
+
+        if (mobileSearchResultsElem) {
+          while (mobileSearchResultsElem.firstChild) {
+            mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+          }
+        }
+        if (htmlElem) {
+          htmlElem.style.overflowY = 'visible';
+        }
+      }
+    }) : null;
+  
+
+
+  
+    function renderSearchResultsMain(searchText, results) {
+      var searchBody = document.querySelector('.search-result__body');
+      var originUl = searchBody.querySelector('ul');
+      var ul = document.createElement('ul');
+      
+      if (!searchText) {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      } else if (results) {
+        if (results && results.length) {
+          results.forEach(function (result) {
+            makeLi(ul, result);
+          });
+
+          searchResult ? searchResult.setAttribute('data-display', 'block') : null;
+          summaryContainer ? summaryContainer.setAttribute('data-display', 'none') : null;
+        }
+      }
+
+      originUl.parentNode.replaceChild(ul, originUl);
+    }
+
+    function renderSearchHighlightResultsMain(searchText, results) {
+      var searchBody = document.querySelector('.search-result__body');
+      var originUl = searchBody.querySelector('ul');
+      var ul = document.createElement('ul');
+
+      if (!searchText) {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      } else if (results) {
+        if (results && results.length) {
+          results.forEach(function (result) {
+            makeHighlightLi(ul, result);
+          });
+
+          searchResult ? searchResult.setAttribute('data-display', 'block') : null;
+          summaryContainer ? summaryContainer.setAttribute('data-display', 'none') : null;
+        }
+      }
+
+      originUl.parentNode.replaceChild(ul, originUl);
+    }
+  
+  });
+</script>    
+    
+
+
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+<meta name="description" content="The Zzo theme for Hugo example site." />
+<meta name="keywords" content="">
+<meta name="created" content="2017-08-06T21:57:00&#43;0000">
+<meta name="modified" content="2017-08-06T21:57:00&#43;0000">
+<meta property="article:published_time" content="2017-08-06T21:57:00&#43;0000">
+
+<meta name="author" content="AustinZGX">
+
+
+<meta property="og:site_name" content="Austin">
+<meta property="og:title" content="Zn">
+<meta property="og:url" content="http://austinzgx.github.io/metal/zn/">
+<meta property="og:type" content="article">
+<meta property="og:description" content="The Zzo theme for Hugo example site.">
+
+<meta name="generator" content="Hugo 0.81.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="http://austinzgx.github.io/metal/zn/">
+<link rel="manifest" href="/manifest.json">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/logo.svg" sizes="any" type="image/svg+xml" />
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Zn",
+    "datePublished": "2017-08-06T21:57:00Z",
+    "dateModified": "2017-08-06T21:57:00Z",
+    "url" : "http://austinzgx.github.io/metal/zn/",
+    "description": "概述 主流工艺：锌精矿焙烧制酸+常规两段浸出/氧压浸出+三段净化+电解熔铸+浸出渣处理（回转窑/侧吹+烟化） 株冶主流程图： 焙烧炉：109m2(",
+    "keywords": ["Metal"],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http://austinzgx.github.io/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Austin",
+      "url": "http://austinzgx.github.io/"
+    }
+  }
+</script>
+
+    
+  
+  
+
+
+
+
+
+
+
+    
+</head>
+
+<body id="root" class="theme__dark">
+    <script>
+        var localTheme = localStorage.getItem('theme');
+        if (localTheme) {
+            document.getElementById('root').className = 'theme__' + localTheme;
+        }        
+    </script>
+    
+    <div id="container">
+        
+        <div class="wrapper" data-type="metal" data-kind="page">
+            <nav class="navbar" role="navigation" aria-label="main navigation" data-dir="ltr">
+  <div class="navbar__brand">
+    
+    <a href="/" title="Home" rel="home" class="navbar__logo-link">
+      <img src="/logo.png" alt="Home" class="navbar__logo">
+    </a>
+    
+    
+      <a href="/" title="Home" rel="home" class="navbar__title-link">
+        <h6 class="navbar__title">Austin</h6>
+      </a>
+    
+  </div>
+  
+  
+<div class="theme-mobile">
+  <div class="dropdown">
+    <button class="dropdown-trigger navbar__slide-down" aria-label="Select Theme Button" style="">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M24 0H0v24h24V0z"/><path fill="currentColor" d="M6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58s4.1-.78 5.66-2.34c3.12-3.12 3.12-8.19 0-11.31l-4.95-4.95c-.39-.39-1.02-.39-1.41 0L6.34 7.93zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"/></svg>      
+    </button>
+    <div class="dropdown-content select-theme">
+      
+        
+        <a href="#" class="dropdown-item select-theme__item is-active">
+          dark
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          light
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          hacker
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          solarized
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          kimbie
+        </a>
+        
+      
+    </div>
+  </div>
+</div>
+
+  
+<div id="mobileSearchBtn" class="mobile-search__btn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+</div>
+
+<div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
+  <div class="mobile-search__top">
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <div id="search-mobile-close" class="mobile-search__top--icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
+    </div>
+  </div>
+  <div id="search-mobile-results" class="mobile-search__body">
+    
+  </div>
+</div>
+
+  
+  <a role="button" class="navbar__burger" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>  
+
+  <div class="navbar__menu">
+    
+<div class="theme">
+  <div class="dropdown">
+    <button class="dropdown-trigger navbar__slide-down" aria-label="Select Theme Button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M24 0H0v24h24V0z"/><path fill="currentColor" d="M6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58s4.1-.78 5.66-2.34c3.12-3.12 3.12-8.19 0-11.31l-4.95-4.95c-.39-.39-1.02-.39-1.41 0L6.34 7.93zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"/></svg>      
+    </button>
+    <div class="dropdown-content select-theme">
+      
+        
+        <a href="#" class="dropdown-item select-theme__item is-active">
+          dark
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          light
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          hacker
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          solarized
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          kimbie
+        </a>
+        
+      
+    </div>
+  </div>
+</div>
+
+    
+    
+      
+      
+      
+      
+      
+        <a href="/life" class="navbar__menu-item navbar__slide-down " dir="ltr">Life</a>
+      
+    
+      
+      
+      
+      
+      
+        <div class="navbar__dropdown navbar__slide-down">
+          <a href="/code" class="navbar__menu-item " dir="ltr">
+            Code
+            <span class="navbar__menu-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7c-.39-.39-.39-1.02 0-1.41.39-.38 1.03-.39 1.42 0z"/></svg>
+            </span>
+          </a>        
+          <div class="navbar__dropdown--content">
+            
+            <a href="/code/angular" class="navbar__dropdown--item" dir="ltr">Angular</a>        
+            
+            <a href="/code/dotnetcore" class="navbar__dropdown--item" dir="ltr">dotnet</a>        
+            
+            <a href="/code/frontend" class="navbar__dropdown--item" dir="ltr">Frontend</a>        
+            
+            <a href="/code/go" class="navbar__dropdown--item" dir="ltr">go</a>        
+            
+            <a href="/code/java" class="navbar__dropdown--item" dir="ltr">Java</a>        
+            
+            <a href="/code/python" class="navbar__dropdown--item" dir="ltr">python</a>        
+            
+            <a href="/code/sql" class="navbar__dropdown--item" dir="ltr">SQL</a>        
+            
+          </div>
+        </div>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/metal" class="navbar__menu-item navbar__slide-down active" dir="ltr">Metal</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/it" class="navbar__menu-item navbar__slide-down " dir="ltr">IT</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/sf" class="navbar__menu-item navbar__slide-down " dir="ltr">Smart</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/oa" class="navbar__menu-item navbar__slide-down " dir="ltr">OA</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/about" class="navbar__menu-item navbar__slide-down " dir="ltr">About</a>
+      
+    
+  </div>
+</nav>
+            
+            
+
+<main class="single__main main-main">
+  
+    <nav class="breadcrumb hide" aria-label="breadcrumbs">
+  <script>document.querySelector('.breadcrumb').classList.remove('hide')</script>
+  <ol>
+    
+  
+  
+  
+  
+  
+  <li >
+    
+      <a href="http://austinzgx.github.io/" class="capitalize">Austin</a>
+    
+  </li>
+  
+  
+  <li >
+    
+      <a href="http://austinzgx.github.io/metal/" class="capitalize">Metals</a>
+    
+  </li>
+  
+  
+  <li  class="is-active" >
+    
+      <span>Zn</span>
+    
+  </li>
+  
+  </ol>
+  
+</nav>
+  
+  <noscript>
+    Please enable Javascript to view the contents
+  </noscript>
+  <div class="single hide">
+    <script>document.querySelector('.single').classList.remove('hide')</script>
+    <h2 class="single__title">Zn</h2>
+    <div class="single__meta">
+      
+<div class="single__infos">
+  <time class="single__info" title="Written At">📅&nbsp;Aug 6, 2017 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 49 min read </span>
+  <span class="single__info">
+    
+  </span>
+</div>
+      
+<div class="single__tags caption">
+
+  
+    🏷️
+  
+  
+    <li><a href="http://austinzgx.github.io/tags/metal/" class="single__tag" title="Metal">#Metal</a></li>
+  
+
+</div>
+    </div>
+    <article class="single__contents" data-dir="ltr">
+      
+      <h2 id="概述">概述</h2>
+<ul>
+<li>主流工艺：锌精矿焙烧制酸+常规两段浸出/氧压浸出+三段净化+电解熔铸+浸出渣处理（回转窑/侧吹+烟化）<br />
+株冶主流程图：<br />
+<img src="/images/metal/zhuye_pfd.jpg" alt="株冶主流程图" /></li>
+<li>焙烧炉：109m2(10万t/a)-&gt;152m2(西北铅锌、株冶15万t/a)</li>
+<li>电解：（电积）1.6小板/3.2大板 直流电耗～3000kwh</li>
+</ul>
+<p>##工艺分类：</p>
+<h3 id="火法炼锌">火法炼锌</h3>
+<ul>
+<li>竖罐炼锌</li>
+<li>横（平）罐炼锌</li>
+<li>密闭鼓风炉炼锌（ISP法）</li>
+<li>电热（炉）炼锌</li>
+</ul>
+<h3 id="湿法炼锌">湿法炼锌</h3>
+<ul>
+<li>传统-两段浸出渣挥发法<br />
+常规法（或称联合法）：两段浸出（中性浸出、低酸浸出），一般酸浸渣经过滤干燥，回转窑挥发回收Zn、Pb、In等有价元素，多膛炉或回转窑脱F、Cl、氧化锌浸出等；<br />
+酸度 PH 3.2 <br />
+渣率  ～50％ <br />
+成分</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Zn</th>
+<th>Pb</th>
+<th>Cu</th>
+<th>Cd</th>
+<th>Fe</th>
+<th>S</th>
+<th>As</th>
+<th>F</th>
+<th>Bi</th>
+<th>Ag</th>
+<th>In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>18.5~23.36</td>
+<td>3.16</td>
+<td>0.81</td>
+<td>0.36</td>
+<td>25</td>
+<td>6.83</td>
+<td>0.37</td>
+<td>0.024</td>
+<td>0.03</td>
+<td>0.0262</td>
+<td>0.012</td>
+</tr>
+</tbody>
+</table>
+<p>浸出系统操作简单，浸出率基本不用担心指标限制，但仅渣处理系统就非常庞大，工程投资相对高，运行成本也高。</p>
+<ul>
+<li>
+<p>高温高酸</p>
+<ul>
+<li>
+<ol>
+<li>黄钾铁矾法</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>成分</th>
+<th>ZnT</th>
+<th>Zn酸</th>
+<th>Zn水</th>
+<th>FeT</th>
+<th>Fe可</th>
+<th>Cu</th>
+<th>Cd</th>
+<th>Co</th>
+<th>S</th>
+<th>PbAg</th>
+<th>SiO2</th>
+<th>Mn</th>
+<th>Mg</th>
+<th>SO42-H2O</th>
+<th>In</th>
+<th>As</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高浸渣</td>
+<td>3.78</td>
+<td>2.72</td>
+<td>2.23</td>
+<td>26.76</td>
+<td>24.04</td>
+<td>0.28</td>
+<td>0.214</td>
+<td>0.02</td>
+<td>12.36</td>
+<td>0.34</td>
+<td>86.87</td>
+<td>5.2</td>
+<td>0.74</td>
+<td>0.19</td>
+<td>10.47 21.3</td>
+<td>~220</td>
+</tr>
+</tbody>
+</table>
+<p>铁矾渣形成的基本原理<br />
+低污染沉矾法除铁过程需要加中和剂，而且几乎所有采用常规黄钾铁矾工艺沉矾法生产的厂家都用锌焙砂作中和剂，这样就不可避免地使部分未溶解的锌及有价金属残留于铁矾渣中，导致锌及有价金属的损失，同时也污染铁矾渣，不利于环境保护和矾渣的进一步处理。另外低污染沉矾除铁在沉矾时，由于离子取代作用，砷、锑所形成的阴离子可以取代铁矾晶格中的硫酸根，而后，CL、F取代晶格中的OH-，使溶液得以净化。</p>
+<p>低污染（黄钾铁矾）沉矾除铁<br />
+* 将预中和溢流液加入碳酸氢铵和碳酸氢钠进行低污染沉矾除铁，将低污染沉矾溢流液返回中性浸出槽，沉矾渣回收金属铟或作微肥。<br />
+* 沉矾除铁条件为：始酸10～18 g/L，终点Fe≤3.5 g/L，反应温度90～95℃，反应时间4h。<br />
+主要反应式:<br />
+3Fe2(SO4)3+10H2O+2NH4HCO3=(NH4)2Fe6(SO4)4(OH)12+5H2SO4+2CO2<br />
+3Fe2(SO4)3+12H2O+Na2SO4=Na2Fe6(SO4)4(OH)12+6H2SO4<br />
+3Fe2(SO4)3+10H2O+2NaHCO3=Na2Fe6(SO4)4(OH)12+5H2SO4+2CO2<br />
+3Fe2(SO4)3+10H2O+2NH4OH=(NH4)2Fe6(SO4)4(OH)12+5H2SO4</p>
+<pre><code>* 2. 针铁矿法
+* 3. 赤铁矿法
+* 4. 喷淋除铁法
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>成分</th>
+<th>ZnT</th>
+<th>Zn酸</th>
+<th>Zn水</th>
+<th>FeT</th>
+<th>Fe可</th>
+<th>Pb</th>
+<th>Ag</th>
+<th>SiO2</th>
+<th>Mn</th>
+<th>Mg</th>
+<th>Cu</th>
+<th>Cd</th>
+<th>Co</th>
+<th>S</th>
+<th>SO42-</th>
+<th>H2O</th>
+<th>In</th>
+<th>As</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高浸渣</td>
+<td>6.08</td>
+<td>4.97</td>
+<td>3.89</td>
+<td>16.36</td>
+<td>14.42</td>
+<td>4.53</td>
+<td>185.35</td>
+<td>10.30</td>
+<td>2.46</td>
+<td>0.31</td>
+<td>0.43</td>
+<td>0.48</td>
+<td>0.03</td>
+<td>10.72</td>
+<td>15.23</td>
+<td>15.19</td>
+<td>211.39</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="全湿法冶炼">全湿法冶炼</h3>
+<ul>
+<li>常压富氧直接浸出</li>
+<li>氧压直接浸出</li>
+<li>氧化矿浸出法以及萃取法</li>
+</ul>
+<h3 id="现状">现状</h3>
+<p>☆ 2017年我国锌产量达622万吨，全球锌总产量约为1330万吨，约占世界46.7%产量。（2016年全球锌总产量为1340万吨，2016年中国锌产量为627.3万吨，按照国际有关部门统计报道，中国为598万吨，占全球44.5%）。人们不再盲目追求产能，仅管锌市场行情好转，但产能并没有随之而动。<br />
+☆中国锌冶炼总体不但规模大，而且整体锌冶炼行业集中度更高，目前30万吨规模就有6家，20万吨以上企业近12家，仅此就占全国总产量一半以上。十年前锌冶炼企业300多家，现在仅剩不足100家。工艺技术也在不断完善，整体水平跃上新的更高平台。<br />
+☆主要产量目标：“十三五”期间十种有色金属产量控制在6000万吨左右，其中：锌750万吨（锌增长率5.5%）。再生金属到2020年总产量达到1650万吨，其中：再生锌200万吨。<br />
+我们将面临950万吨总锌产量规模。去产能就不会突破这指标；<br />
+由此产生的渣量基本上与锌产量成正比，如何处理这些渣是我们必须面对的严峻问题。<br />
+☆今年初以来，国资委多次表态，今年有色金属等行业加大去产能力度。这是首次被列入压缩产能的行业，按照这个基调锌的产能估计能维持目前水平就不错了，今后新建工厂越发困难。</p>
+<h3 id="特点">特点</h3>
+<p>☆中国锌冶炼行业的特点是工艺齐全，世界上无论哪种工艺流程在中国都使用过，可谓铅锌冶炼世界大全，或称世界博物馆；<br />
+☆中国锌产量占世界47％以上，技术贡献与产能不相称，尤其是研发能力差（新工艺、核心设备），我们付出能源、环保代价远远高于得到的效益。<br />
+☆技术发展不平衡；有些企业已跨入国际锌冶炼的先进行列；但还有相当多的锌冶炼企业工艺落后、生产装备比较原始，工人作业环境非常恶劣，经济效益不理想，急需寻求出路。</p>
+<h3 id="国内主要生产企业">国内主要生产企业</h3>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>企业名称</th>
+<th>产能</th>
+<th>2017年产量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>株冶集团</td>
+<td>55</td>
+<td>42.8</td>
+</tr>
+<tr>
+<td>2</td>
+<td>南方有色</td>
+<td>30</td>
+<td>33.1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>汉中锌业</td>
+<td>36</td>
+<td>29.1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>葫芦岛锌业</td>
+<td>39</td>
+<td>27.8</td>
+</tr>
+<tr>
+<td>5</td>
+<td>白银公司</td>
+<td>37</td>
+<td>27.4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>豫光金铅</td>
+<td>30</td>
+<td>27.1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>驰宏锌锗</td>
+<td>26</td>
+<td>23.5</td>
+</tr>
+<tr>
+<td>8</td>
+<td>赤峰中色</td>
+<td>22</td>
+<td>22.8</td>
+</tr>
+<tr>
+<td>9</td>
+<td>陕西锌业</td>
+<td>22</td>
+<td>21.4</td>
+</tr>
+<tr>
+<td>10</td>
+<td>中金岭南</td>
+<td>30</td>
+<td>21</td>
+</tr>
+<tr>
+<td>11</td>
+<td>陕西东岭</td>
+<td>23</td>
+<td>20.2</td>
+</tr>
+<tr>
+<td>12</td>
+<td>巴彦淖尔紫金</td>
+<td>25</td>
+<td>19.7</td>
+</tr>
+<tr>
+<td>13</td>
+<td>云铜锌业</td>
+<td>16</td>
+<td>16.4</td>
+</tr>
+<tr>
+<td>14</td>
+<td>江铜铅锌公司</td>
+<td>10</td>
+<td>11.0</td>
+</tr>
+<tr>
+<td>15</td>
+<td>兴安铜锌公司</td>
+<td>13</td>
+<td>10.5</td>
+</tr>
+<tr>
+<td>16</td>
+<td>安徽铜冠九华</td>
+<td>10</td>
+<td>10.3</td>
+</tr>
+<tr>
+<td>17</td>
+<td>呼伦贝尔驰宏</td>
+<td>14</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td>18</td>
+<td>四环锌锗</td>
+<td>12</td>
+<td>9.7</td>
+</tr>
+<tr>
+<td>19</td>
+<td>四川宏达</td>
+<td>10</td>
+<td>7.5</td>
+</tr>
+<tr>
+<td>20</td>
+<td>祥云飞龙</td>
+<td>18</td>
+<td>7.4</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>集团</th>
+<th>冶炼企业</th>
+<th>产能(万t/a)</th>
+<th>设计院</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>驰宏锌锗</td>
+<td></td>
+<td>60</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>曲靖</td>
+<td></td>
+<td>恩菲</td>
+<td>常规浸出，2019侧吹渣处理</td>
+</tr>
+<tr>
+<td></td>
+<td>会泽</td>
+<td>&lt;++&gt;</td>
+<td>恩菲</td>
+<td>常规浸出，2019铅冶炼改造侧吹渣处理,APC</td>
+</tr>
+<tr>
+<td></td>
+<td>云铜新业</td>
+<td>&lt;++&gt;</td>
+<td>&lt;++&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>呼伦贝尔</td>
+<td>&lt;++&gt;</td>
+<td>长沙院</td>
+<td>氧压浸出</td>
+</tr>
+<tr>
+<td></td>
+<td>金鼎</td>
+<td>&lt;++&gt;</td>
+<td>&lt;++&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td>白银有色</td>
+<td></td>
+<td>40</td>
+<td>&lt;++&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>西北铅锌厂</td>
+<td>&lt;++&gt;</td>
+<td>恩菲</td>
+<td>常规浸出，应用在线钴镉检测，2021年投产侧吹渣处理</td>
+</tr>
+<tr>
+<td></td>
+<td>成洲冶炼厂</td>
+<td>&lt;++&gt;</td>
+<td>恩菲</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>第三冶炼厂</td>
+<td>&lt;++&gt;</td>
+<td>长沙院</td>
+<td>ISP</td>
+</tr>
+<tr>
+<td>葫芦岛锌业</td>
+<td></td>
+<td>39</td>
+<td>恩菲</td>
+<td>常规浸出，少量ISP, 回转窑渣处理</td>
+</tr>
+<tr>
+<td>陕西有色汉中锌业</td>
+<td></td>
+<td>36</td>
+<td>西安院、中联</td>
+<td>黄钾铁矾法，回转窑渣处理</td>
+</tr>
+<tr>
+<td>紫金集团</td>
+<td></td>
+<td>35</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>巴彦淖尔</td>
+<td>&lt;++&gt;</td>
+<td>恩菲</td>
+<td>黄钾铁矾法，回转窑渣处理</td>
+</tr>
+<tr>
+<td></td>
+<td>新疆喀什</td>
+<td>10</td>
+<td>恩菲</td>
+<td>2020年新建，常规浸出，回转窑渣处理，109m2, 3.2大板</td>
+</tr>
+<tr>
+<td>株冶有色</td>
+<td></td>
+<td>30</td>
+<td>恩菲</td>
+<td>2018年搬迁水口山60-&gt;30，氧压浸出，2*152m2, 1.6小板</td>
+</tr>
+<tr>
+<td>南方有色</td>
+<td></td>
+<td>30</td>
+<td>长沙院</td>
+<td>常规浸出，回转窑渣处理</td>
+</tr>
+<tr>
+<td>豫光锌业</td>
+<td></td>
+<td>30</td>
+<td>恩菲</td>
+<td>常规浸出，回转窑渣处理</td>
+</tr>
+<tr>
+<td>陕西有色陕西锌业</td>
+<td></td>
+<td>20</td>
+<td>恩菲</td>
+<td>常规浸出，回转窑渣处理</td>
+</tr>
+<tr>
+<td>陕西东岭</td>
+<td></td>
+<td>20</td>
+<td></td>
+<td>ISP</td>
+</tr>
+<tr>
+<td>铜陵有色</td>
+<td></td>
+<td>10</td>
+<td>恩菲</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>池州九华铅锌</td>
+<td>10</td>
+<td>恩菲</td>
+<td>2011年，109m2，1.6小板</td>
+</tr>
+</tbody>
+</table>
+<h3 id="主要流程工艺">主要流程工艺</h3>
+<h4 id="西北铅锌治炼厂">西北铅锌治炼厂</h4>
+<p>西北铅锌治炼厂是国家“七五”计划重点建设项目之一。1986年 9月8日动工建设,1992年5月1日锌系统焙烧炉点火成功,当年锌 系统投入生产。主要工艺流程为配料、焙烧、浸出、净化、电解、熔 铸、治炼尾气制酸、铅银渣处理、合金锌粉生产等九大主要生产系统 主要产品有锌锭、工业硫酸和精镉等产品。</p>
+<p>配料系统是根据冶炼工艺需要,将不同锌含量及杂质含量锌精矿 按配料计算比例进行配料,通过皮带运至沸腾焙烧炉料仓。</p>
+<p>焙烧系统采用采用流态化焙烧工艺,选用109m2大型鲁奇式沸 腾焙烧炉。炉料(ZnS)从炉侧通过给料机加入炉内,空气从炉底侧 鼓入参与反应。反应生成的焙砂(ZnO)经炉壁下部排出,进入圆筒冷却器冷却后由刮板传送至球磨机细磨后送至焙砂仓。沸腾焙烧炉出的SO2烟气经余热锅炉回收余热及部分烟尘后再经漩涡收尘器和电收尘器回收全部烟尘后送往制酸系统,余热锅炉、漩涡收尘器及电收尘器回收的烟尘由刮板输送至球磨机球磨后送至焙砂仓。</p>
+<p>浸出系统采用两段热酸浸出一黄钾铁矾工艺,该工艺分中性浸出、两段热酸浸出、予中和及两段沉矶等工序。焙砂主要从中性浸出工序加入,与沉矾上清液和电解废液混合液发生中和反应,反应生成的硫酸锌进入溶液,反应结束后,矿浆进入浓密机完成液固分离,上清液送往净化系统,中浸浓密机底流(中浸渣)由泵送至两段段热酸浸出工序,在高温下(大于85℃),与电解废液和浓硫酸溶液混合液反应,矿浆进入浓密机沉降分离,底流由泵送往压滤工序分离铅银渣, 铅银渣送往渣处理系统。热酸浸出上清液经予中和工序进入两段沉矾 除铁)工序,加碳酸氢铵和硫酸氢钠除铁再进入浓密机进行液固分离,浓密机底流由泵送往压滤工序分离铁矾渣,上清液由泵送往中性浸出工序。</p>
+<p>净化系统采用三段连续逆锑浄化工艺,分一段净化、二段净化及三段净化工序。中上清液先进入一段净化工序,在低温下加锌粉除去溶液中铜镉后过滤,滤渣即铜镉渣送制镉系统,滤液进入二段净化工序升温加锌粉锑盐浄化除去溶液中钴镍后过滤,滤渣即钴镍渣 送处理,滤液再经三段加锌粉净化除去残镉后过滤,滤渣返回一段净化工序再利用,滤液即新液送电解系统</p>
+<p>电解系统采用不溶阳极电解沉积工艺,新液与废电解液以一定的比例混合后连续注入电解槽,阳极为铅银合金板,阴极为纯铝板,在直电的作用下溶液中锌离子以锌金属的形态在阴极析,当阴极锌(99.995%)析出达一定厚度时,利用天车将阴极分批从电解槽吊出,剥离阴极锌片后的阴极板再装入电解槽继续进行电解,阴极锌片送至熔铸系统,废液部分送浸出系统,部分返回本系统经冷却塔与新液混合进入电解槽。</p>
+<p>熔铸系统选用工频感应电炉设备熔化锌片。利用天车将电解系统生产的阴极锌片吊至加料平台,由自动加料设备将锌片加入熔锌感应电炉内,控制相应的炉温,待锌片熔化后,加入适量的氯化铵,搅动机出浮渣,由精锌铸锭码垛机组铸锭及自动码垛,人工捆扎后贮存或外运,锌浮渣送电炉合金锌粉生产系统生产合金锌粉。</p>
+<p>硫酸系统采用双转双吸工艺。治炼SO2烟气由高温排烟机送至硫酸系统净化工序,经沈涤器、电除雾器、干燥塔、SO2鼓风机換热器、转化器、吸收塔等主要制酸工艺设备产出工业硫酸(产品分93%硫酸,98%硫酸)。制酸尾气的排放达到国家排放标准。酸性废水采用能有效除去As、Cu、Zn等重金属离子的硫化法处理。脱出重金属离子后的酸性废水采用石灰中和,处理后的外排水的水质达到<br />
+国家排放标准。</p>
+<p>电炉合金锌粉生产系统采用国内最大的3150KVA矿热电炉生产合金锌粉,将锌焙砂、锌浮渣或较富的氧化锌精矿、碳质还原剂、熔剂等按照治炼要求的配料比均匀混合经干燥窑干燥后进入电炉还原熔炼,脉石熔化造渣,还原得到的锌蒸汽随高温烟气进入冷却器,急速冷却后被收集,再经过筛分工序得到合格的合金锌粉</p>
+<p>铅银渣处理系统采用国际先进的富氧顶吹熔化、烟化炉挥发铅锌 工艺。铅银渣经干燥窑干燥后送至熔炼炉,富氧从熔化炉顶部鼓入熔 池,烟气经余热锅炉回收余热和烟尘,进入布袋收尘器再次回收烟尘后送至烟气脱硫系统生产纯SO2气体,纯SO2气体送硫酸系统制酸,烟尘送往氧化锌浸出车间,熔渣进入烟化炉挥发铅锌等金属,烟化炉渣采用水淬处理,产出水淬渣,烟气经布袋收尘器送往脱硫系统,烟尘送至氧化锌浸出系统。</p>
+<h4 id="新疆紫金锌业">新疆紫金锌业</h4>
+<ul>
+<li>
+<p>化工</p>
+<ul>
+<li>
+<p>烟气（SO2:8.21%) =&gt; 净化 =&gt; 两次转化 =&gt; 两次吸收 =&gt; 尾气脱硫</p>
+</li>
+<li>
+<p>高效洗涤器-气体冷却塔-一级电除雾器-二级电除雾器-干燥塔-SO2风机-一次转化-中间吸收-二次转化-最终吸收-尾气脱硫-尾气烟囱</p>
+</li>
+<li>
+<p>净化：根据绝热蒸发原理对烟气300+-20℃进行降温85℃、除尘、除雾；</p>
+</li>
+<li>
+<p>转化：SO2 + O2 = SO3 触媒</p>
+</li>
+<li>
+<p>吸收：SO3 + H2O = H2SO4</p>
+</li>
+<li>
+<p>净化工序产生对污酸送废水处理站</p>
+<p>废酸经收集进入调节池进行水质水量调节，然后进入硫化反应池，采用硫化钠与废酸中的重金属反应，经两级硫化反应后出水进入一体化沉淀池，加入絮凝剂进行固液分离，分离后上清液经中间池排入后续酸性废水处理站处理；分离后的底流经污泥槽收集后用泵打入压滤机压滤，压滤后滤液排入调节池，压滤后的滤渣为危废渣，临时堆存至一定量后外送危废处理站处置。</p>
+<p>现场设置事故池，系统处理不达标废水或现场跑冒滴漏废液通过事故池收集后，重新打入系统处理；各池体产生的尾气经收集后进入尾气吸收塔。</p>
+</li>
+<li>
+<p>制酸尾气与渣处理回转窑烟气、脱氟氯回转窑烟气 =&gt; 尾气脱硫 =&gt; 烟囱外排（GB25466-2010《铅、锌工业污染物排放标准》</p>
+</li>
+</ul>
+</li>
+<li>
+<p>热工</p>
+<ul>
+<li>余热锅炉 工业锅炉 化学水处理站 余热发电站</li>
+<li>化学水处理站供应余热锅炉和工业锅炉补充水。化学水处理站工艺流程采用多介质过滤器+反渗透+混床,该系统简单、技术成熟、运行费用较低,废水排放易达标. 产品为除盐水。</li>
+</ul>
+</li>
+<li>
+<p>给排水</p>
+<ul>
+<li>生产新水+ 生活水 + 循环水</li>
+<li>生产水： 水库-生产水处理净化水站-生产消防高位水池</li>
+<li>生活水： 市政管网自来水公司</li>
+<li>软化水：（除盐水）化学水处理站</li>
+</ul>
+</li>
+</ul>
+<h3 id="行业现状与需求">行业现状与需求</h3>
+<h4 id="白银有色西北铅锌厂">白银有色西北铅锌厂</h4>
+<ul>
+<li>现状
+<ul>
+<li>
+<p>老系统</p>
+<p>铅锌厂老系统已投产20多年,其中焙烧、硫酸系统2010年经过技术改造已实现设备升级及DCS控制,熔铸系统已于2019年通过改造实现自动浇铸、打包生产,扒皮、打码也于2020年 实现了自动化,目前主要的设备与控制短板在于老湿法系统。由 于各种原因制约,老湿法系统一直未进行自动控制系统升级改造 工艺控制主要依靠人工经验调整,工艺参数控制不准确,难以实 现系统的稳定、连续及高效运行。</p>
+</li>
+<li>
+<p>新系统</p>
+<p>铅锌厂新系统在建设之初即考虑采用行业内成熱先进设备和控制技术提升自动化水平,火法系统各工序基本上分别实现设备升级及DCS控制,熔铸系统实现自动浇铸,打包生产自动化 湿法新系统生产控制系统采用目前行业较为成熟,先进的DCS控制系统,基本实现了设备运行的在线监视、自动控制;</p>
+<p>工艺流程涉及的温度、流量、压力、液位等仪表监测信号与电气控制信号全部集成于DCS自动控制系统,控制系统依据工艺流程设计,具备故障报警功能,控制界面清晰易懂、操作方便、运行稳定;</p>
+<p>湿法系统主要工序泵用电机加装变频器控制,其余设备加装电机保护器,实现软启动且依据工艺要求随时调整电机功率来实现流量调整;主要工艺管道阀门采用自动控制执行机构,实现远程开闭;</p>
+<p>电气系统配套使用安全性更高与支持自动控制的低压柜</p>
+</li>
+</ul>
+</li>
+<li>需求
+<ul>
+<li>推进在线监测系统应用（长沙华时捷西北铅锌厂应用钴镉在线系统</li>
+<li>应用熔铸系统生产线机器人自动扒渣扒皮机器人，引进自动称重、贴标一体机、手持式扫码机及锭垛输送机,进一步提升熔铸自动化水平,降低劳动强度,提升岗位员工.生产安全性</li>
+<li>应用管道结晶自动化清理技术,降低岗位人员劳动强度,提高管道结晶物清理效率</li>
+<li>创建焙烧一硫酸系统操作数模,实现风、料及炉温度等科学化全过程控制,解决原料成分复杂多变对生产的影响</li>
+<li>引进熔铸生产线自动称重、贴标一体机、手持式扫码机及锭垛输送机,进一步提升熔铸自动化水平</li>
+<li>实施锌精矿自动取样装置项目,解决取样过程中人工劳动强度大的问题,提高取样效率和取样代表性</li>
+<li>实施“锌电解整体工艺重金属废水智能化源削减大型成套装备研发及工程示范” 项目,实现电解短路识别自动剥锌、阴阳极板智能化清理,堿少人力资源需求量</li>
+<li>实施“基于物联网和工业大数据的锌电积节能系统开发”项目,降低锌电积能耗。</li>
+</ul>
+</li>
+</ul>
+<h2 id="焙烧">焙烧</h2>
+<h3 id="目的及意义">目的及意义</h3>
+<p>为了提升锌精矿焙烧过程的效率，需要对焙烧过程的机理和沸腾炉的特性加以研究，<br />
+分析不同工艺条件对于焙烧过程的影响，从而给出焙烧过程的最优控制方案。</p>
+<p>本方案主要从控制的角度出发对焙烧过程进行优化，</p>
+<ul>
+<li>首先根据焙烧过程和流化床的工艺机理建立焙烧过程的机理模型，<br />
+并通过焙烧过程的历史运行数据来对机理模型进行一定的修正。<br />
+通过这个修正的焙烧过程数学模型分析<strong>锌焙砂进料量</strong>和<strong>鼓风量</strong>等因素对焙烧过程的影响。</li>
+<li>然后,对锌精矿进行矿物学分析，分析<strong>锌精矿的品位、杂质离子含量、粒度和粒度分布</strong>，<br />
+根据不同的配料组成基于焙烧过程数学模型确定不同锌精矿进料时焙烧炉的最优操作条件，<br />
+通过对进料量的调节实现炉内温度场的稳定控制。</li>
+<li>最后，通过大数据系统不断对焙烧过程的数学模型进行修正提高模型的准确性和有效性。</li>
+</ul>
+<h3 id="因素分析">因素分析</h3>
+<p>焙烧过程是湿法炼锌过程中第一道也是极为重要的一道工序。</p>
+<p>在焙烧过程中，将配料过程配好的锌精矿送入到焙烧炉中进行充分的燃烧，产生锌焙砂、二氧化硫和烟尘等产物，<br />
+焙烧炉中发生的主要反应为：</p>
+<blockquote>
+<p>2ZnS + 3O2 == 2ZnO + 2SO2</p>
+</blockquote>
+<p>由于反应温度、氧含量和流态化状态等一系列因素的影响，在锌精矿焙烧的过程中还伴随有一定的副反应发生，<br />
+生成<strong>铁酸锌</strong>等不溶锌产物，导致锌焙砂的可溶锌率降低。</p>
+<p>因此，为了提高锌焙烧的产量以及锌焙砂的可溶锌率，需要对锌精矿焙烧过程进行优化控制。</p>
+<p>焙烧过程主要生产流程为：</p>
+<ul>
+<li>锌精矿储存在储罐中，通过皮带秤送到进料口进行投料；</li>
+<li>空气从炉底的进气口进入，然后通过多个均匀分布在炉底的喷嘴送入到焙烧炉中;</li>
+<li>焙烧过程的主反应发生在焙烧炉中的沸腾层，温度通常控制在<strong>920~930℃</strong>。锌精矿和O2发生放热反应产生锌焙砂和SO2等产物;</li>
+<li>锌焙砂在沸腾层的溢流口排出，通过冷却后送往锌焙砂储罐；</li>
+<li>SO2气体和烟尘则从炉顶的出口排出。</li>
+</ul>
+<p>对整个生产流程和产品质量影响最大的是<strong>沸腾层温度</strong>以及<strong>锌精矿的组成</strong>，因此对焙烧过程的优化主要从这两个方面进行考虑。</p>
+<p>焙烧过程发生的主要区域为焙烧炉中的沸腾层，而沸腾层则是一个典型的流化床反应器，炉底吹入的空气使得锌精矿颗粒在焙烧炉中处于一种悬浮运动状态，并且空气中的氧气发生反应，生成锌焙砂和SO2等产物。流化床反应器具有许多的优点，其中对于锌精矿焙烧过程而言最主要的优点为：</p>
+<ul>
+<li><strong>可以实现固体物料的连续输入和输出</strong>：湿法炼锌过程是一个连续生产的过程，焙烧炉的可连续生产能够满足后续生产过程<br />
+对原料的需求。</li>
+<li><strong>具有良好的传热性能</strong>：流体和颗粒的运动使床层具有良好的传热性能，床层内部温度均匀，而且易于控制，特别适用于强放热反应。</li>
+</ul>
+<p>锌精矿焙烧过程中会产生大量的热量，由于沸腾床层内传热系数很大，沸腾层内各部分温度几乎一致，<br />
+可通过对锌精矿进料量的调节控制沸腾层内温度在±10℃波动。而影响床层流态化的主要因素有3个：</p>
+<ul>
+<li>
+<ol>
+<li>炉内的气量和气速</li>
+</ol>
+<p>由于对沸腾层温度的调节是通过调节锌精矿进料量来实现的，在调节温度时进料量的变化会对沸腾层的流态化产生影响，因此在对锌精矿进料量进行调节时需要对风料比加以考虑。</p>
+<p>为加强焙烧过程，增大生产率，一般要求有较大的气速，但增大气速就相应地增多烟尘的生成而降低焙砂的产量。因此，需要对风料比进行调节，通过对进料量的控制来控制炉内的气速，使得沸腾层能够处在一个最佳的流态化状态。</p>
+<p>此外，进料量的变化还会影响到炉内的氧气含量，所以调节进料量时还需要考虑焙烧过程对氧气的需求。</p>
+</li>
+<li>
+<ol start="2">
+<li>锌精矿的粒度和粒度分布</li>
+</ol>
+<p>锌精矿的粒度和粒度分布也是影响沸腾层流态化的重要因素。</p>
+<p>炉内焙砂粒度越细，沸腾层的有效黏度越大，其临界速度和带出速度越小，则在生产过程中产生的烟尘量就越大，这不符合沸腾焙烧生产的工艺要求。</p>
+<p>在同一操作速度下，焙砂的粒度越大，在沸腾层内形成的气泡就大，当沸腾层内形成大气泡集中向上涌时，沸腾层就会被分割，大气泡将整个上部物料抬起，造成大量物料被气泡带走，形成“沸涌”现象。</p>
+<p>如果焙砂粒度差距过大，气体就不能均匀地流过沸腾层，如果不均匀性严重，可能形成部分区域流动慢、部分区域流动快的状况，甚至形成部分区域“死区”，出现“沟流”现象。</p>
+<p>因此，在焙烧过程中要对锌精矿的粒度加以充分的考虑，针对不同粒度和粒度分布的锌精矿来对焙烧过程的生产过程进行调整。</p>
+</li>
+<li>
+<ol start="3">
+<li>锌精矿中的杂质含量</li>
+</ol>
+<p>锌精矿中铁离子和二氧化硅的存在会导致焙烧过程中铁酸锌和硅酸锌的生成，从而导致锌焙砂可溶锌率的降低； 铅离子以及二氧化硅的存在则会导致生产过程中沸腾层烧结以及沸腾炉结垢等情况的出现。 <br />
+因此，在生产过程中要根据锌精矿中各类杂质离子的含量来对生产条件进行调整。</p>
+<p>一般地，锌精矿中铁、二氧化硅含量高时，温度宜取低值，尽量少生成铁酸锌和硅酸锌，以提高锌的可溶率； 反之，当原料矿中的铁、二氧化硅含量低时，焙烧生成的铁酸锌、硅酸锌己很少，对锌的可溶率影响很小，可适当提高焙烧温度，并兼顾降低焙砂残硫；</p>
+<p>原料矿中砷和锑含量高时，温度宜取低值；反之，当原料矿中的砷和锑含量低时，可适当提高焙烧温度。</p>
+</li>
+</ul>
+<p>正是由于以上3个因素对沸腾层流态化的影响，使得焙烧过程中<strong>沸腾层温度变化幅度很大、停留时间不一，<br />
+导致锌焙砂的可溶锌率反复波动，甚至出现产品不合格的情况</strong>。</p>
+<p>目前锌精矿焙烧过程的控制方法是通过人工经验对锌精矿的进料量进行调节，<br />
+而不是通过对锌精矿的组成和炉内的反应工况进行分析来对进料量进行调整，导致沸腾层温度波动大，产品可溶锌率低。<br />
+因此，亟需研究锌精矿焙烧过程的反应机理、锌精矿组成的矿物学分析、焙烧过程的工艺参数优化以及智能控制方法，<br />
+并以此来提高焙烧过程的处理量和可溶锌率，为后续工艺的生产提供保障。</p>
+<h3 id="优化需求">优化需求</h3>
+<p>锌精矿焙烧过程优化控制的总体目标是通过对炉的控制来提高经济效益，主要体现在高效、安全和绿色三个方面。</p>
+<p>其一是通过改变控制策略增加锌精矿的使用弹性；<br />
+其二是在平稳运行的前提下增加进料量以及提高运行时间，从而整体上提升经济效益以及产品质量。</p>
+<p>焙烧过程目前的关键需求主要是<strong>保证沸腾炉的连续运转，实现产量的最大化，提高锌焙砂的可溶锌率。</strong></p>
+<p>为了保证沸腾炉产量的最大化，一般会尽可能的增加锌精矿的进料量同时保证最大的鼓风量，这样会导致沸腾层的温度上升。<br />
+为了维持沸腾层的标温，通常会将循环冷却水的用量调到最大，以实现产量的最大化。</p>
+<p>焙烧的主要目标</p>
+<ul>
+<li>使物料中的Zn尽可能地全部转化为可溶锌(ZnO)；</li>
+<li>降低焙砂中的不溶硫(S2-)含量；</li>
+<li>保留少量的硫酸盐，以补偿浸出和电解过程中损失的硫酸；</li>
+<li>尽可能少的生成铁酸锌，尽可能地脱除砷和锑，尽可能减少可溶硅含量。</li>
+</ul>
+<p>实现这些目标的主要方法是控制沸腾层的温度在最优温度范围内，同时降低沸腾层温度的波动。<br />
+由于循环冷却水的用量和鼓风量一般是调到最大来保证产量最大，所以<strong>控制沸腾层的温度一般由锌精矿的加料量来控制。</strong><br />
+加料量的变化会对炉内风速和氧气含量产生影响，对此可以根据进料的锌精矿的性质<br />
+（锌的品位、杂质离子含量、粒度和粒度分布等），通过最优的风料比对进料量进行调节，<br />
+在保证产量最大化的情况下实现炉内温度场的稳定控制。</p>
+<h3 id="实现方式">实现方式</h3>
+<p>根据锌精矿焙烧过程优化控制的设计思路，主要的实现方法包括以下三个方面：</p>
+<ol>
+<li>基于机理和数据的锌精矿焙烧过程数学模型</li>
+</ol>
+<blockquote>
+<p>锌精矿焙烧过程主要发生在焙烧炉中的沸腾层，沸腾层的流态化状态会直接影响到沸腾层的温度，从而影响到沸腾层的标温。</p>
+</blockquote>
+<blockquote>
+<p>理论上可以通过调节进料量和鼓风量这两个关键参数来对沸腾层的标温进行控制，<br />
+但是实际生产过程中一般是将鼓风量调到最大来保证产量的最大化，而只通过调节进料量来对沸腾层的标温进行控制。</p>
+</blockquote>
+<blockquote>
+<p>为了提高控制效果，降低沸腾层标温的波动，提高锌焙砂的可溶锌率，需要建立锌精矿焙烧过程的数学模型，<br />
+对关键参数的设定值进行优化，从而实现焙烧过程的优化控制。<br />
+为了获得锌精矿焙烧过程的数学模型，需要深入研究锌精矿焙烧过程的工艺机理，<br />
+通过工艺机理建立锌精矿焙烧过程的机理模型，建立起<strong>沸腾层标温与鼓风量、进料量、锌精矿成分以及焙砂成分之间的关系模型</strong>，<br />
+然后利用大数据系统中有效的现场数据来对机理模型进行校正。<br />
+建立锌精矿焙烧过程的数学模型是实现锌精矿焙烧过程优化控制的基础。</p>
+</blockquote>
+<ol start="2">
+<li>锌精矿的矿物学分析</li>
+</ol>
+<blockquote>
+<p>锌精矿焙烧过程的优化控制不仅与鼓风量、进料量以及风料比等关键参数有关，还与锌精矿的性质有很大关联。</p>
+</blockquote>
+<blockquote>
+<p>锌精矿中锌的品位和硫的含量是影响焙烧过程和锌焙砂可溶锌率的的关键因素；</p>
+</blockquote>
+<blockquote>
+<p>锌精矿中的杂质离子会对焙烧过程产生影响，不仅降低了锌焙砂的可溶锌率还有可能会导致结垢等情况的出现，直接影响生产过程的运行；</p>
+</blockquote>
+<blockquote>
+<p>锌焙砂的粒度和粒度分布会对沸腾层的流态化状态产生很大的影响，粒度过大或过小以及粒度分布不均都会降低焙烧过程的生产效率。</p>
+</blockquote>
+<blockquote>
+<p>因此，锌精矿的矿物学分析对于焙烧过程的优化控制是不可或缺的。对矿物学进行研究，研究锌精矿组成和粒度对焙烧过程的影响，可以提升配料过程所带来的收益，增加锌精矿使用的弹性，提高经济效益。</p>
+</blockquote>
+<ol start="3">
+<li>锌精矿焙烧过程关键参数的优化和控制</li>
+</ol>
+<blockquote>
+<p>目前株冶有色锌精矿焙烧过程是凭借经验对锌精矿的进料量进行调整来对沸腾层的温度进行控制的。<br />
+这样的控制方法可以有效地利用操作员的经验，但不能实现最优的控制，导致沸腾层温度不断波动。<br />
+对此，本项目在锌精矿焙烧过程的数学模型以及锌精矿的矿物学分析的基础上，结合专家的经验，<br />
+对关键参数的设定值进行优化，给出不同的工况条件下最优的沸腾层标温设定值以及该条件下最优的风料比。<br />
+然后根据最优的风料比对进料量进行调整，实现炉内温度场的稳定控制。</p>
+</blockquote>
+<h2 id="浸出">浸出</h2>
+<h3 id="目的及意义-1">目的及意义</h3>
+<ul>
+<li>湿法炼锌浸出过程，是以稀硫酸溶液（主要是锌电解过程产生的废电解液）作溶剂，将含锌原料中的有价金属溶解进入溶液的过程。</li>
+<li>其原料中除锌外，一般还含有铁、铜、镉、钴、镍、砷、锑及稀有金属等元素。</li>
+<li>在浸出过程中，除锌进入溶液外，金属杂质也不同程度地溶解而随锌一起进入溶液。这些杂质会对锌电解过程产生不良影响，因此在电解以前必须把有害杂质尽可能除去。</li>
+<li>在浸出过程中应尽量利用水解沉淀方法将部分杂质（如铁、砷、锑等）除去，以减轻溶液净化的负担。</li>
+<li>浸出过程的目的是将原料中的锌尽可能完全溶解进入溶液中，并在浸出终了阶段采取措施，除去部分铁、硅、砷、锑、锗等有害杂质，</li>
+<li>同时得到沉降速度快、过滤性能好、易于液固分离的浸出矿浆。</li>
+</ul>
+<h3 id="因素分析-1">因素分析</h3>
+<p><strong>(1)浸出是湿法炼锌中的核心工序，自动检测是实现智能优化控制的前提</strong></p>
+<p>浸出作为湿法炼锌过程的核心工序，浸出过程的智能化控制对整个锌冶炼企业的智能化建设有重要影响。<br />
+在工业过程中，<strong>浸出率</strong>是浸出过程最重要的指标，而pH值会通过影响浸出液中各种离子的水解程度来影响浸出率的高低。</p>
+<ul>
+<li>当pH过高时，Zn(2+)容易水解损失，氢氧化铁胶体带负电，影响杂质的共沉淀分解，浸出率低；</li>
+<li>当pH过低时，Fe(2+)的水解沉淀不完全，造成溶液中Fe(2+)浓度偏高。</li>
+</ul>
+<p>pH值一般采用人工试纸或便携式pH计检测来判断浸出槽出口处pH值是否符合要求，检测原理简单。然而，采用人工试纸检测或便携式pH检测时，增加人工工作量，且人工检测耗时长，一般需要1-2h检测一次，存在很大的滞后性，给浸出过程的优化控制带来了困难。</p>
+<p>当采用pH计自动检测时，由于浸出液具有高温、强酸的特点，pH计长期浸泡在浸出液中时，电极容易损坏，且在浸出过程中，浸出液中难溶的硫酸盐及其他沉淀会附着在pH计的表面，形成结垢，使电极敏感膜迅速钝化，严重影响电极测量精度及动态响应特性，很大程度上影响pH计的检测精度和使用寿命。</p>
+<p>针对锌浸出过程中pH值难以在线检测、检测值不准确以及稳定控制难的问题，</p>
+<ul>
+<li>首先，根据浸出过程pH测量的特点以及存在的问题，研制各个反应槽的pH值在线自动检测装置；</li>
+<li>在此基础上，通过分析浸出过程的工艺机理及工业运行数据，分析浸出过程pH值、浸出率与焙砂添加量、废电解液通入量和氧气添加量等的关系，建立浸出过程机理模型，利用人工智能、机器学习等手段，实现浸出过程出口处pH值设定值的优化与智能控制，从而保证浸出过程效果最优。</li>
+</ul>
+<p>为了实现浸出过程的智能优化控制，需实现浸出过程中pH值的自动检测。因此，研究浸出过程pH在线自动检测装置，对浸出过程的智能优化控制具有十分重要的意义。</p>
+<p><strong>(2)稳定的反应条件是提高浸出率的必要条件，但浸出过程的长流程、多扰动的特点导致浸出过程建模和智能优化控制困难</strong></p>
+<p>浸出率是衡量浸出效果的重要指标，一般通过稳定控制浸出过程的pH值来保证浸出率。正确地控制浸出终点的pH值，对提高锌浸出率，降低浸出渣中的含锌率，有效去除杂质，提高硫酸锌溶液的质量是非常重要的。</p>
+<p>中性浸出过程主要由5个反应槽串联和其他混合槽组成，因此，整个中性浸出过程浸出时间较长(2~3h)，工作流程长，系统惯性大；且在浸出过程中，pH值的测量是采用间断测量，不但造成了生产过程数据的延时性和不准确性，而且还不能实现实时在线控制；</p>
+<p>此外，在生产过程中，需要添加焙砂、废电解液和氧气(氧压浸出)等，加入浸出槽中的废电解液酸度、焙砂添加量和氧气添加量等存在一定的波动性，仅凭人工经验难以根据出口处浸出液的实际情况实时调节废电解液的流量、氧气添加量和焙砂添加量等。</p>
+<p>因此，研究浸出过程的反应机理模型、多工艺参数（废电解液流量、氧气添加量、焙砂添加量等）智能优化控制方法，为浸出过程的稳定运行提供了基础。</p>
+<h3 id="优化需求-1">优化需求</h3>
+<p>针对浸出槽中pH计易结垢及测量不准确的特点，利用自动清洗、自动校准等装置，研发pH值在线自动检测装置，实现浸出过程pH计的自动检测、自动校准及自动清洗功能，在保证pH计测量结果准确和稳定运行的基础上，达到减少工人的工作量以及设备的维护成本维修费用的目。</p>
+<p>此外，针对浸出时间长、人工经验难以确定的特点，在研究浸出过程机理模型的基础上，利用人工智能、机器学习等方法，实现废电解液的流量、氧化后液流量、焙砂添加量及氧气添加量及时准确的调整，保证浸出槽出口处溶液的pH值及浸出率符合指标。</p>
+<p>因此，主要包括如下关键问题：</p>
+<ul>
+<li>1）pH值在线自动检测</li>
+</ul>
+<blockquote>
+<p>浸出过程中，难溶的硫酸盐及其他沉淀会附着在pH计的表面时，会导致结垢及pH计钝化等情况，影响检测精度和效果。因此，分析浸出过程pH测量的特点，研制pH在线自动检测装置，实现pH计自动检测、自动校准及自动清洗的功能是本课题需要解决的关键问题。</p>
+</blockquote>
+<ul>
+<li>2)浸出过程多反应动力学模型</li>
+</ul>
+<blockquote>
+<p>在浸出过程中，废酸流量、氧化后液流量、焙砂添加量和氧气量等因素均会对浸出率产生影响。为此，建立浸出过程的机理模型，明确各控制量与浸出率之间的关系，是本项目需要解决的关键问题。</p>
+</blockquote>
+<ul>
+<li>3)浸出过程智能优化控制策略</li>
+</ul>
+<blockquote>
+<p>如何设定各槽出口处的pH值，并设计相应的优化控制策略，缩短调节时间，实现浸出过程各控制量（废酸流量、焙砂添加量、氧化后液流量和氧气添加量）的优化控制，使中性浸出过程出口处pH值和浸出率满足生产要求，是本项目需要解决的关键问题。</p>
+</blockquote>
+<h3 id="实现方法">实现方法</h3>
+<ul>
+<li>
+<p>1)pH在线自动检测装置</p>
+<p>在实际应用中，由于浸出是一个连续的过程，短时间内浸出液的pH值不会有很大的波动。</p>
+<p>因此，pH计探头不必长期置于待测溶液中，只要将其置于测量槽内，定期将待测污水抽至测量槽中，检测到pH值后，将pH计探头取出。由于pH值的检测时间较长，pH计探头仍将与溶液有较长时间的接触，从而吸附其他物质发生结垢或者腐蚀，影响pH值检测效果。</p>
+<p>因此，在每次pH值检测完成后，需要将pH计探头进行清洗，清洗完后置于缓冲液中，并定期将其置于标准溶液中进行标定。通过研制pH计在线自动检测装置，实现pH计自动检测、自动校准及自动清洗的功能，保证pH计能长期稳定的进行。</p>
+</li>
+<li>
+<p>2)基于机理模型和大数据的浸出过程智能优化控制</p>
+<ul>
+<li>
+<p>首先，结合物料平衡和浸出反应机理，以来料组成、流量、废酸添加量、溶液pH值、氧气添加量、焙砂添加量为输入，建立浸出过程的机理模型，给出相关关键工艺参数的设定值；</p>
+</li>
+<li>
+<p>其次，结合大量历史工况数据，利用大数据平台，基于人工智能技术、专家系统理论等，在已有工况数据的基础上，进行特征提取、模型训练和评估，形成能够进行有效计算的数据模型，能够根据当前来料成分对工艺参数进行预测；</p>
+</li>
+<li>
+<p>最后，以在线的pH检测值序列为依据，对关键工艺参数（废酸添加量、氧气添加量、焙砂添加量等）进行校正，将pH值稳定在工艺设定区间内。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="净化">净化</h2>
+<h3 id="目的及意义-2">目的及意义</h3>
+<p>湿法炼锌过程中，浸出后的硫酸锌溶液包含铜、钴、镉、镍等多种对电解极为有害的杂质离子。硫酸锌溶液中的钴、镍、铜和镉等杂质离子对电解效率影响很大。</p>
+<p>其中，铜是含量最高的杂质离子，钴是最难去除的杂质离子，它们不仅会降低电解效率、增加单位产品电耗，还会降低产品的产量和质量，严重时析出锌板会出现“穿孔”、“烧板”等现象，严重时会造成自动剥锌无法进行，导致长时间调整甚至停产，并显著降低产品的质量和生产效率。因此，需要通过净化工艺将这些杂质离子降低至生产指标范围内，为电解提供合格新液。</p>
+<p>Zn2+的标准电极电位(-0.736V)较杂质离子Cu2+(+0.337V)、Cd2+(-0.403V)、Co2+(-0.277V)更负，因而可以用金属锌粉将杂质从净化液中置换出来。</p>
+<p>因此，净化除铜和除钴成为锌湿法冶炼净化过程中的关键环节。然而，由于净化过程在在线检测，入口溶液成分和流量的稳定性等方面存在的问题，给净化过程的优化控制带来了较大的困难。有鉴于此，本项目针对净化工序的除铜和除钴子过程设计了优化控制方案。</p>
+<h3 id="因素分析-2">因素分析</h3>
+<p>净化过程不仅要保证净化后溶液铜、钴、镍等离子浓度达标，而且需要降低过程的各种资源消耗，具体来说需满足下列指标要求。</p>
+<ul>
+<li>
+<p>(1)除铜工序出口铜离子浓度达标</p>
+<p>由于除铜工序出口铜离子是后续除钴工序除钴的活化剂，铜离子浓度浓度太低不利于钴的去除，浓度太高又会与钴发生竞争性还原，同样会导致除钴率下降。因此除铜工序必须根据入口条件、工况优化控制出口铜离子浓度。</p>
+</li>
+<li>
+<p>(2)净化后溶液钴离子浓度达标</p>
+<p>净化除钴后溶液中钴离子浓度是关键工艺指标，实际生产过程中要求钴离子浓度不大于0.5mg/L(大于0.5mg/L为不合格)，但是并非浓度越低越好，因为钴离子浓度低至0.4mg/L以下时，对硫酸锌溶液电解的影响程度不再有明显差别，而净化后溶液的钴离子浓度越低，相同条件下消耗的锌粉越多，将造成不必要的锌粉浪费。</p>
+</li>
+<li>
+<p>(3) 降低净化工序吨锌锌粉消耗</p>
+<p>锌粉是净化过程最主要的资源消耗，吨锌锌粉消耗(每生产一吨阴极锌消耗的锌粉重量)是衡量净化过程最重要的资源消耗指标，其值越低越好。净化过程的锌粉消耗包括了除铜过程和除钴过程的锌粉消耗。</p>
+</li>
+<li>
+<p>(4)除钴工序BT值达标</p>
+<p>BT值达标有两方面的意义。首先是降低BT值可以降低钴渣中的锌元素含量。BT能反映溶液中碱式硫酸锌的含量。控制反应器中溶液的BT，可有效降低钴渣中锌元素的含量，提高锌元素回收率。</p>
+<p>其次BT值达标可以延长除钴压滤机清洗周期。当溶液中的碱式硫酸锌和硅胶过多时，除钴压滤机的压滤效果会显著降低。需要对压滤机进行清洗。通过控制BT值，可以延长压滤机清洗周期，减少生产成本。</p>
+</li>
+</ul>
+<p>为满足生产指标要求，需要对净化工序的锌粉、废酸、砷盐等操作参数进行优化控制。然而净化工序存在诸多不利于优化控制的问题，概括如下：</p>
+<ul>
+<li>
+<p>A. 关键工艺参数钴离子浓度检测存在大滞后</p>
+<p>净化过程中，流量、pH值、温度、含固量、氧化还原电位(ORP)等参数为实时监测量。由于浸出后液具有高温高腐蚀性等特性，在线金属分析仪难以应用在除铜过程浓度检测中。因此，除铜入口溶液、2#反应器出口溶液、除钴过程入口溶液、1~4#反应器出口溶液以及浓密机出口溶液中的铜离子、钴离子浓度，由人工采样在实验室化验获得，采样间隔时间以小时计。</p>
+</li>
+<li>
+<p>B.入口条件参数经常频繁、大范围波动</p>
+<p>受国内锌精矿资源条件的制约，企业购买的锌精矿矿源复杂，经常出现溶液中钴、铜等杂质离子大幅度波动。同时企业会根据锌产品市场供求关系调整产量，也导致溶液流量发生较大的波动。</p>
+</li>
+<li>
+<p>C.除钴过程时滞性大</p>
+<p>砷盐除钴过程在连续的四个反应器中进行，整个流程长达4~8小时，钴离子浓度变化为慢时变过程，操作参数的调整并不会对立即对出口钴离子浓度产生的影响，需要经过较长的时间才能体现出来，即过程具有大时滞性。</p>
+</li>
+<li>
+<p>D.操作参数之间存在强耦合性</p>
+<p>砷盐除钴过程需要设定操作参数多，操作参数与净化后液的钴离子浓度之间关系复杂，呈强非线性特点，而且操作参数ORP与砷盐间有强耦合关系，ORP和砷盐、底流的调整会影响废酸的最优添加量，并且前一个反应器的操作条件的变化会显著影响后一个反应器的除钴效果，即前、后反应器之间具有强关联性；即使在锌粉总添加量相同的情况下，各反应器ORP设定值不同(即每个反应器锌粉分配不同)，除钴的效果也有明显的差别。</p>
+</li>
+</ul>
+<p>综上所述，在线检测上存在的难点，以及入口溶液成分和流量的大幅波动给净化过程的优化控制带来了较大的困难。净化过程优化控制系统需要针对这些需求和难点，设计有针对性的优化控制方案。</p>
+<h3 id="优化需求-2">优化需求</h3>
+<ul>
+<li>
+<p>(1)除铜过程优化控制需求</p>
+<p>除铜过程优化控制的目的是通过合理设定操作参数，在保证净化后溶液出口铜离子浓度达标的前提下，同时保留适量铜离子作为后续除钴过程的活化剂，并尽可能降低锌粉的消耗量。该除铜过程优化控制框架可划分为四个部分：生产目标优化、锌粉优化设定、锌粉实时校正以及其他辅助协调部分。</p>
+<ul>
+<li>
+<p>A. 除铜过程生产目标优化</p>
+<p>针对除铜过程出口铜离子浓度影响除钴过程除钴效率的特点，生产目标优化主要优化设定出口铜离子浓度控制目标，在满足湿法炼锌除钴过程对铜离子浓度的需求的同时提高出口铜离子浓度稳定性。</p>
+</li>
+<li>
+<p>B. 除铜过程锌粉添加量优化设定</p>
+<p>为减少除铜过程锌粉消耗，锌粉添加量优化设定单元根据生产目标优化部分给定的控制目标，在锌粉有效性预测值的调节下，优化设定锌粉添加量。</p>
+</li>
+<li>
+<p>C. 除铜过程锌粉实时校正</p>
+<p>由于净化过程溶液成分和流量波动大，锌粉优化设定单元在铜离子浓度平稳状态下能提供合格锌粉添加量，但在铜离子浓度波动较大时，难以保证出口铜离子子的稳定性与合格率。因此，需要锌粉实时校正方法对其设定的锌粉进行调节。</p>
+</li>
+<li>
+<p>D. 其他辅助部分</p>
+<p>除铜过程优化控制涉及的模型在长期运行时往往需要更具工况变更进行校正。辅助单元根据过程数据，判别各模型是否需要进行校正或者重训练。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(2)除钴过程优化控制需求</p>
+<p>砷盐除钴过程优化控制的目的是通过合理设定操作参数，在保证净化后溶液出口钴离子浓度达标的前提下，尽可能降低锌粉的消耗量，以及降低钴渣中锌元素的含量和延长除钴压滤机清洗时间的间隔。针对这些目标，提出了如图8-30所示的操作参数优化控制框架。该优化控制框架主要包括砷盐除钴过程钴离子浓度预测模型、废酸添加量和底流返回流量优化、ORP设定值与砷盐添加量优化</p>
+<ul>
+<li>A. 砷盐除钴过程钴离子浓度预测模型</li>
+</ul>
+<p>由于砷盐除钴过程流程长，过程惯性大，钴离子浓度的人工检测存在大滞后，影响了过程的优化运行，因此，建立基于除钴反应机理模型与数据残差补偿模型的钴离子浓度预测模型</p>
+<ul>
+<li>B. 废酸添加量与底流返回流量优化</li>
+</ul>
+<p>废酸添加量主要影响反应器中溶液的BT值，BT太高或太低都将降低置换除钴的效率。BT太低会导致锌粉消耗过高，BT太高会造成钴渣中锌元素的含量过高，并导致除钴压滤机的压滤状况不理想。而底流返回量会影响除钴反应器中的反应催化面积大小，进而影响除钴效率。因此，需通过废酸添加量和底流返回量合理的优化设定，为添加锌粉和砷盐置换除钴创造良好的反应条件。</p>
+<ul>
+<li>C. 除钴过程砷盐添加量和ORP设定值优化</li>
+</ul>
+<p>降低锌粉的单耗(即吨锌锌粉消耗)是净化除钴过程的重要目标。由于砷盐添加量、锌粉存在强耦合关系，单独优化砷盐添加量或锌粉添加量都难以达到锌粉的添加量最少，更无法保证钴离子浓度达标，所以必须将砷盐与锌粉一起进行优化。由于株冶锌粉通过ORP控制器添加，因此ORP的优化等价于锌粉添加量的优化，因此，需对砷盐添加量与ORP设定值进行优化，以降低砷盐除钴过程的锌粉消耗。</p>
+</li>
+</ul>
+<h3 id="实现方案">实现方案</h3>
+<ul>
+<li>
+<p>(1)除铜子工序</p>
+<ul>
+<li>
+<p>A. 除铜过程生产目标优化</p>
+<p>生产目标优化主要为了满足湿法炼锌除钴过程对铜离子浓度的不确定性需求、提高出口铜离子浓度稳定性，调节出口铜离子浓度控制目标。其主要由两个单元构成:<strong>除铜过程生产指标范围调整和除铜生产目标全局优化</strong>。</p>
+<p>其中，在除铜过程生产指标规划调整部分，分析铜离子作为活化剂时与钴离子浓度之间的关系，根据除铜过程实时变量(流量、底流含固量、温度、PH值等)和铜离子浓度化验值，对原有的除铜过程生产指标范围进行调节，使出口铜离子浓度在满足本工段生产要求的前提下，满足除钴反应的生产需求。以调解后的生产指标作为软性约束条件，分析不同下降速率条件下，各反应器中铜离子浓度调节速率对除铜过程生产稳定性的影响，设定各反应器的出口铜离子浓度满意值，为除铜过程生产控制提供合理的控制目标。</p>
+</li>
+<li>
+<p>B. 除铜过程锌粉添加量优化设定</p>
+<p>基于锌粉有效性预测的锌粉优化设定方法，根据生产目标优化部分给定的控制目标，基于除铜竞争-连续反应体系机理模型，在锌粉有效性预测值的调节下，优化设定锌粉添加量。基于锌粉有效性预测的除铜过程锌粉优化设定主要由两部分构成：一部分为锌粉有效性计算与预测；另一部分为除铜过程竞争-连续反应体系机理模型确定与锌粉优化计算。</p>
+<p><strong>锌粉有效性计算与预测为锌粉优化设定提供校正依据</strong>。由于锌粉有效性不是从除铜过程直接采集的过程参数，需要根据铜离子浓度化验值和各过程参数进行计算。锌粉有效性具有较大的时滞性，无法直接用于锌粉优化设定值的在线校正，因此，需要通过基于趋势分布特征的除铜锌粉有效性预测算法实时预测锌粉有效性。除铜锌粉有效性计算单元输出的锌粉有效性实际值，不仅作为案例存储于数据库中以供预测算法使用，同时将用于预测值残差计算以在线校正预测算法。</p>
+<p><strong>除铜过程基础锌粉设定量需要建立除铜过程竞争-连续反应体系机理模型</strong>。首先根据过程机理建立模型框架，然后根据采集的历史数据，辨识模型参数，建立机理模型。机理模型在线使用时，在线样本进行辨识，获得样本所属工况，并选择对应的工况机理参数输入至机理模型中，根据确定的机理模型以及锌粉有效性预测值，以最小化锌粉消耗量、满足除钴工序对铜离子浓度要求为目标，对除铜过程进行优化，实时计算锌粉添加量。</p>
+</li>
+<li>
+<p>C. 除铜过程锌粉实时校正</p>
+<p>受到铜离子浓度化验频率的限制，锌粉优化设定单元在铜离子浓度平稳状态下能提供合格锌粉添加量，但在铜离子浓度波动较大时，难以保证出口铜离子子的稳定性与合格率。因此，需要采用基于ORP的锌粉校正方法对其设定的锌粉进行调节。该部分主要由基于ORP的除铜过程模糊评估与锌粉校正规则提取两部分构成。</p>
+<p>首先，对ORP时间序列进行趋势提取，并分别对ORP值及其趋势进行模糊化，经过模糊规则评估单元与评估值反模糊化单元，获得除铜过程工况评估值。在评估过程中，模糊化所需的隶属度函数和模糊规则已经离线训练完毕。为保证在矿源更改的情况下，过程评估值的合理性，隶属度函数确定部分保持半离线状态。当接受到模型重训信号时，除铜电化学模型根据新的除铜过程样本重训练除铜电化学模型，获得最新的隶属度函数参数。同时，如果出口铜离子浓度目标优化值与原有的目标值差距较大时，需根据新的出口目标浓度值对隶属度函数进行相应参数计算。</p>
+<p>其次，根据评估值和其他过程参数，基于SVM分类器当前除铜过程所处的可控域；在该可控域内选择输入变量对应的锌粉校正规则，提供除铜过程锌粉校正量。其中，锌粉校正规则已根据历史数据离线提取。同时，为了保证长期运行条件下规则的有效性，需要根据模型校正信号，采用最新的工况数据，更新规则库，并在规则提取过程中，为可控域在线辨识提供新的可控域分类器。</p>
+</li>
+<li>
+<p>D. 其他辅助部分</p>
+<p>除铜过程控制各部分含有相应的机理模型与数据模型(可控域分类器、可控域规则提取模型等)，这些模型在长期运行时需要更具工况变更进行校正或者重训练。</p>
+<p>除铜过程模型校正判别单元，在分析过程评估值、ORP值以及锌粉有效性长时间的变化状况，判别各模型是否需要进行校正或者重训练。</p>
+<p>除铜过程锌粉整合单元，根据除铜过程控制的当前状况(控制系统正常运行状态、模型重训状态等)，整合基础锌粉设定量与锌粉调节量，为除铜过程控制提供最终锌粉添加量。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>(2) 除钴子工序</p>
+<ul>
+<li>
+<p>A. 砷盐除钴过程钴离子浓度预测模型</p>
+<p>由于砷盐除钴过程流程长，过程惯性大，钴离子浓度的人工检测存在大滞后，影响了过程的优化运行，因此，建立基于除钴反应机理模型与数据残差补偿模型的钴离子浓度预测模型，为砷盐除钴过程的废酸、底流、ORP(锌粉)和砷盐等操作参数的优化提供指导作用。拟建立<strong>基于砷盐除钴化学反应机理的钴离子浓度预测主模型</strong>和<strong>基于模糊特征LSSVM的残差补偿模型组成的钴离子浓度混合预测模型</strong>。</p>
+</li>
+<li>
+<p>B. 废酸添加量与底流返回流量优化</p>
+<p>废酸添加量主要影响反应器中溶液的BT值，BT太高或太低都将降低置换除钴的效率。BT太低会导致锌粉消耗过高，BT太高会造成钴渣中锌元素的含量过高，并导致除钴压滤机的压滤状况不理想。而底流返回量会影响除钴反应器中的反应催化面积大小，进而影响除钴效率。</p>
+<p>因此，需通过废酸添加量和底流返回量合理的优化设定，为添加锌粉和砷盐置换除钴创造良好的反应条件。实际生产中浓度机底流可通过反应器中含固量的分析进行反馈调节，其优化较为简单，很容易计算得到满意的底流返回流量，因此下文只讨论废酸添加量的优化。</p>
+<p>研究得出影响1号反应器溶液评价指标BT的主要因素有：</p>
+<ul>
+<li>1）<strong>添加的砷盐溶液</strong>：砷盐溶液为强碱性溶液，且砷盐参与的反应消耗氢离子，都会引起溶液BT上升；</li>
+<li>2）<strong>返回的浓密机底流</strong>：浓密机底流中含有大量碱式硫酸锌(即BT很高)，需要添加废酸降低其BT；</li>
+<li>3）<strong>添加的锌粉</strong>：添加锌粉置换除钴不可避免的出现锌粉和溶液中H+反应，造成反应器中局部溶液BT迅速上升。通过综合这三个方面需求的废酸添加量，基于物料衡算，对废酸添加量进行优化设定。</li>
+</ul>
+</li>
+<li>
+<p>C. 除钴过程砷盐添加量和ORP设定值优化</p>
+<p>降低锌粉的单耗(即吨锌锌粉消耗)是净化除钴过程的重要目标。由于砷盐添加量、锌粉存在强耦合关系，单独优化砷盐添加量或锌粉添加量都难以达到锌粉的添加量最少，更无法保证钴离子浓度达标，所以必须将砷盐与锌粉一起进行优化。由于株冶锌粉通过ORP控制器添加，因此ORP的优化等价于锌粉添加量的优化，故对砷盐添加量与ORP设定值进行优化，以降低砷盐除钴过程的锌粉消耗。</p>
+<p>砷盐添加量优化主要是对工艺物料平衡模型中的砷盐调整系数a进行优化。本方案拟基于海量的历史数据，基于操作模式优化方法，从数据中挖掘较优的操作模式，实现过程ORP和砷盐添加量的优化。</p>
+<p>操作模式优化主要分为操作模式库构建、操作模式匹配、操作模式等级综合评估、操作模式重用、操作模式库的在线更新和维护五部分。</p>
+<ul>
+<li>
+<p>a.构建操作模式库：</p>
+<p>净化过程的操作模式以数据库的形式存储在计算机中，每一个操作模式由条件参数、资源消耗参数、操作参数、操作模式产生的时间组成。根据砷盐除钴机理、实际生产数据分析得到影响最显著的条件参数为除铜后液流量、溶液中的铜、钴和镍离子浓度、溶液的温度；资源消耗为添加的砷盐与锌粉添加量之和，但是由于单位时间内砷盐的成本不足锌粉的五十分之一，因此资源消耗仅考虑(四个反应器的)锌粉的总消耗；操作模式产生的时间为生产过程中第一次使用该操作方法时的时间，如果在生产过程中产生了几乎完全相同的操作模式，则将操作模式的时间更新为最新的时间；操作参数为砷盐调整系数、四个反应器的ORP设定值。根据实际生产中积累的大量工业运行数据，经过数据时序关系对应后将工况总结成操作模式的形式，提炼出初始操作模式，完成初始操作模式库的构造。</p>
+</li>
+<li>
+<p>b.操作模式匹配：</p>
+<p>对入口条件参数进行模糊等级划分，进而获取各个工况条件的模糊描述，然后根据相似度来衡量当前工况条件参数模糊向量与已有操作模式工况条件模糊向量的相似程度，匹配出符合要求的操作模式。在计算相似度时，基于专家经验权重计算待求的操作模式的工况向量以及已有操作模式的工况向量之间的相似度。为提高匹配的效率，先采用模糊C-均值聚类方法将操作模式分成若干类，然后寻找到最相似的类中心，再将该类中相似度大于某一个阈值的操作模式全部匹配出来，如果检索出的操作模式个数小于预设定值，则将阈值减小，直到搜索出足够多的匹配操作模式。</p>
+</li>
+<li>
+<p>c.操作模式重用：</p>
+<p>一般情况下，操作模式库中不存在与待求操作模式工况条件完全匹配的操作模式，因此，匹配出的操作模式的解不能直接作为待求操作模式的解，必须对相似操作模式的解(操作参数)进行重用。砷盐除钴过程强噪音、强酸性和高腐蚀性的恶劣环境，造成系统参数发生缓慢变化，导致相同入口条件参数下的最优操作参数发生了漂移，时间越久远的操作模式借鉴意义越小，故应该赋予越小的权重；此外，越优的操作模式应该赋予越大的权重，以节约更多的资源或成本。</p>
+</li>
+<li>
+<p>d.操作模式等级评估：</p>
+<p>在砷盐除钴过程中，难以准确的定量描述操作模式的等级－优、良、中和差，例如某操作模式属于优秀等级操作模式，但是又接近于良好操作模式，具有较大的模糊性；而且在一段时间内，某操作模式为良好操作模式，但是经过一段时间后，可能出现一个或多个比该操作模式更好的操作模式，则该操作模式隶属于中等操作模式的隶属度可能会更大，即具有不确定性。因此，操作模式的等级不能简单的划分为优秀、良好、中等或差几种等级，而是要用某一操作模式隶属于某一等级的支持和反对的程度来客观描述；而且对某一操作模式的等级评价不能固定不变，应该根据最新操作模式库的情况更新。操作模式评估具有模糊性和不确定性，因此引入觉模糊数的思想对操作模式进行评价。将操作模式评定为优秀、良好、中等、差四个等级。当有多个工艺指标和资源消耗指标时，先需要分别计算工艺指标的综合评价函数和资源消耗指标的综合评价函数。然后再计算操作模式隶属于优、良和中三个等级的直觉模糊数</p>
+</li>
+<li>
+<p>e.操作模式库的在线更新和维护：</p>
+<p>操作模式库中的优、良操作模式越多，则基于操作模式的操作参数优化方法求解得到的操作参数更优，因此，必须保存优、良的操作模式。对于新的操作模式，首先评估新操作模式的等级，当新操作模式为优、良等级时，则存入操作模式库。为控制操作模式库的规模，当存入新操作模式的同时，删除与该操作模式入口条件参数相似度大于设定阈值的非优良操作模式或距离当前时间大于一年的非优秀操作模式或时间超过2年的操作模式。通过对新操作模式的选择性存储和对操作模式库的选择性精简，在控制操作模式库规模的同时，也保证了操作模式库的典型性和实用性。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="电解">电解</h2>
+<h3 id="目的及意义-3">目的及意义</h3>
+<p>电解作为锌湿法冶炼中最重要的工序之一，它是指硫酸锌溶液中的锌离子在直流电作用下放电析出的电化学过程，是湿法炼锌中最主要的耗能过程，其电耗占整个冶炼过程能耗的<strong>75-80</strong>%左右。我国作为世界锌冶炼生产的第一大国，如何减少锌电解生产中电能消耗、降低用电费用是一个值得深入研究和探讨的问题。</p>
+<p>针对锌电解过程的高能耗问题，首先基于锌电解过程的反应机理，分析电流密度、电解液温度、硫酸浓度以及锌离子浓度等工艺参数对电流效率及电解能耗的影响，建立锌电解过程反应动力学模型，并利用历史工况数据对模型中的参数进行修正；</p>
+<p>在此基础上，针对分时电价的特点，研究面向能耗和电费最优的锌电解过程工艺参数优化方法，确定最优硫酸浓度、锌离子浓度、电流密度以及电解液温度等参数；</p>
+<p>然后，针对锌电解过程长流程、大时滞等特点造成控制难的问题，根据工艺参数的优化结果，确定不同时段的最优电流密度、电解液酸锌离子浓度与温度，研究锌电解过程新液流量、冷却风机智能控制技术，以保障电解液酸锌离子浓度和温度跟踪最优设定值。最后，通过现场数据分析和实际工程应用研究，验证所提方法的准确性和有效性。</p>
+<h3 id="因素分析-3">因素分析</h3>
+<ul>
+<li>
+<p>(1) <strong>电解是湿法炼锌中最大的耗能工序，优化控制是实现湿法炼锌过程节能降耗的重要手段</strong></p>
+<p>有色金属工业是我国的高能耗行业，其能源消耗占全国的5%以上，锌是四种主要有色金属产品之一，我国锌产量约占世界总产量的26.13%，其中80%以上是通过湿法工艺生产。我国湿法炼锌工艺平均能耗高于工业发达国家，能源费用占到了生产成本的20~30%，特别是电力成本占生产成本的比重比远高于世界平均水平，严重影响了我国锌冶炼企业的国际竞争力，加剧了我国能源紧张的局面。</p>
+<p>但是要降低锌电解过程的能耗，仅凭生产经验，难以准确反应各工艺参数对能耗的综合影响，使生产过程控制处于一种相对盲目的状况，造成锌电解的能耗偏高。虽然通过不断的技术革新和改造，电解锌的单位直流电耗有所下降，</p>
+<p>但是由于矿源多、反应复杂、影响能耗的工艺参数多，各参数之间耦合严重、非线性强，能耗模型建立困难，而且由于强酸强电流的恶劣生产环境，影响能耗的关键工艺参数难以在线检测，难以实现优化控制，导致电解过程能耗总体偏高；</p>
+<p>同时，自动化装备水平和过程控制技术相对落后，缺乏先进控制和优化技术的支持，仅凭经验进行操作，很难考虑能耗指标以及各工艺参数之间的影响，使得能源消耗的控制处于一种“盲目”的状态，远远没有发挥节能降耗的潜力。</p>
+<p>锌电解过程中，电解液的<strong>酸/锌离子浓度</strong>(酸锌比)以及<strong>电流密度</strong>(单位面积阴极板通过的电流)等工艺参数是影响电流效率及能耗的主要因素。为了降低能耗，需实现对这些工艺参数的优化控制。因此，研究锌电解过程的工艺机理，建立生产过程模型并实现其优化控制，对锌电解乃至整个湿法炼锌生产的节能降耗具有十分重要的意义。</p>
+</li>
+<li>
+<p>(2) <strong>在电费分时计价政策下，为降低电费需在不同峰谷用电时段大幅调整电解负荷；但锌电解反应机理复杂、长流程、滞后大等特点给电解过程的控制带来了极大挑战。</strong></p>
+<p>为了平衡电网、缓解用电高峰时段电力紧张的矛盾，我国电力部门采用了电费分时计价政策。即将一天24小时分成多个时段，各时段电价差异很大，高峰时段电价通常可以达到低谷时段的4-5倍。为了降低用电费用，锌电解过程在不同时段采用不同的电流密度生产，实现高峰用电时段低电力负荷生产、低谷用电时段高电力负荷生产。实际生产中，调整幅度达到200%以上。当调整电力负荷时，为避免因“反溶”或槽电压上升引起能耗增大，需及时调整电解液酸/锌离子浓度和入口流量，以保证在新的电流密度下，电解过程的能耗最低。</p>
+</li>
+<li>
+<p>(3) <strong>锌电解特点</strong></p>
+<p>锌电解是一个气-液-固三相反应的过程，在电解过程中，锌离子在阴极板上得到电子会发生析出反应生成单质锌，氢离子在阴极板上也会得到电子生成氢气；同时，由于电解液的强酸性，阴极板上析出的锌单质会与溶液中的硫酸发生反应，且电解过程中存在着杂质离子的析出等反应。随着反应的进行，电解槽中的酸离子浓度会逐渐增大，锌离子浓度逐渐增大，另一方面，电解槽中不断有新液的流入和废液的流出，导致酸锌离子浓度在电解槽中不同位置处的分布不一样，因此，锌电解过程中是一个反应机理复杂、多场多反应并存的过程。</p>
+<p>除了反应机理复杂、多场畸变的问题，锌电解过程还具有两个重要的特点：</p>
+<ul>
+<li>
+<p>a.流程长、滞后大</p>
+<p>锌电解过程由一个混合液槽、一个废液槽和近200个电解槽组成，工作流程长；电解液由新液(主要成份是硫酸锌)和电解废液(主要成份是硫酸锌和硫酸)制备而成，上一道工序送来的新液与废液槽中的废液按一定比例，在混合液槽中经过30-40分钟充分混合后，再送入电解槽，滞后时间大。</p>
+</li>
+<li>
+<p>b.关键参数无法在线检测</p>
+<p>电解槽中溶液的酸/锌离子浓度是影响电解的主要参数，但只能每隔一小时通过人工取样化验获得，检测滞后严重。这些问题给锌电解过程的控制带来了极大的挑战，不仅会引起工艺参数波动、能耗增加，甚至可能导致工况大幅震荡，造成生产不稳定。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>正是由于上述原因，使得锌电解过程建模与优化控制困难，造成锌电解过程能耗增大，并加剧了产量、质量的波动，影响生产的正常运行。因此，亟需研究锌电解过程的工艺机理及动力学模型、锌电解过程工艺参数优化以及锌电解过程智能优化控制等理论与方法，为实现大极板长周期锌电解过程节能降耗、稳定生产提供保障。</p>
+<h3 id="优化需求-3">优化需求</h3>
+<p>针对锌电解过程电解能耗高问题，本项目在分析锌电解过程工艺机理的基础上，通过收集大量的现场生产数据，建立锌电解过程的数学模型。优化设定各时段的电流密度，以实现分时效益的最大化。在此前提下，优化设定各时段电解液的酸锌含量，并对温度进行适当调节，以使锌电解过程能耗最小。通过控制新液与废液的配比以及冷却塔风机的运行情况，使集液槽中的电解液满足优化设定的条件。因此，主要解决如下关键问题：</p>
+<ul>
+<li>
+<p>多场多反应条件下，工艺条件对电效及能耗的影响机理</p>
+<p>在锌电解过程中，存在着锌析出、氢气析出、析出锌溶解以及杂质离子析出等多个氧化还原反应；且随着反应的进行和溶液的流动，锌离子和氢离子等在电解槽中不断流动，在气、液、固三态之间相互转换，造成电解槽中酸/锌离子浓度的变化，其反应机理复杂，影响电流效率和能耗的工艺参数多，且参数之间关系不明确，使得锌电解过程能耗模型建立困难。为此，明确锌电解过程中各工艺参数对不同反应的影响，确定工艺条件对电流效率及电解能耗的影响机理是需要解决的关键问题。</p>
+</li>
+<li>
+<p>分时电价下，锌电解过程工艺参数的优化</p>
+<p>在我国电力部门采用了电费分时计价政策的背景下，即将一天24小时分成多个时段，各时段电价差异很大。为了降低用电费用，锌电解过程在不同时段采用不同的电流密度生产，实现高峰用电时段低电力负荷生产、低谷用电时段高电力负荷生产，导致实际生产过程中，电力负荷的调整幅度大。当电力负荷调整时，为避免因“反溶”或槽电压上升引起能耗增大，需及时调整电解液酸/锌离子浓度和入口流量，以保证在调整后的电流密度下，电解过程的能耗最低。因此，在分时电价的政策下，在保证能耗最小、效益最大的前提下，如何确定各生产时段内的最优电流密度、酸锌离子浓度以及电解液温度等工艺参数是需要解决的一个关键问题。</p>
+</li>
+<li>
+<p>锌电解过程关键参数和设备的优化控制策略</p>
+<p>锌电解过程是由多个电解槽组成，工作流程长，每个工序处理期间都需较长时间，滞后时间大；且酸/锌离子浓度等影响电解的主要参数只能每隔一小时通过人工取样化验获得，检测滞后严重。因此，研究锌电解过程中，如何设计锌电解过程的优化控制策略，实现关键工艺参数的优化控制，避免引起工艺参数的波动和能耗的增加，或者工况的大幅波动所造成的生产不稳定，是需要解决的一个关键问题。</p>
+</li>
+</ul>
+<h3 id="实现方式-1">实现方式</h3>
+<ul>
+<li>
+<p>(1) 建立锌电解过程电效及电耗的数学模型</p>
+<p>湿法炼锌电解过程由于矿源多、工艺复杂，影响其能耗的工艺参数多，各参数之间耦合严重、非线性强，能耗模型建立困难。影响其能耗的因素主要包括<strong>电解液中的硫酸含量、电解液中的锌离子浓度和锌电解时的电流密度</strong>三类，同时还包括其它次要因素和工况的影响。</p>
+<p>为此，在机理分析的基础上，依据电化学原理和电子转移守恒定理，建立锌电解槽电压和电流效率的机理模型。由于机理建模时的假设和简化，机理模型必须经过修正后才能在应用，因此，利用在现场获得的实际数据间接的对槽电压和电流效率的机理模型进行修正，模型修正思想主要是利用在现场获得的数据和实验模型获得的数据的差，并利用参数修正算法对模型的系数进行修正，最终得到满足现场的电流效率模型和槽电压模型。</p>
+<p>机理模型是根据电子转移守恒建立的，能反映对象的本质特征，基于电化学机理建立的数学模型尽管可实现整个区域内的能耗预测，在工况发生波动时具有一定的灵敏度和鲁棒性，但是由于过程异常复杂，没有考虑到生产过程的特性，实际应用中往往显得精度不高。</p>
+<p>基于机器学习的预测方法只依据输入输出数据就能建立黑箱模型，在基于小样本的复杂生产过程建模方面具有较大优势。</p>
+<p>通过对以上模型的优缺点进行分析，可以通过将基于机器学习的电效、槽电压预测模型和机理模型相结合的方法建立锌电解能耗关于其影响因素的预测模型，达到充分利用各种建模方法的优点的目的，由于机理预测模型的存在，可以确保模型对复杂过程的全局拟合能力，同时可有效避免基于机器学习预测模型的过拟合与泛化能力不够的问题;而基于机器学习预测模型可提高预测能力和计算精度；引入协调器，将机理预测模型和基于机器学习预测模型结合起来。因此，具有良好的模拟锌电解过程的能力，可以在大范围内较准确地预测湿法炼锌电解过程的锌电解能耗。</p>
+</li>
+<li>
+<p>(2) 锌电解过程关键参数与设备状况的在线监视</p>
+<p>包括数据的实时数值和曲线显示，故障诊断和报警显示。实时数据经过采集处理后，以天为单位，形成数据文件，以供查询和显示参数曲线调用。在电解过程运行监视中，除了能实时显示了整个工艺流程的大部分关键参数，还能按照温度、流量、液位、电流的类别实时显示。此外，还能以天或周为单位，对数据库中的历史数据和实时数据以曲线形式进行查询，通过曲线查询，可以非常清楚的掌握各个参数的变化趋势和变化情况。故障诊断能够对各参数的高低限越界情况，电解过程新液和集液流量的中断或者溢出情况，电解电流和各种电机的短路或者开路情况，以及各个系统的串液情况进行智能判断，并且能及时以方便醒目的方式给出报警操作提示。</p>
+</li>
+<li>
+<p>(3) 锌电解过程工艺参数的优化指导</p>
+<p>锌电解过程生产过程中，在保证全天锌产量的前提下，希望每天的电能消耗和用电费用最低。因此，选取每日锌电解过程所消耗电能和用电总费用作为优化的目标。</p>
+<p>此外，株洲冶炼集团按计划进行生产，考虑生产能力和为保证锌产品质量，制定了每日产量计划，因此生产过程中包含了产量约束。在生产过程中，提高电解液含锌量及面积电流、降低电解液酸度及温度，有利于降低析出锌含铅量，提高锌产品质量，但这些条件受到电流效率及电能消耗的限制。</p>
+<p><strong>电流密度较低会造成电流效率急剧下降，电流密度较高对电流效率的提高没有明显作用，同时电流密度还受极板所能承受的最大电流强度的限制；</strong></p>
+<p><strong>电解液锌浓度较低会引起析出锌的反溶，较高对电流效率的增加没有明显效果，相反还会引起槽电压的增大和杂质活动的加剧；</strong></p>
+<p><strong>电解液中酸浓度较低会引起槽电压明显升高，较高会引起氢的超电压下降，造成氢离子的析出成为氢气。因此生产过程中还包含电流密度、锌浓度、酸浓度边界范围约束。</strong></p>
+<p>综上所述，在电费分时计价的政策下，在能耗机理分析的基础上，构造了含有某些未知参数的槽电压、电流效率与电流密度、温度与酸锌浓度的机理模型，通过参数辨识，以单位电单耗为目标，综合考虑产量、质量和相关工艺参数的约束，建立能耗优化模型，通过优化算法求解，得出不同时段下的电流密度、优化的温度和酸锌浓度等工艺参数。</p>
+</li>
+<li>
+<p>（4）锌电解过程工艺参数及设备的控制</p>
+<p>锌电解流量的控制就是根据工艺指定的目标要求，确定新液流量,使电解槽的酸锌比稳定在工艺指定的目标范围内。影响新液流量给定因素主要有：废液实际酸锌比、酸锌比控制目标、新液浓度、废液酸锌浓度、电流密度、电流效率等，这些因素错综复杂，难以用模型直接描述。此外这些因素中电解液酸锌比等重要参数不能在线检测，只能每小时离线检测一次，增加了新液流量的给定难度。</p>
+<p>主要利用锌电解过程工艺参数优化的结果，针对不同的生产时段，根据电流强度，给出电解液酸锌浓度的最优值和电解温度经验设定值，来实现锌电解过程能耗的优化控制。</p>
+<p>在流量调节过程中，新液流量是通过调节新液变频器来调节新液泵的转速来实现，废液流量则先要人工调节废液泵的开启台数和阀门开度来予以粗调，待流量稳定接近目标废液流量时，改用控制集液变频器来调节集液泵的转速来予以精调，从而稳定在目标流量。电解过程中，由于混合液酸锌浓度的调节有一定滞后，因此结合电解生产专家经验，使用电解过程中电解液的酸锌浓度的化验值反馈修正电解液酸锌浓度配液模型，基本原则是，若电解过程的化验废液酸浓比低于设定值，则适当降低新液流量；若电解过程的化验废液酸锌比高于设定值，则适当增大新液流量。电解温度的控制是通过控制废液流经冷却塔的台数和流量来实现的，每个冷却塔带有冷却风机。</p>
+</li>
+</ul>
+
+    </article>
+    <script>
+  'use strict';
+  
+  function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+  }
+
+  (function () {
+    var singleContentsElem = document.querySelector('.single__contents');
+    singleContentsElem ? 
+    singleContentsElem.querySelectorAll('pre > code').forEach(function(elem) {
+      var dataLang = elem.getAttribute('data-lang');
+      var dataLangWrapper = document.createElement('div');
+      var code = null;
+      var codeTitle = null;
+
+      if (dataLang && dataLang.includes(':')) {
+        code = dataLang.split(':')[0];
+        codeTitle = dataLang.split(':')[1];
+
+        dataLangWrapper.className = 'language-' + code;
+        dataLangWrapper.setAttribute('data-lang', codeTitle);
+
+        elem.className = 'language-' + code;
+        elem.setAttribute('data-lang', codeTitle);
+        elem.setAttribute('id', codeTitle);
+      } else if (!dataLang) {
+        dataLangWrapper.setAttribute('data-lang', 'Code');
+        dataLangWrapper.className = 'language-code';
+      }
+
+      if (!dataLang || codeTitle) {
+        wrap(elem.parentNode, dataLangWrapper);
+      }
+
+    }) : null;
+  })();
+
+  var langCodeElem = document.querySelectorAll('.language-code');
+  langCodeElem ? langCodeElem.forEach(function (elem) {
+    var newElem = document.createElement('span');
+    newElem.className = 'copy-to-clipboard';
+    newElem.setAttribute('title', 'Copy to clipboard');
+    elem.append(newElem);
+  }) : null;
+  
+</script>
+    
+<div class="donation">
+  <div class="donation__message">
+    Share on
+  </div>
+  <div class="donation__icons">
+    
+    
+    
+      
+        <a href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://service.weibo.com/share/share.php?url='+e(d.location.href)+'&title='+e(d.title),x=function(){if(!window.open(r,'weibo','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()" class="donation__item" target="_blank" rel="noreferer" title="Weibo" aria-label="Weibo Share Button" data-type="share">
+          <svg data-name="weibo" enable-background="new 0 0 24 24" viewBox="0 0 24 24" width="35" height="35" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m23.977 8.171c.103 1.315-.123 2.891-1.006 2.969-1.442.127-.69-1.435-.671-2.375.053-2.725-2.312-4.618-4.629-4.618-.656 0-2.181.438-1.946-.924.106-.6.623-.592 1.14-.66 3.897-.51 6.838 2.125 7.112 5.608z"/><path d="m17.604 11.337c1.675.901 3.687 1.35 3.354 4.024-.614 4.929-11.054 8.24-17.575 4.618-1.788-.994-3.639-2.448-3.354-5.344.246-2.493 1.95-4.424 3.623-6.069 1.596-1.57 3.278-2.798 5.567-3.364 2.484-.614 3.218 1.422 2.549 3.43 1.439-.095 4.488-1.674 5.836-.132.594.68.367 1.897 0 2.837zm-1.811 6.333c.537-.598 1.076-1.51 1.073-2.572-.01-4.395-7.635-5.376-11.806-2.969-4.747 2.74-2.743 7.664 3.086 8.048 3.088.204 6.179-.868 7.647-2.507z"/><path d="m19.952 10.084c-.977.064-.612-.658-.671-1.517-.037-.529-.483-1.14-.872-1.32-.763-.352-1.945.256-1.945-.791 0-.778.686-.697 1.074-.726 3.555-.266 3.775 4.265 2.414 4.354z"/><path d="m12.842 14.768c1.429 4.248-6.017 6.223-7.379 2.573-.911-2.441 1.277-4.383 3.555-4.618 1.945-.201 3.395.775 3.824 2.045zm-3.422.726c.303.516 1 .145.939-.264-.073-.473-.945-.403-.939.264zm-1.207 2.243c1.252-.293 1.42-2.612-.47-2.177-1.587.364-1.28 2.586.47 2.177z"/></svg>
+        </a>
+      
+    
+      
+        <a href='https://telegram.me/share/url?url=' onclick='window.open(&apos;https://telegram.me/share/url?url=&apos;+encodeURIComponent(location.href)+&apos;&amp;bodytext=&amp;tags=&amp;text=&apos;+encodeURIComponent(document.title));return false;' class="donation__item" target="_blank" rel="noreferer" title="Telegram" aria-label="Telegram Share Button" data-type="share">
+          <svg data-name="telegram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="35" height="35"><path fill="currentColor" d="M 26.070313 3.996094 C 25.734375 4.011719 25.417969 4.109375 25.136719 4.21875 L 25.132813 4.21875 C 24.847656 4.332031 23.492188 4.902344 21.433594 5.765625 C 19.375 6.632813 16.703125 7.757813 14.050781 8.875 C 8.753906 11.105469 3.546875 13.300781 3.546875 13.300781 L 3.609375 13.277344 C 3.609375 13.277344 3.25 13.394531 2.875 13.652344 C 2.683594 13.777344 2.472656 13.949219 2.289063 14.21875 C 2.105469 14.488281 1.957031 14.902344 2.011719 15.328125 C 2.101563 16.050781 2.570313 16.484375 2.90625 16.722656 C 3.246094 16.964844 3.570313 17.078125 3.570313 17.078125 L 3.578125 17.078125 L 8.460938 18.722656 C 8.679688 19.425781 9.949219 23.597656 10.253906 24.558594 C 10.433594 25.132813 10.609375 25.492188 10.828125 25.765625 C 10.933594 25.90625 11.058594 26.023438 11.207031 26.117188 C 11.265625 26.152344 11.328125 26.179688 11.390625 26.203125 C 11.410156 26.214844 11.429688 26.21875 11.453125 26.222656 L 11.402344 26.210938 C 11.417969 26.214844 11.429688 26.226563 11.441406 26.230469 C 11.480469 26.242188 11.507813 26.246094 11.558594 26.253906 C 12.332031 26.488281 12.953125 26.007813 12.953125 26.007813 L 12.988281 25.980469 L 15.871094 23.355469 L 20.703125 27.0625 L 20.8125 27.109375 C 21.820313 27.550781 22.839844 27.304688 23.378906 26.871094 C 23.921875 26.433594 24.132813 25.875 24.132813 25.875 L 24.167969 25.785156 L 27.902344 6.65625 C 28.007813 6.183594 28.035156 5.742188 27.917969 5.3125 C 27.800781 4.882813 27.5 4.480469 27.136719 4.265625 C 26.769531 4.046875 26.40625 3.980469 26.070313 3.996094 Z M 25.96875 6.046875 C 25.964844 6.109375 25.976563 6.101563 25.949219 6.222656 L 25.949219 6.234375 L 22.25 25.164063 C 22.234375 25.191406 22.207031 25.25 22.132813 25.308594 C 22.054688 25.371094 21.992188 25.410156 21.667969 25.28125 L 15.757813 20.75 L 12.1875 24.003906 L 12.9375 19.214844 C 12.9375 19.214844 22.195313 10.585938 22.59375 10.214844 C 22.992188 9.84375 22.859375 9.765625 22.859375 9.765625 C 22.886719 9.3125 22.257813 9.632813 22.257813 9.632813 L 10.082031 17.175781 L 10.078125 17.15625 L 4.242188 15.191406 L 4.242188 15.1875 C 4.238281 15.1875 4.230469 15.183594 4.226563 15.183594 C 4.230469 15.183594 4.257813 15.171875 4.257813 15.171875 L 4.289063 15.15625 L 4.320313 15.144531 C 4.320313 15.144531 9.53125 12.949219 14.828125 10.71875 C 17.480469 9.601563 20.152344 8.476563 22.207031 7.609375 C 24.261719 6.746094 25.78125 6.113281 25.867188 6.078125 C 25.949219 6.046875 25.910156 6.046875 25.96875 6.046875 Z"/></svg>
+        </a>
+      
+    
+  </div>
+</div>
+
+    
+    
+<div class="whoami__gutter"></div>
+<hr class="hr-slash whoami-hr"/>
+<section class="whoami">
+  <div class="whoami__image-wrapper">
+    
+    
+      
+        <img data-src="/images/whoami/avatar.jpg" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" alt="AustinZGX" class="lazyload whoami__image"/>
+      
+    
+  </div>
+  <div class="whoami__contents">
+    <div class="whoami__written-by">
+      WRITTEN BY
+    </div>
+    <div class="whoami__title">
+      
+        AustinZGX
+      
+    </div>
+    <div class="whoami__desc">
+      
+        Non_Ferrous Industry Architect
+      
+    </div>
+    <div class="whoami__social">
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="mailto:your@email.com" title="email" aria-label="email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"/></svg>
+      </a>
+      
+      
+      
+      <a href="http://example.org/" title="facebook" aria-label="facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" version="1.1">
+<g id="surface2747">
+<path fill="currentColor" d="M 11.664062 2.003906 C 6.621094 2.171875 2.375 6.25 2.023438 11.289062 C 1.65625 16.617188 5.46875 21.121094 10.507812 21.878906 L 10.507812 14.648438 L 8.890625 14.648438 C 8.164062 14.648438 7.578125 14.0625 7.578125 13.335938 C 7.578125 12.609375 8.164062 12.023438 8.890625 12.023438 L 10.503906 12.023438 L 10.503906 10.273438 C 10.503906 7.378906 11.914062 6.105469 14.324219 6.105469 C 14.679688 6.105469 14.984375 6.113281 15.242188 6.128906 C 15.878906 6.15625 16.371094 6.6875 16.371094 7.324219 C 16.371094 7.988281 15.835938 8.523438 15.171875 8.523438 L 14.730469 8.523438 C 13.710938 8.523438 13.351562 9.492188 13.351562 10.585938 L 13.351562 12.023438 L 15.222656 12.023438 C 15.8125 12.023438 16.265625 12.550781 16.175781 13.132812 L 16.066406 13.835938 C 15.992188 14.304688 15.589844 14.652344 15.113281 14.652344 L 13.351562 14.652344 L 13.351562 21.898438 C 18.234375 21.234375 22 17.0625 22 12 C 22 6.367188 17.339844 1.820312 11.664062 2.003906 Z M 11.664062 2.003906 "/>
+</g>
+</svg>
+
+      </a>
+      
+      
+      
+      
+      
+      <a href="https://github.com/zzossig/hugo-theme-zzo" title="github" aria-label="github">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" version="1.1">
+<g id="surface3680">
+<path fill="currentColor" d="M 10.898438 2.101562 C 6.300781 2.601562 2.601562 6.300781 2.101562 10.800781 C 1.601562 15.5 4.300781 19.699219 8.398438 21.300781 C 8.699219 21.398438 9 21.199219 9 20.800781 L 9 19.199219 C 9 19.199219 8.601562 19.300781 8.101562 19.300781 C 6.699219 19.300781 6.101562 18.101562 6 17.398438 C 5.898438 17 5.699219 16.699219 5.398438 16.398438 C 5.101562 16.300781 5 16.300781 5 16.199219 C 5 16 5.300781 16 5.398438 16 C 6 16 6.5 16.699219 6.699219 17 C 7.199219 17.800781 7.800781 18 8.101562 18 C 8.5 18 8.800781 17.898438 9 17.800781 C 9.101562 17.101562 9.398438 16.398438 10 16 C 7.699219 15.5 6 14.199219 6 12 C 6 10.898438 6.5 9.800781 7.199219 9 C 7.101562 8.800781 7 8.300781 7 7.601562 C 7 7.199219 7 6.601562 7.300781 6 C 7.300781 6 8.699219 6 10.101562 7.300781 C 10.601562 7.101562 11.300781 7 12 7 C 12.699219 7 13.398438 7.101562 14 7.300781 C 15.300781 6 16.800781 6 16.800781 6 C 17 6.601562 17 7.199219 17 7.601562 C 17 8.398438 16.898438 8.800781 16.800781 9 C 17.5 9.800781 18 10.800781 18 12 C 18 14.199219 16.300781 15.5 14 16 C 14.601562 16.5 15 17.398438 15 18.300781 L 15 20.898438 C 15 21.199219 15.300781 21.5 15.699219 21.398438 C 19.398438 19.898438 22 16.300781 22 12.101562 C 22 6.101562 16.898438 1.398438 10.898438 2.101562 Z M 10.898438 2.101562 "/>
+</g>
+</svg>
+
+      </a>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="http://example.org/" title="twitter" aria-label="twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 32 32" version="1.1">
+<g id="surface676">
+<path fill="currentColor" d="M 28 8.558594 C 27.117188 8.949219 26.167969 9.214844 25.171875 9.332031 C 26.1875 8.722656 26.96875 7.757812 27.335938 6.609375 C 26.386719 7.171875 25.332031 7.582031 24.210938 7.804688 C 23.3125 6.847656 22.03125 6.246094 20.617188 6.246094 C 17.898438 6.246094 15.691406 8.453125 15.691406 11.171875 C 15.691406 11.558594 15.734375 11.933594 15.820312 12.292969 C 11.726562 12.089844 8.097656 10.128906 5.671875 7.148438 C 5.246094 7.875 5.003906 8.722656 5.003906 9.625 C 5.003906 11.332031 5.871094 12.839844 7.195312 13.722656 C 6.386719 13.695312 5.628906 13.476562 4.964844 13.105469 C 4.964844 13.128906 4.964844 13.148438 4.964844 13.167969 C 4.964844 15.554688 6.660156 17.546875 8.914062 17.996094 C 8.5 18.109375 8.066406 18.171875 7.617188 18.171875 C 7.300781 18.171875 6.988281 18.140625 6.691406 18.082031 C 7.316406 20.039062 9.136719 21.460938 11.289062 21.503906 C 9.605469 22.824219 7.480469 23.609375 5.175781 23.609375 C 4.777344 23.609375 4.386719 23.585938 4 23.539062 C 6.179688 24.9375 8.765625 25.753906 11.546875 25.753906 C 20.605469 25.753906 25.558594 18.25 25.558594 11.742188 C 25.558594 11.53125 25.550781 11.316406 25.542969 11.105469 C 26.503906 10.410156 27.339844 9.542969 28 8.558594 Z M 28 8.558594 "/>
+</g>
+</svg>
+
+      </a>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
+</section>
+<hr class="hr-slash whoami-hr" />
+
+
+    <section class="related">
+    
+    
+  </section>
+    <div class="grow"></div>
+<nav class="pagination-single">
+  
+    
+      <a href="http://austinzgx.github.io/metal/ni/" class="pagination-single__left">
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+        </div>
+        <div class="pagination-single__left-title">Ni</div>      
+      </a>
+    
+    <div class="grow"></div>
+    
+      <a href="http://austinzgx.github.io/metal/other/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">Other</div>
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+        </div>
+      </a>
+    
+  
+</nav>
+    
+  
+
+    <div class="modal micromodal-slide" id="modal" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      
+      <div class="modal__content" id="modal-content">
+        <div id="mySwipe" class="swipe">
+          <div class="swipe-wrap">
+          </div>
+        </div>
+      </div>
+
+      <span class="modal__items">
+        
+        <span class="modal__header">
+          <div class="modal__paging" title="Page Info" aria-label="Current Page">
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--close" title="Close" aria-label="Close Button" data-micromodal-close>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="25" height="25"><path fill="currentColor" d="M 21.734375 19.640625 L 19.636719 21.734375 C 19.253906 22.121094 18.628906 22.121094 18.242188 21.734375 L 13 16.496094 L 7.761719 21.734375 C 7.375 22.121094 6.746094 22.121094 6.363281 21.734375 L 4.265625 19.640625 C 3.878906 19.253906 3.878906 18.628906 4.265625 18.242188 L 9.503906 13 L 4.265625 7.761719 C 3.882813 7.371094 3.882813 6.742188 4.265625 6.363281 L 6.363281 4.265625 C 6.746094 3.878906 7.375 3.878906 7.761719 4.265625 L 13 9.507813 L 18.242188 4.265625 C 18.628906 3.878906 19.257813 3.878906 19.636719 4.265625 L 21.734375 6.359375 C 22.121094 6.746094 22.121094 7.375 21.738281 7.761719 L 16.496094 13 L 21.734375 18.242188 C 22.121094 18.628906 22.121094 19.253906 21.734375 19.640625 Z"/></svg>
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--full" title="Full Screen" aria-label="Full Screen Button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25"><path fill="currentColor" d="M 5 3 C 3.9069372 3 3 3.9069372 3 5 L 3 8 A 1.0001 1.0001 0 1 0 5 8 L 5 5 L 8 5 A 1.0001 1.0001 0 1 0 8 3 L 5 3 z M 16 3 A 1.0001 1.0001 0 1 0 16 5 L 19 5 L 19 8 A 1.0001 1.0001 0 1 0 21 8 L 21 5 C 21 3.9069372 20.093063 3 19 3 L 16 3 z M 3.984375 14.986328 A 1.0001 1.0001 0 0 0 3 16 L 3 19 C 3 20.093063 3.9069372 21 5 21 L 8 21 A 1.0001 1.0001 0 1 0 8 19 L 5 19 L 5 16 A 1.0001 1.0001 0 0 0 3.984375 14.986328 z M 19.984375 14.986328 A 1.0001 1.0001 0 0 0 19 16 L 19 19 L 16 19 A 1.0001 1.0001 0 1 0 16 21 L 19 21 C 20.093063 21 21 20.093063 21 19 L 21 16 A 1.0001 1.0001 0 0 0 19.984375 14.986328 z"/></svg>
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--normal" title="Normal Screen" aria-label="Normal Screen Button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="25" height="25"><path fill="currentColor" d="M 16.96875 4.972656 C 15.867188 4.988281 14.984375 5.894531 15 7 L 15 15 L 7 15 C 6.277344 14.988281 5.609375 15.367188 5.246094 15.992188 C 4.878906 16.613281 4.878906 17.386719 5.246094 18.007813 C 5.609375 18.632813 6.277344 19.011719 7 19 L 19 19 L 19 7 C 19.007813 6.460938 18.796875 5.941406 18.414063 5.558594 C 18.03125 5.175781 17.511719 4.964844 16.96875 4.972656 Z M 32.96875 4.972656 C 31.921875 4.988281 31.0625 5.8125 31.003906 6.859375 C 31 6.90625 31 6.953125 31 7 L 31 19 L 43 19 C 43.066406 19 43.132813 19 43.199219 18.992188 C 44.269531 18.894531 45.070313 17.972656 45.015625 16.902344 C 44.964844 15.828125 44.074219 14.988281 43 15 L 35 15 L 35 7 C 35.007813 6.460938 34.796875 5.941406 34.414063 5.558594 C 34.03125 5.175781 33.511719 4.964844 32.96875 4.972656 Z M 7 31 C 6.277344 30.988281 5.609375 31.367188 5.246094 31.992188 C 4.878906 32.613281 4.878906 33.386719 5.246094 34.007813 C 5.609375 34.632813 6.277344 35.011719 7 35 L 15 35 L 15 43 C 14.988281 43.722656 15.367188 44.390625 15.992188 44.753906 C 16.613281 45.121094 17.386719 45.121094 18.007813 44.753906 C 18.632813 44.390625 19.011719 43.722656 19 43 L 19 31 Z M 31 31 L 31 43 C 30.988281 43.722656 31.367188 44.390625 31.992188 44.753906 C 32.613281 45.121094 33.386719 45.121094 34.007813 44.753906 C 34.632813 44.390625 35.011719 43.722656 35 43 L 35 35 L 43 35 C 43.722656 35.011719 44.390625 34.632813 44.753906 34.007813 C 45.121094 33.386719 45.121094 32.613281 44.753906 31.992188 C 44.390625 31.367188 43.722656 30.988281 43 31 Z"/></svg>
+          </div>
+        </span>
+        
+        <div class="modal__icon modal__arrow modal__arrow--left" title="Arrow Left" aria-label="Arrow Left Button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="28" height="28"><path fill="currentColor" d="M 23.28125 11 L 10 10 L 10 6.851563 C 10 6.523438 9.839844 6.277344 9.519531 6.03125 C 9.199219 5.949219 8.878906 5.949219 8.640625 6.113281 C 5.359375 8.410156 2.238281 12.257813 2.160156 12.421875 C 2.082031 12.578125 2.007813 12.8125 2.003906 12.976563 C 2.003906 12.980469 2 12.988281 2 12.992188 C 2 13.15625 2.078125 13.402344 2.160156 13.484375 C 2.238281 13.648438 5.28125 17.507813 8.640625 19.804688 C 8.960938 19.96875 9.28125 20.050781 9.519531 19.886719 C 9.839844 19.722656 10 19.476563 10 19.148438 L 10 16 L 23.28125 15 C 23.679688 14.679688 24 13.875 24 12.992188 C 24 12.195313 23.761719 11.320313 23.28125 11 Z"/></svg>
+        </div>
+        
+        <div class="modal__icon modal__arrow modal__arrow--right" title="Arrow Right" aria-label="Arrow Right Button">
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="28" height="28"><path fill="currentColor" d="M 2.71875 11.023438 L 16 10.023438 L 16 6.875 C 16 6.546875 16.160156 6.300781 16.480469 6.054688 C 16.800781 5.972656 17.121094 5.972656 17.359375 6.136719 C 20.640625 8.433594 23.761719 12.28125 23.839844 12.445313 C 23.917969 12.601563 23.992188 12.835938 23.996094 13 C 23.996094 13.003906 24 13.011719 24 13.015625 C 24 13.179688 23.921875 13.425781 23.839844 13.507813 C 23.761719 13.671875 20.71875 17.53125 17.359375 19.828125 C 17.039063 19.992188 16.71875 20.074219 16.480469 19.910156 C 16.160156 19.746094 16 19.5 16 19.171875 L 16 16.023438 L 2.71875 15.023438 C 2.320313 14.703125 2 13.898438 2 13.015625 C 2 12.21875 2.238281 11.34375 2.71875 11.023438 Z"/></svg>
+        </div>
+
+        <div class="modal__caption">
+          <div class="modal__caption--text">
+          </div>
+        </div>
+
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<script defer src="/js/swipe.min.d70095d96ef6a016133ea2c732c5d4713539d335b739178e356af46f54cf0a16.js"></script>
+
+<script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  
+   
+  var docElem = document.documentElement;
+
+   
+  function openFullscreen() {
+    if (docElem.requestFullscreen) {
+      docElem.requestFullscreen();
+    } else if (docElem.mozRequestFullScreen) {  
+      docElem.mozRequestFullScreen();
+    } else if (docElem.webkitRequestFullscreen) {  
+      docElem.webkitRequestFullscreen();
+    } else if (docElem.msRequestFullscreen) {  
+      docElem.msRequestFullscreen();
+    }
+  }
+
+   
+  function closeFullscreen() {
+    if (document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement) {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {  
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {  
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {  
+        document.msExitFullscreen();
+      }
+    }
+  }
+
+  var modal = document.getElementById('modal');
+  var galleryContainerElem = document.querySelector('.gallery__container');
+  var swipeWrapElem = document.querySelector('.swipe-wrap');
+  var mySwipeElem = document.getElementById('mySwipe');
+  var arrowLeftElem = document.querySelector('.modal__arrow--left');
+  var arrowRightElem = document.querySelector('.modal__arrow--right');
+  var closeElem = document.querySelector('.modal__toolbar--close');
+  var fullElem = document.querySelector('.modal__toolbar--full');
+  var normalElem = document.querySelector('.modal__toolbar--normal');
+  var captionElem = document.querySelector('.modal__caption');
+  var pagingElem = document.querySelector('.modal__paging');
+  var itemsElem = document.querySelector('.modal__items');
+  var imgTotalNum = null;
+  var myFadeTimeout = null;
+  var mySwipe = null;
+  var keydownFunction = function (e) {
+    if (e.key === 'ArrowRight') {
+      if (modal && modal.classList.contains('is-open')) {
+        mySwipe.next();
+      }
+    } else if (e.key === 'ArrowLeft') {
+      if (modal && modal.classList.contains('is-open')) {
+        mySwipe.prev();
+      }
+    }
+  }
+
+  if (galleryContainerElem) {
+    imgTotalNum = galleryContainerElem.querySelectorAll('img').length;
+  } else {
+    galleryContainerElem = document.querySelector('.single__contents');
+    imgTotalNum = galleryContainerElem.querySelectorAll('img').length;
+  }
+
+  MicroModal.init({
+    onClose: function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+        closeFullscreen();
+      }
+      window.removeEventListener('keydown', keydownFunction);
+    },
+    disableScroll: true,
+    disableFocus: true,
+    awaitOpenAnimation: false,
+    awaitCloseAnimation: false,
+    debugMode: false,
+  });
+
+  var imageLoad = function(src) {
+    return new Promise(function(resolve, reject) {
+      var newImg = new Image;
+      newImg.onload = function() {
+        resolve(newImg);
+      }
+      newImg.onerror = reject;
+      newImg.src = src;
+    });
+  }
+
+  galleryContainerElem.querySelectorAll('img').forEach(function (elem, idx) {
+    elem.style.cursor = 'pointer';
+
+    var clonedElem = elem.cloneNode(true);
+    clonedElem.style.maxHeight = '100%';
+    clonedElem.style.maxWidth = '100%';
+    clonedElem.onclick = function (e) {
+      e.stopPropagation();
+    }
+
+    var wrapper = document.createElement('div');
+    wrapper.style.width = '100%';
+    wrapper.style.height = '100vh';
+    wrapper.setAttribute('data-micromodal-close', '');
+    wrapper.onclick = function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+    }
+    wrapper.onmouseenter = function () {
+      clearTimeout(myFadeTimeout);
+      fadeIn(itemsElem, 200);
+    };
+    wrapper.onmouseleave = function () {
+      myFadeTimeout = setTimeout(function () {
+        fadeOut(itemsElem, 200);
+      }, 2500);
+    }
+    wrapper.ontouchstart = function() {
+      fadeIn(itemsElem, 200);
+    }
+    wrapper.append(clonedElem);
+    swipeWrapElem.append(wrapper);
+
+    elem.addEventListener('click', async function (e) {
+      MicroModal.show('modal');
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+
+      var imgSrc = e.target.getAttribute('data-src') || e.target.getAttribute('src');
+      var img = await imageLoad(imgSrc);
+      clonedElem.style.width = img.width + 'px';
+      clonedElem.style.height = img.height + 'px';
+      
+      
+      mySwipe = new Swipe(mySwipeElem, {
+        startSlide: idx,
+        draggable: true,
+        autoRestart: false,
+        continuous: false,
+        disableScroll: true,
+        stopPropagation: true,
+        callback: async function (index, element) {
+          
+          var imgElem = element.querySelector('img');
+          var imgSrc = imgElem.getAttribute('data-src') || imgElem.getAttribute('src');
+          var img = await imageLoad(imgSrc);
+          imgElem.style.width = img.width + 'px';
+          imgElem.style.height = img.height + 'px';
+
+          
+          if (captionElem && imgElem) {
+            var caption = null;
+            if (imgElem.getAttribute('data-caption')) {
+              caption = imgElem.getAttribute('data-caption');
+            } else if (imgElem.getAttribute('title')) {
+              caption = imgElem.getAttribute('title');
+            } else if (imgElem.getAttribute('alt')) {
+              caption = imgElem.getAttribute('alt');
+            } else {
+              caption = imgElem.getAttribute('src');
+            }
+
+            captionElem.querySelector('.modal__caption--text').innerText = caption;
+            pagingElem.innerText = (index + 1) + ' / ' + imgTotalNum;
+
+            clearTimeout(myFadeTimeout);
+            fadeIn(itemsElem, 200);
+          }
+        },
+      });
+
+      fadeIn(itemsElem);
+
+      
+      if (captionElem) {
+        var caption = null;
+        if (e.target.getAttribute('data-caption')) {
+          caption = e.target.getAttribute('data-caption');
+        } else if (e.target.getAttribute('title')) {
+          caption = e.target.getAttribute('title');
+        } else if (e.target.getAttribute('alt')) {
+          caption = e.target.getAttribute('alt');
+        } else {
+          caption = e.target.getAttribute('src');
+        }
+
+        captionElem.querySelector('.modal__caption--text').innerText = caption;
+        pagingElem.innerText = (idx + 1) + ' / ' + imgTotalNum;
+      }
+
+      if (normalElem && fullElem) {
+        normalElem.style.zIndex = -1;
+        normalElem.style.opacity = 0;
+        fullElem.style.zIndex = 25;
+        fullElem.style.opacity = 1;
+      }
+    });
+
+    window.addEventListener('keydown', keydownFunction);
+  });
+
+  arrowLeftElem ?
+    arrowLeftElem.addEventListener('click', function (e) {
+      if (mySwipe) {
+        mySwipe.prev();
+      }
+    }) : null;
+  arrowRightElem ?
+    arrowRightElem.addEventListener('click', function (e) {
+      if (mySwipe) {
+        mySwipe.next();
+      }
+    }) : null;
+
+  closeElem ?
+    closeElem.addEventListener('click', function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+      closeFullscreen();
+      MicroModal.close('modal');
+    }) : null;
+
+  fullElem ?
+    fullElem.addEventListener('click', function (e) {
+      openFullscreen();
+      if (normalElem) {
+        normalElem.style.zIndex = 25;
+        normalElem.style.opacity = 1;
+        fullElem.style.zIndex = -1;
+        fullElem.style.opacity = 0;
+      }
+    }) : null;
+
+  normalElem ?
+    normalElem.addEventListener('click', function (e) {
+      closeFullscreen();
+      if (fullElem) {
+        fullElem.style.zIndex = 25;
+        fullElem.style.opacity = 1;
+        normalElem.style.zIndex = -1;
+        normalElem.style.opacity = 0;
+      }
+    }) : null;
+  
+});
+</script>
+
+    <div class="hide">
+      
+
+<div class="search">
+  <span class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+  </span>
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <div id="search-results" class="dropdown">
+    <div id="search-menu" class="dropdown-menu" role="menu">
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</main>
+
+
+<aside class="single__side main-side">
+  
+
+
+<section class="sidebar hide">
+  <script>document.querySelector('.sidebar').classList.remove('hide')</script>
+  <div class="toc__flexbox" data-position="fixed">
+    <h6 class="toc__title">What&#39;s on this Page</h6>
+    
+      <label class="switch">
+        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+    
+  </div>
+  <div class="toc " data-dir="ltr" data-folding="false">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a>
+      <ul>
+        <li><a href="#火法炼锌">火法炼锌</a></li>
+        <li><a href="#湿法炼锌">湿法炼锌</a></li>
+        <li><a href="#全湿法冶炼">全湿法冶炼</a></li>
+        <li><a href="#现状">现状</a></li>
+        <li><a href="#特点">特点</a></li>
+        <li><a href="#国内主要生产企业">国内主要生产企业</a></li>
+        <li><a href="#主要流程工艺">主要流程工艺</a></li>
+        <li><a href="#行业现状与需求">行业现状与需求</a></li>
+      </ul>
+    </li>
+    <li><a href="#焙烧">焙烧</a>
+      <ul>
+        <li><a href="#目的及意义">目的及意义</a></li>
+        <li><a href="#因素分析">因素分析</a></li>
+        <li><a href="#优化需求">优化需求</a></li>
+        <li><a href="#实现方式">实现方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#浸出">浸出</a>
+      <ul>
+        <li><a href="#目的及意义-1">目的及意义</a></li>
+        <li><a href="#因素分析-1">因素分析</a></li>
+        <li><a href="#优化需求-1">优化需求</a></li>
+        <li><a href="#实现方法">实现方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#净化">净化</a>
+      <ul>
+        <li><a href="#目的及意义-2">目的及意义</a></li>
+        <li><a href="#因素分析-2">因素分析</a></li>
+        <li><a href="#优化需求-2">优化需求</a></li>
+        <li><a href="#实现方案">实现方案</a></li>
+      </ul>
+    </li>
+    <li><a href="#电解">电解</a>
+      <ul>
+        <li><a href="#目的及意义-3">目的及意义</a></li>
+        <li><a href="#因素分析-3">因素分析</a></li>
+        <li><a href="#优化需求-3">优化需求</a></li>
+        <li><a href="#实现方式-1">实现方式</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+
+</aside>
+
+<script>
+  
+  
+  
+
+  var enableToc = JSON.parse("true");
+  var toc = JSON.parse("null");
+  var tocPosition = JSON.parse("\"inner\"");
+  
+  var singleMainElem = document.querySelector('.single__main');
+  var singleSideElem = document.querySelector('.single__side');
+
+  enquire.register("screen and (max-width: 769px)", {
+    match: function () {
+      if ((enableToc || toc) && tocPosition !== "outer") {
+        if (singleMainElem && singleSideElem) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+          singleSideElem.classList.remove('main-side');
+          singleSideElem.classList.add('hide');
+        }
+      } else if (tocPosition === "outer") {
+        if (singleMainElem && !singleMainElem.classList.contains('main-main')) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+        }
+        if (singleSideElem && !singleSideElem.classList.contains('hide')) {
+          singleSideElem.classList.add('hide');
+        }
+      }
+    },
+    unmatch: function () {
+      if ((enableToc || toc) && tocPosition !== "outer") {
+        singleMainElem.classList.remove('main');
+        singleMainElem.classList.add('main-main');
+        singleSideElem.classList.remove('hide');
+        singleSideElem.classList.add('main-side');
+      } else if (tocPosition === "outer") {
+        if (singleMainElem && !singleMainElem.classList.contains('main-main')) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+        }
+        if (singleSideElem && !singleSideElem.classList.contains('hide')) {
+          singleSideElem.classList.add('hide');
+        }
+      }
+
+      document.getElementsByClassName('navbar__burger')[0].classList.remove('is-active');
+      document.getElementsByClassName('navbar__menu')[0].classList.remove('is-active');
+      document.getElementsByClassName('mobile-search')[0].classList.add('hide');
+    },
+    setup: function () { },
+    deferSetup: true,
+    destroy: function () { },
+  });
+</script>
+
+
+
+
+<script defer src="/js/clipboard.min.1626706afc88d95ebe1173b553ec732c6dc82a576989315fdf5e7779af738a44.js"></script>
+
+<script defer src="/js/helper/getParents.min.js"></script>
+
+<script defer src="/js/helper/closest.min.js"></script>
+
+<script defer src="/js/helper/prev.min.js"></script>
+
+<script defer src="/js/helper/prop.min.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  'use strict';
+
+  window.onload = function() {
+    var navbar = document.querySelector('.navbar');
+    var singleContentsElem = document.querySelector('.single__contents');
+
+    
+    
+    
+    var enableBusuanzi = JSON.parse("false");
+    var busuanziPagePV = JSON.parse("true");
+    
+    if (enableBusuanzi && busuanziPagePV) {
+      var pagePvElem = document.querySelector('#busuanzi_value_page_pv');
+      pagePvElem.textContent = pagePvElem.textContent.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    }    
+    
+
+
+    
+    
+    
+    
+    
+    
+    var enableToc = JSON.parse("true");
+    var toc = JSON.parse("null");
+    var hideToc = JSON.parse("false");
+    var tocFlexbox = document.querySelector('.toc__flexbox');
+    var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
+    var tocFolding = JSON.parse("false");
+    
+    if ((enableToc || toc) && document.querySelector('.toc')) {
+      var tableOfContentsElem = document.querySelector('.toc').querySelector('#TableOfContents');
+
+      if (false === tocFolding) {
+
+      } else {
+        tableOfContentsElem.querySelectorAll('ul') ?
+          tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+            rootUl.querySelectorAll('li').forEach(function (liElem) {
+              liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                ulElem.style.display = 'none';
+              });
+            });
+          }) : null;
+      }
+
+      if (tableOfContentsElem) {
+        if (tableOfContentsElem.querySelectorAll('a').length > 0) {
+          tableOfContentsElem.querySelectorAll('a').forEach(function (elem) {
+            elem.addEventListener('click', function () {
+              var id = elem.getAttribute('id');
+              navbar.classList.remove('navbar--show');
+              navbar.classList.remove('navbar--hide');
+              navbar.classList.add('navbar--hide');
+
+              document.querySelector('.toc').querySelectorAll('a').forEach(function (elem) {
+                elem.classList.remove('active');
+              });
+              elem.classList.add('active');
+
+              var curElem = tableOfContentsElem.querySelector('[href="#' + id + '"]');
+              if (curElem && curElem.nextElementSibling) {
+                curElem.nextElementSibling.style.display = 'block';
+              }
+              if (curElem) {
+                getParents(curElem, 'ul') ?
+                  getParents(curElem, 'ul').forEach(function (elem) {
+                    elem.style.display = 'block';
+                  }) : null;
+              }
+            });
+          });
+        } else {
+          if (tocFlexbox) {
+            tocFlexbox.setAttribute('data-position', '');
+            if (!tocFlexbox.classList.contains('hide')) {
+              tocFlexbox.classList.add('hide');
+            }
+          }
+          if (tocFlexboxOuter) {
+            tocFlexboxOuter.setAttribute('data-position', '');
+            if (!tocFlexboxOuter.classList.contains('hide')) {
+              tocFlexboxOuter.classList.add('hide');
+            }
+          }
+        }
+      }
+
+      
+      var toggleTocElem = document.getElementById("toggle-toc");
+      var visibleTocElem = document.getElementById('visible-toc');
+      var tocElem = document.querySelector('.toc');
+      var mainElem = document.querySelector('main');
+      var sideElem = document.querySelector('side');
+      var tocFlexboxElem = document.querySelector('.toc__flexbox');
+
+      toggleTocElem ? 
+      toggleTocElem.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          if (tocElem) {
+            fadeIn(tocElem, 200);
+          }
+          if (tocFlexboxElem) {
+            tocFlexboxElem.setAttribute('data-position', 'fixed');
+          }
+
+          if (mainElem) {
+            mainElem.classList.remove('main-main');
+            mainElem.classList.remove('main');
+            mainElem.classList.add('main-main');
+          }
+          if (sideElem) {
+            sideElem.classList.remove('main-side');
+          }
+        } else {
+          if (tocElem) {
+            fadeOut(tocElem, 200);
+          }
+          if (tocFlexboxElem) {
+            tocFlexboxElem.setAttribute('data-position', 'absolute');
+          }
+
+          if (mainElem) {
+            mainElem.classList.remove('main-main');
+            mainElem.classList.remove('main');
+            mainElem.classList.add('main');
+          }
+          if (sideElem) {
+            sideElem.classList.remove('main-side');
+          }
+        }
+      }) : null;
+
+      visibleTocElem ?
+      visibleTocElem.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          if (tocElem) {
+            fadeIn(tocElem, 200);
+          }
+        } else {
+          if (tocElem) {
+            fadeOut(tocElem, 200);
+          }
+        }
+      }) : null;
+    }
+    
+
+
+    
+    var tables = document.querySelectorAll('.single__contents > table');
+    for (let i = 0; i < tables.length; i++) {
+      var table = tables[i];
+      var wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+      table.parentElement.replaceChild(wrapper, table);
+      wrapper.appendChild(table);
+    }
+    
+
+
+    
+    var text, clip = new ClipboardJS('.anchor');
+    var headers = singleContentsElem.querySelectorAll("h1, h2, h3, h4");
+
+    
+    var languagedir = JSON.parse("\"ltr\"");
+
+    headers ? 
+    headers.forEach(function (elem) {
+      var url = encodeURI(document.location.origin + document.location.pathname);
+      var link = url + "#" + elem.getAttribute('id');
+      var newElemOuter = document.createElement('span');
+      newElemOuter.classList.add('anchor');
+      newElemOuter.classList.add('hide');
+      newElemOuter.setAttribute('data-clipboard-text', link);
+      newElemOuter.style.position = 'relative';
+
+      var newElemInner = document.createElement('span');
+      newElemInner.style.fontSize = '1rem';
+      newElemInner.style.position = 'absolute';
+      newElemInner.style.top = '50%';
+      newElemInner.style.transform = 'translateY(-50%)';
+      newElemInner.innerText = "🔗";
+
+      if (languagedir === "rtl") {
+        newElemInner.style.left = '-2rem';
+      } else {
+        newElemInner.style.right = '-2rem';
+      }
+
+      newElemOuter.append(newElemInner);
+      elem.append(newElemOuter);
+
+      elem.addEventListener('mouseenter', function() {
+        this.querySelector('.anchor').classList.remove('hide');
+      });
+      elem.addEventListener('mouseleave', function () {
+        this.querySelector('.anchor').classList.add('hide');
+      });
+    }) : null;
+
+    document.querySelectorAll('.anchor').forEach(function(elem) {
+      elem.addEventListener('mouseleave', function() {
+        elem.setAttribute('aria-label', null);
+        elem.classList.remove('tooltipped');
+        elem.classList.remove('tooltipped-s');
+        elem.classList.remove('tooltipped-w');
+      });
+    });
+
+    clip.on('success', function (e) {
+      e.clearSelection();
+      e.trigger.setAttribute('aria-label', 'Link copied to clipboard!');
+      e.trigger.classList.add('tooltipped');
+      e.trigger.classList.add('tooltipped-s');
+    });
+    
+
+
+    
+    var clipInit = false;
+    var preChromaElem = document.querySelectorAll('pre.chroma');
+    var langCodeElem = document.querySelectorAll('.language-code');
+    var dolorCodeElem = document.querySelectorAll('div.language-\\$');
+    var gtCodeElem = document.querySelectorAll('div.language-\\>');
+
+    var makeClipboard = function(elem) {
+      var code = elem,
+        text = elem.textContent;
+        
+      if (text.length > 15) {
+        if (!clipInit) {
+          var text, clip = new ClipboardJS('.copy-to-clipboard', {
+            text: function (trigger) {
+              var codeElem = prev(trigger).querySelectorAll('code');
+              if (codeElem.length > 1) {
+                text = prev(trigger).querySelector('code[class^="language-"]').textContent;
+              } else {
+                text = prev(trigger).querySelector('code').textContent;
+              }
+
+              return text.replace(/^\$\s/gm, '');
+            }
+          });
+
+          var inPre;
+          clip.on('success', function (e) {
+            e.clearSelection();
+            inPre = prop(e.trigger.parentNode, 'tagName') == 'PRE';
+            e.trigger.setAttribute('aria-label', 'Copied to clipboard!');
+            e.trigger.classList.add('tooltipped');
+            e.trigger.classList.add('tooltipped-w');
+          });
+
+          clip.on('error', function (e) {
+            inPre = prop(e.trigger.parentNode, 'tagName') == 'PRE';
+            e.trigger.setAttribute('aria-label', e.action.toString());
+            e.trigger.classList.add('tooltipped');
+            e.trigger.classList.add('tooltipped-w');
+          });
+
+          clipInit = true;
+        }
+
+        var notAllowedClass = ['language-mermaid', 'language-viz', 'language-wave', 'language-chart', 'language-msc', 'language-flowchart'];
+        var isNotAllowedIncluded = false;
+        var curClassName = code.getAttribute('class');
+
+        for (var i = 0; i < notAllowedClass.length; i++) {
+          if (curClassName && curClassName.startsWith(notAllowedClass[i])) {
+            isNotAllowedIncluded = true;
+            break;
+          }
+        }
+
+        if (!isNotAllowedIncluded) {
+          if (curClassName) {
+            var newClipboardElem = document.createElement('span');
+            newClipboardElem.setAttribute('class', 'copy-to-clipboard');
+            newClipboardElem.setAttribute('title', 'Copy to clipboard');
+            closest(code, 'div.chroma').append(newClipboardElem);
+          }
+        }
+      }
+    }
+
+    var makeSymbolClipboard = function(elem) {
+      var clipboardSpan = document.createElement('span');
+      clipboardSpan.setAttribute('class', 'copy-to-clipboard');
+      clipboardSpan.setAttribute('title', 'Copy to clipboard');
+      elem.parentNode.parentNode.insertBefore(clipboardSpan, elem.parentNode.nextElementSibling);
+    }
+
+    preChromaElem ? 
+    preChromaElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function(codeElem) {
+        makeClipboard(codeElem);
+      });
+    }) : null;
+    
+    langCodeElem ? 
+    langCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeClipboard(codeElem);
+      });
+    }) : null;
+
+    dolorCodeElem ? 
+    dolorCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeSymbolClipboard(codeElem);
+      });
+    }) : null;
+
+    gtCodeElem ?
+    gtCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeSymbolClipboard(codeElem);
+      });
+    }) : null;
+    
+
+
+    
+    dolorCodeElem ?
+    dolorCodeElem.forEach(function(elem) {
+      var lnts = elem.parentNode.parentNode ? elem.parentNode.parentNode.querySelectorAll('.lnt') : null;
+      lnts ? 
+      lnts.forEach(function(lnt) {
+        lnt.innerHTML = '$<br/>';
+      }) : null;
+    }) : null;
+
+    gtCodeElem ?
+    gtCodeElem.forEach(function(elem) {
+      var lnts = elem.parentNode.parentNode ? elem.parentNode.parentNode.querySelectorAll('.lnt') : null;
+      lnts ? 
+      lnts.forEach(function(lnt) {
+        lnt.innerHTML = '><br/>';
+      }) : null;
+    }) : null;
+    
+
+
+    
+    
+    var lib = JSON.parse("null");
+
+    if (lib && lib.includes('mermaid')) {
+      
+      var themeVariant = localStorage.getItem('theme') || JSON.parse("\"dark\"");
+
+      if (themeVariant === "dark" || themeVariant === "hacker") {
+        mermaid.initialize({ theme: 'dark' });
+      } else {
+        mermaid.initialize({ theme: 'default' });
+      }
+      
+      var mermaids = [];
+      [].push.apply(mermaids, document.getElementsByClassName('language-mermaid'));
+      mermaids.forEach(function(elem) {
+        var elemParentNode = elem.parentNode;
+
+        if (elemParentNode !== document.body) {
+          elemParentNode.parentNode.insertBefore(elem, elemParentNode);
+          elemParentNode.parentNode.removeChild(elemParentNode);
+        }
+
+        var newElemWrapper = document.createElement('div');
+        newElemWrapper.classList.add('mermaid');
+        newElemWrapper.style.padding = '34px 4px 6px';
+        newElemWrapper.innerHTML = elem.innerHTML;
+        elem.replaceWith(newElemWrapper);
+      });
+    }
+    
+    
+
+    
+    if (lib && lib.includes('katex')) {
+      var mathElements = document.getElementsByClassName('math');
+      var options = {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false }
+        ],
+      };
+
+      renderMathInElement(document.querySelector('.single__contents'), options);
+    }
+    
+
+
+    
+    if (lib && lib.includes('flowchartjs')) {
+      
+      var options = JSON.parse("{\"arrow-end\":\"block\",\"element-color\":\"black\",\"fill\":\"white\",\"flowstate\":{\"approved\":{\"fill\":\"#58C4A3\",\"font-size\":12,\"no-text\":\"n/a\",\"yes-text\":\"APPROVED\"},\"current\":{\"fill\":\"yellow\",\"font-color\":\"red\",\"font-weight\":\"bold\"},\"future\":{\"fill\":\"#FFFF99\"},\"invalid\":{\"fill\":\"#444444\"},\"past\":{\"fill\":\"#CCCCCC\",\"font-size\":12},\"rejected\":{\"fill\":\"#C45879\",\"font-size\":12,\"no-text\":\"REJECTED\",\"yes-text\":\"n/a\"},\"request\":{\"fill\":\"blue\"}},\"font-color\":\"black\",\"font-size\":14,\"line-color\":\"black\",\"line-length\":50,\"line-width\":3,\"no-text\":\"no\",\"scale\":1,\"symbols\":{\"end\":{\"class\":\"end-element\"},\"start\":{\"element-color\":\"green\",\"fill\":\"yellow\",\"font-color\":\"red\"}},\"text-margin\":10,\"x\":0,\"y\":0,\"yes-text\":\"yes\"}");
+      var jsonContent = null;
+
+      var flowchartPrefix = "language-flowchart";
+      var index = 0;
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + flowchartPrefix + "]"), function(x){
+          x.style.display = 'none'
+          x.parentNode.style.backgroundColor = "transparent"
+          jsonContent = x.innerText;
+
+          var node0 = document.createElement('div');
+          node0.id = 'flowchart' + index;
+          x.parentNode.insertBefore(node0, x);
+
+          var diagram = flowchart.parse(jsonContent);
+          diagram.drawSVG("flowchart"+index, options);
+
+          index +=1;
+      });      
+    }
+    
+
+
+    
+    
+
+
+    
+    if (lib && lib.includes('msc')) {
+      
+      var options = JSON.parse("{\"theme\":\"hand\"}");
+      var jsonContent = null;
+
+      var index = 0;
+      var chartPrefix = "language-msc";
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('div');
+        node0.id = 'msc' + index;
+        x.parentNode.insertBefore(node0, x);
+        var diagram = Diagram.parse(jsonContent);
+        diagram.drawSVG("msc" + index, options);
+        index += 1;
+      });
+    }
+    
+
+
+    
+    if (lib && lib.includes('chart')) {
+      var borderColor = "#666";
+      var bgColor = "#ddd";
+      var borderWidth = 2;
+
+      Chart.defaults.global.elements.rectangle.borderWidth = borderWidth;
+      Chart.defaults.global.elements.rectangle.borderColor = borderColor;
+      Chart.defaults.global.elements.rectangle.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.line.borderWidth = borderWidth;
+      Chart.defaults.global.elements.line.borderColor = borderColor;
+      Chart.defaults.global.elements.line.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.point.borderWidth = borderWidth;
+      Chart.defaults.global.elements.point.borderColor = borderColor;
+      Chart.defaults.global.elements.point.backgroundColor = bgColor;
+
+      var chartPrefix = "language-chart";
+      var index = 0;
+      var jsonContent = null;
+
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('canvas');
+        var source = null;
+        node0.height = 200;
+        node0.style.height = 200;
+        node0.id = 'myChart' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        var ctx = document.getElementById('myChart' + index).getContext('2d');
+        var myChart = new Chart(ctx, source);
+        index += 1;
+      });            
+    }
+    
+
+
+    
+    if (lib && lib.includes('wavedrom')) {
+      var wavePrefix = "language-wave";
+      var index = 0;
+      var jsonContent = null;
+      
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + wavePrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('div');
+        var source = null;
+        node0.id = 'WaveDrom_Display_' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        WaveDrom.RenderWaveForm(index, source, "WaveDrom_Display_");
+        index += 1;
+      });
+    }
+    
+
+
+    
+    if (lib && lib.includes('viz')) {
+      var vizPrefix = "language-viz-";
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + vizPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        var engine;
+        x.getAttribute("class").split(" ").forEach(function (cls) {
+          if (cls.startsWith(vizPrefix)) {
+            engine = cls.substr(vizPrefix.length);
+          }
+        });
+        var viz = new Viz();
+        viz.renderSVGElement(x.innerText, { engine: engine })
+          .then(function (element) {
+            element.style.width = "100%";
+            x.parentNode.insertBefore(element, x);
+          })
+      });
+    }
+    
+    
+  }
+</script>
+
+
+            
+            <footer class="footer">
+    
+<div class="dropdown">
+  <button class="dropdown-trigger" aria-label="Select Theme Button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12.65 15.67c.14-.36.05-.77-.23-1.05l-2.09-2.06.03-.03c1.74-1.94 2.98-4.17 3.71-6.53h1.94c.54 0 .99-.45.99-.99v-.02c0-.54-.45-.99-.99-.99H10V3c0-.55-.45-1-1-1s-1 .45-1 1v1H1.99c-.54 0-.99.45-.99.99 0 .55.45.99.99.99h10.18C11.5 7.92 10.44 9.75 9 11.35c-.81-.89-1.49-1.86-2.06-2.88-.16-.29-.45-.47-.78-.47-.69 0-1.13.75-.79 1.35.63 1.13 1.4 2.21 2.3 3.21L3.3 16.87c-.4.39-.4 1.03 0 1.42.39.39 1.02.39 1.42 0L9 14l2.02 2.02c.51.51 1.38.32 1.63-.35zM17.5 10c-.6 0-1.14.37-1.35.94l-3.67 9.8c-.24.61.22 1.26.87 1.26.39 0 .74-.24.88-.61l.89-2.39h4.75l.9 2.39c.14.36.49.61.88.61.65 0 1.11-.65.88-1.26l-3.67-9.8c-.22-.57-.76-.94-1.36-.94zm-1.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+  </button>
+  <div class="dropdown-content">
+    
+    
+    
+  </div>
+</div>
+
+    
+<div class="footer__social">
+  <div class="social">
+    
+            
+    
+            
+    
+            
+    
+      
+      <a href="mailto:your@email.com" title="email" aria-label="email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"/></svg>
+      </a>
+            
+    
+      
+      <a href="http://example.org/" title="facebook" aria-label="facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 24 24" version="1.1">
+<g id="surface2747">
+<path fill="currentColor" d="M 11.664062 2.003906 C 6.621094 2.171875 2.375 6.25 2.023438 11.289062 C 1.65625 16.617188 5.46875 21.121094 10.507812 21.878906 L 10.507812 14.648438 L 8.890625 14.648438 C 8.164062 14.648438 7.578125 14.0625 7.578125 13.335938 C 7.578125 12.609375 8.164062 12.023438 8.890625 12.023438 L 10.503906 12.023438 L 10.503906 10.273438 C 10.503906 7.378906 11.914062 6.105469 14.324219 6.105469 C 14.679688 6.105469 14.984375 6.113281 15.242188 6.128906 C 15.878906 6.15625 16.371094 6.6875 16.371094 7.324219 C 16.371094 7.988281 15.835938 8.523438 15.171875 8.523438 L 14.730469 8.523438 C 13.710938 8.523438 13.351562 9.492188 13.351562 10.585938 L 13.351562 12.023438 L 15.222656 12.023438 C 15.8125 12.023438 16.265625 12.550781 16.175781 13.132812 L 16.066406 13.835938 C 15.992188 14.304688 15.589844 14.652344 15.113281 14.652344 L 13.351562 14.652344 L 13.351562 21.898438 C 18.234375 21.234375 22 17.0625 22 12 C 22 6.367188 17.339844 1.820312 11.664062 2.003906 Z M 11.664062 2.003906 "/>
+</g>
+</svg>
+
+      </a>
+            
+    
+            
+    
+      
+      <a href="https://github.com/zzossig/hugo-theme-zzo" title="github" aria-label="github">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 24 24" version="1.1">
+<g id="surface3680">
+<path fill="currentColor" d="M 10.898438 2.101562 C 6.300781 2.601562 2.601562 6.300781 2.101562 10.800781 C 1.601562 15.5 4.300781 19.699219 8.398438 21.300781 C 8.699219 21.398438 9 21.199219 9 20.800781 L 9 19.199219 C 9 19.199219 8.601562 19.300781 8.101562 19.300781 C 6.699219 19.300781 6.101562 18.101562 6 17.398438 C 5.898438 17 5.699219 16.699219 5.398438 16.398438 C 5.101562 16.300781 5 16.300781 5 16.199219 C 5 16 5.300781 16 5.398438 16 C 6 16 6.5 16.699219 6.699219 17 C 7.199219 17.800781 7.800781 18 8.101562 18 C 8.5 18 8.800781 17.898438 9 17.800781 C 9.101562 17.101562 9.398438 16.398438 10 16 C 7.699219 15.5 6 14.199219 6 12 C 6 10.898438 6.5 9.800781 7.199219 9 C 7.101562 8.800781 7 8.300781 7 7.601562 C 7 7.199219 7 6.601562 7.300781 6 C 7.300781 6 8.699219 6 10.101562 7.300781 C 10.601562 7.101562 11.300781 7 12 7 C 12.699219 7 13.398438 7.101562 14 7.300781 C 15.300781 6 16.800781 6 16.800781 6 C 17 6.601562 17 7.199219 17 7.601562 C 17 8.398438 16.898438 8.800781 16.800781 9 C 17.5 9.800781 18 10.800781 18 12 C 18 14.199219 16.300781 15.5 14 16 C 14.601562 16.5 15 17.398438 15 18.300781 L 15 20.898438 C 15 21.199219 15.300781 21.5 15.699219 21.398438 C 19.398438 19.898438 22 16.300781 22 12.101562 C 22 6.101562 16.898438 1.398438 10.898438 2.101562 Z M 10.898438 2.101562 "/>
+</g>
+</svg>
+
+      </a>
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+      
+      <a href="http://example.org/" title="twitter" aria-label="twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32" version="1.1">
+<g id="surface676">
+<path fill="currentColor" d="M 28 8.558594 C 27.117188 8.949219 26.167969 9.214844 25.171875 9.332031 C 26.1875 8.722656 26.96875 7.757812 27.335938 6.609375 C 26.386719 7.171875 25.332031 7.582031 24.210938 7.804688 C 23.3125 6.847656 22.03125 6.246094 20.617188 6.246094 C 17.898438 6.246094 15.691406 8.453125 15.691406 11.171875 C 15.691406 11.558594 15.734375 11.933594 15.820312 12.292969 C 11.726562 12.089844 8.097656 10.128906 5.671875 7.148438 C 5.246094 7.875 5.003906 8.722656 5.003906 9.625 C 5.003906 11.332031 5.871094 12.839844 7.195312 13.722656 C 6.386719 13.695312 5.628906 13.476562 4.964844 13.105469 C 4.964844 13.128906 4.964844 13.148438 4.964844 13.167969 C 4.964844 15.554688 6.660156 17.546875 8.914062 17.996094 C 8.5 18.109375 8.066406 18.171875 7.617188 18.171875 C 7.300781 18.171875 6.988281 18.140625 6.691406 18.082031 C 7.316406 20.039062 9.136719 21.460938 11.289062 21.503906 C 9.605469 22.824219 7.480469 23.609375 5.175781 23.609375 C 4.777344 23.609375 4.386719 23.585938 4 23.539062 C 6.179688 24.9375 8.765625 25.753906 11.546875 25.753906 C 20.605469 25.753906 25.558594 18.25 25.558594 11.742188 C 25.558594 11.53125 25.550781 11.316406 25.542969 11.105469 C 26.503906 10.410156 27.339844 9.542969 28 8.558594 Z M 28 8.558594 "/>
+</g>
+</svg>
+
+      </a>
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+    
+  
+  
+    
+      <a href="http://austinzgx.github.io/metal//index.xml" type="application/rss+xml" title="RSS" aria-label="RSS Feed Link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><circle fill="currentColor" cx="6.18" cy="17.82" r="2.18"/><path fill="currentColor" d="M5.59 10.23c-.84-.14-1.59.55-1.59 1.4 0 .71.53 1.28 1.23 1.4 2.92.51 5.22 2.82 5.74 5.74.12.7.69 1.23 1.4 1.23.85 0 1.54-.75 1.41-1.59-.68-4.2-3.99-7.51-8.19-8.18zm-.03-5.71C4.73 4.43 4 5.1 4 5.93c0 .73.55 1.33 1.27 1.4 6.01.6 10.79 5.38 11.39 11.39.07.73.67 1.28 1.4 1.28.84 0 1.5-.73 1.42-1.56-.73-7.34-6.57-13.19-13.92-13.92z"/></svg>
+      </a>
+    
+  
+
+  </div>
+</div>
+
+    
+<div id="gtt">
+  <div class="gtt">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M8.12 14.71L12 10.83l3.88 3.88c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L12.7 8.71c-.39-.39-1.02-.39-1.41 0L6.7 13.3c-.39.39-.39 1.02 0 1.41.39.38 1.03.39 1.42 0z"/></svg>
+  </div>
+</div>
+
+    <hr />
+
+    <div class="basicflex">
+        
+            <a href="" class="footer__link" target="_blank" rel="noreferrer"></a>
+        
+            <a href="" class="footer__link" target="_blank" rel="noreferrer"></a>
+        
+    </div>
+
+    <div class="footer__poweredby">
+        
+                
+            <p class="caption">
+                
+                    ©2021, All Rights Reserved
+                
+            </p>
+        
+
+        
+            <p class="caption">Powered by <a href="https://gohugo.io/" rel="noreferrer">Hugo</a> and the <a href="https://github.com/zzossig/hugo-theme-zzo" rel="noreferrer">Zzo theme</a></p>
+        
+        
+    </div> 
+</footer>
+        </div>
+        
+<div class="wrapper__right hide" dir="ltr">
+  <script>document.querySelector('.wrapper__right').classList.remove('hide')</script>
+  
+</div>
+
+    </div>
+</body>
+
+</html>

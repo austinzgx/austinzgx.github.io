@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Metal on Austin</title>
+    <link>http://austinzgx.github.io/tags/metal/</link>
+    <description>Recent content in Metal on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 06 Aug 2020 21:57:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/tags/metal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>note</title>
+        <link>http://austinzgx.github.io/metal/temp/</link>
+        <pubDate>Thu, 06 Aug 2020 21:57:00 +0000</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/metal/temp/</guid>
+        <description>中南大学郭校长会议-2020-10-27 国家技术标准（有色冶炼）创新基地 标准化课程(8h/1分=&amp;gt;32h/课=&amp;gt;研究生32场讲座</description>
+      </item>
+      
+      <item>
+        <title>Other</title>
+        <link>http://austinzgx.github.io/metal/other/</link>
+        <pubDate>Thu, 06 Aug 2020 21:57:00 +0000</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/metal/other/</guid>
+        <description>金属期货交易所 伦敦金属交易所（LME） 纽约商品交易所（NYMEX-COMEX） 上海期货交易所（SHFE）</description>
+      </item>
+      
+      <item>
+        <title>Zn</title>
+        <link>http://austinzgx.github.io/metal/zn/</link>
+        <pubDate>Sun, 06 Aug 2017 21:57:00 +0000</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/metal/zn/</guid>
+        <description>概述 主流工艺：锌精矿焙烧制酸+常规两段浸出/氧压浸出+三段净化+电解熔铸+浸出渣处理（回转窑/侧吹+烟化） 株冶主流程图： 焙烧炉：109m2(</description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

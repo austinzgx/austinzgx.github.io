@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oas on Austin</title>
+    <link>http://austinzgx.github.io/oa/</link>
+    <description>Recent content in Oas on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 16 Feb 2020 17:20:08 +0800</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/oa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>自我介绍</title>
+        <link>http://austinzgx.github.io/oa/introduce/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/oa/introduce/</guid>
+        <description>张官祥，施耐德IAC团队有色行业架构师，硕士研究生，毕业于北京科技大学冶金工程专业，2020年有色金属学会青年科技论坛学术委员会委员、有色冶</description>
+      </item>
+      
+      <item>
+        <title>软件工程师招聘</title>
+        <link>http://austinzgx.github.io/oa/recruit/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/oa/recruit/</guid>
+        <description>web前端开发工程师 职位职责： 参与Web前端项目架构及核心代码研发工作； 各产品web端功能的设计开发及实现； JS与其他语言的混合型应用开发；</description>
+      </item>
+      
+      <item>
+        <title>施耐德电气</title>
+        <link>http://austinzgx.github.io/oa/se_orgnization/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/oa/se_orgnization/</guid>
+        <description>组织机构 department NS LVC-低压配电 MVC-中压配电 IAC-工业事业部 庞刑健 PA Segment 张彦达 MM 建材/有色 杨航 Auto 汽车 张彦达 F&amp;amp;B 食品饮料 杨立里 Hydro 水电 张彦达 EU FS 售</description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

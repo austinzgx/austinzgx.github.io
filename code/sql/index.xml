@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql on Austin</title>
+    <link>http://austinzgx.github.io/code/sql/</link>
+    <description>Recent content in sql on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 30 Jan 2020 12:50:46 +0900</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/code/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>mysql</title>
+        <link>http://austinzgx.github.io/code/sql/sql/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/sql/sql/</guid>
+        <description>安装 初始化 mysqld -- initialize 在Data文件夹中生成初始化文件，其中zhanggx.err中有初始root密码 安装workbench，并且建立连接 配置 wi</description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

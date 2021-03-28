@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java on Austin</title>
+    <link>http://austinzgx.github.io/code/java/</link>
+    <description>Recent content in java on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 30 Jan 2020 12:50:46 +0900</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/code/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>java</title>
+        <link>http://austinzgx.github.io/code/java/base/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/java/base/</guid>
+        <description>Java 基础 1 2 3 4 5 6 A aa = new A() // new A(); 在堆中动态分配一块区域，被当做了A对象 // aa本身的内存是在栈中分配的 // 堆中内存的地址赋给了aa // aa指向了</description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

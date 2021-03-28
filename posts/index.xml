@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Byone Blog</title>
+    <link>https://xtddw.github.io/posts/</link>
+    <description>Recent content in Posts on Byone Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 29 Dec 2019 13:36:17 +0800</lastBuildDate>
+    
+	<atom:link href="https://xtddw.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Flask</title>
+      <link>https://xtddw.github.io/posts/flask/</link>
+      <pubDate>Sun, 29 Dec 2019 13:36:17 +0800</pubDate>
+      
+      <guid>https://xtddw.github.io/posts/flask/</guid>
+      <description>flask部署 不建议在windows系统上部署flask应用 准备 IP config MongoDB setup MongoDB-express setup Nginx linux 系统 * uwsgi windows系统 * waitress * 编写.bat文件 RunHiddenConsole * 把.ba</description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://xtddw.github.io/posts/hugo/</link>
+      <pubDate>Thu, 26 Dec 2019 20:44:23 +0800</pubDate>
+      
+      <guid>https://xtddw.github.io/posts/hugo/</guid>
+      <description>Hello Hugo hugo
+$ hugo new posts/XXX.md</description>
+    </item>
+    
+  </channel>
+</rss>

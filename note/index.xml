@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes on Byone</title>
+    <link>http://austinzgx.github.io/note/</link>
+    <description>Recent content in Notes on Byone</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>xtddw7@gmail.com (byone)</managingEditor>
+    <webMaster>xtddw7@gmail.com (byone)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Mon, 17 Feb 2020 17:20:08 +0800</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/note/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>vim</title>
+        <link>http://austinzgx.github.io/note/vim/</link>
+        <pubDate>Mon, 17 Feb 2020 17:20:08 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/vim/</guid>
+        <description>neovim + 1.2 Remapped Cursor Movement + 1.3 Remapped Insert Mode Keys + 1.4 Remapped Text Manipulating Commands in Normal Mode + 1.5 Other Useful Normal Mode Remappings + 1.6 Remapped Commands in Visual Mode 2 Window Management 2.1 Creating Window Through Split Screen 2.2 Moving the Cursor Between Different Windos 2.3 Resizing Different Windows 2.4 Closing Windows 3 Tab Management 4 Terminal Keyboard Shortcuts Plugins Keybindings (Screenshots/GIF provided!) AutoCompletion</description>
+      </item>
+      
+      <item>
+        <title>Docker</title>
+        <link>http://austinzgx.github.io/note/docker/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/docker/</guid>
+        <description>简介 Go语言开发实现，对进程进行封装隔离，属于操作系统层面的虚拟化技术。由于隔离的进程独立于宿主和其他的隔离的进程，因此称其为容器 。 基本概念</description>
+      </item>
+      
+      <item>
+        <title>git</title>
+        <link>http://austinzgx.github.io/note/git/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/git/</guid>
+        <description>分布式版本控制系统（Distributed Version Control System，简称 DVCS） 客户端并不只提取最新版本的文件快照， 而是把代码仓库完整地镜像 下来，</description>
+      </item>
+      
+      <item>
+        <title>link</title>
+        <link>http://austinzgx.github.io/note/link/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/link/</guid>
+        <description>FindHao v2ex Hosts修改翻墙</description>
+      </item>
+      
+      <item>
+        <title>linux</title>
+        <link>http://austinzgx.github.io/note/linux/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/linux/</guid>
+        <description>ArchLinux x86_64 GNU/Linux
+ Keep It Simple, Stupid
+  package manager system Pacman AUR (Arch User Repository)  dwm    key action     super+k hiddle current window tab   super+h/l change current window size   super+e change current window   super+Retrun open termial   super+c open chrome   super+t show split window   super+m show current window max   super+f show current window fullscreen   super+shift+2 move current window to x   super+ctrl+2 add x to current window    st ranger    key action     du show size   yp yank path   [] change parent file   r select open file way   zh show hidden file   oc order file by modifyed time   os order file by size   on order file by name   / search file and use n or N   f only show matched file   S open st in this file path   V open or create new file in nvim way   M create new folder   yy&amp;amp;pp copy file   dd&amp;amp;pp cut file   dD delete file or folder   cw rename file or use vim a i I A   w open ra list   c zip select files   yy&amp;amp;X unzip zipfile    </description>
+      </item>
+      
+      <item>
+        <title>redis</title>
+        <link>http://austinzgx.github.io/note/redis/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/redis/</guid>
+        <description>set key value get key mset mget 一次设置读取多个值 exists 判断key是否存在 del 删除key type 检查value类型 expire 设置key的有效值 expire key 时长(s) ex : set key value ex 时长(s)</description>
+      </item>
+      
+      <item>
+        <title>soft</title>
+        <link>http://austinzgx.github.io/note/soft/</link>
+        <pubDate>Sun, 16 Feb 2020 17:20:08 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/soft/</guid>
+        <description>windows Listary total commander AHK Everything 搜索 common vim|neovim Emacs org-mode Potlayer WW 视频播放器 Foobar2000 音乐播放器 Ditto 剪贴版加强 hexo 博客 mkdocs 文档 Firefox/Chrome 浏览器（奔跑的奶牛） 书签同步 XMarks 鼠标手势 CLEAN crxMouse Gestures vim模式操作 Vimium gi</description>
+      </item>
+      
+      <item>
+        <title>sercet</title>
+        <link>http://austinzgx.github.io/note/sercet/</link>
+        <pubDate>Sun, 29 Dec 2019 13:36:17 +0800</pubDate>
+        <author>xtddw7@gmail.com (byone)</author>
+        <guid>http://austinzgx.github.io/note/sercet/</guid>
+        <description>jupyter jupyter 0198 1 2 3 4 5 6 @echo off cd &amp;#34;c:\jupyter&amp;#34; jupyter notebook echo 【按任意键退出】 pause&amp;gt;nul exit mysql 3306 root 12346 1 2 3 4 5 6 @echo off cd &amp;#34;C:\MySQL\Engine\bin&amp;#34; mysqld --console echo 【按任意键退出】 pause&amp;gt;nul exit mkdocs 1 mkdocs serve --dev-addr=0.0.0.0:5858 zhtj ID ggcjdss9/ server 10.30.0.14 enfiyjy-svr\svradmin ggcjdss9/</description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

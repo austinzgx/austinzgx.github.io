@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code on Austin</title>
+    <link>http://austinzgx.github.io/code/</link>
+    <description>Recent content in Code on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 16 Feb 2020 17:20:08 +0800</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/code/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>Angular</title>
+        <link>http://austinzgx.github.io/code/angular/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/angular/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>dotnet</title>
+        <link>http://austinzgx.github.io/code/dotnetcore/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/dotnetcore/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>Frontend</title>
+        <link>http://austinzgx.github.io/code/frontend/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/frontend/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>go</title>
+        <link>http://austinzgx.github.io/code/go/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/go/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>java</title>
+        <link>http://austinzgx.github.io/code/java/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/java/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>python</title>
+        <link>http://austinzgx.github.io/code/python/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/python/</guid>
+        <description></description>
+      </item>
+      
+      <item>
+        <title>sql</title>
+        <link>http://austinzgx.github.io/code/sql/</link>
+        <pubDate>Thu, 30 Jan 2020 12:50:46 +0900</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/sql/</guid>
+        <description></description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on Austin</title>
+    <link>http://austinzgx.github.io/code/go/</link>
+    <description>Recent content in go on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Thu, 30 Jan 2020 12:50:46 +0900</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/code/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>Base</title>
+        <link>http://austinzgx.github.io/code/go/base/</link>
+        <pubDate>Sun, 29 Dec 2019 13:36:17 +0800</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/code/go/base/</guid>
+        <description>BASE </description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

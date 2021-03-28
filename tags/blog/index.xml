@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Austin</title>
+    <link>http://austinzgx.github.io/tags/blog/</link>
+    <description>Recent content in Blog on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 06 Aug 2017 21:57:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>随笔</title>
+        <link>http://austinzgx.github.io/life/essay/</link>
+        <pubDate>Sun, 06 Aug 2017 21:57:00 +0000</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/life/essay/</guid>
+        <description>读书摘抄 当T恤有了一个得瑟的灵魂……就成为传说中的文化衫…… 邓丽君奶奶和孟庭苇阿姨跟王菲姐姐的风格是不一样滴 在一口气看完韩老大的最近博文之后</description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

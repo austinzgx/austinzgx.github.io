@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Book on Austin</title>
+    <link>http://austinzgx.github.io/categories/book/</link>
+    <description>Recent content in Book on Austin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>austinzgx@hotmail.com (AustinZGX)</managingEditor>
+    <webMaster>austinzgx@hotmail.com (AustinZGX)</webMaster>
+    <copyright>©{year}, All Rights Reserved</copyright>
+    <lastBuildDate>Sun, 06 Aug 2017 21:57:00 +0000</lastBuildDate>
+    
+        <atom:link href="http://austinzgx.github.io/categories/book/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+
+      
+      <item>
+        <title>Book</title>
+        <link>http://austinzgx.github.io/life/book/</link>
+        <pubDate>Sun, 06 Aug 2017 21:57:00 +0000</pubDate>
+        <author>austinzgx@hotmail.com (AustinZGX)</author>
+        <guid>http://austinzgx.github.io/life/book/</guid>
+        <description>title author status 小王子 圣埃克苏佩里 围城 钱钟书 活着 余华 1988我想和这个世界谈谈 韩寒 平凡的世界 路遥 明朝那些事儿 当年明月 万历十五年 黄仁宇 1Q84 村上春树 边城 沈从</description>
+      </item>
+      
+
+    
+  </channel>
+</rss>

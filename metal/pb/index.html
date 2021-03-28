@@ -1,0 +1,4296 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head prefix="og: http://ogp.me/ns#">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pb – Austin</title>
+    
+
+
+<script src="/js/enquire.min.dfb99dee1e029d51d6cfb672d847929890b1585402de17f5ed092edd72a688b4.js"></script>
+
+<script defer src="/js/lazysizes.min.31dd6a2d3a1ec0f78a8df007535cf23f03aeb5c70f026e6d6a19dac3b3acc340.js"></script>
+
+<script defer src="/js/fuse.min.94c78ad70b02749822921660cf4e9f0b3701bc0680c421afb784a78228de0275.js"></script>
+
+<script defer src="/js/helper/getParents.min.ccd45f158c1b17849307ba913a72beac239c410f2b6e648496a79842da84e55b.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.9fb19682560d5fa5596fffec85da605067c4acc86aad05add4d8fff9d362a446.js"></script>
+
+<script defer src="/js/helper/closest.min.js"></script>
+  
+<script>
+  "use strict";
+
+  
+  
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
+  
+  if (!String.prototype.includes) {
+    String.prototype.includes = function (search, start) {
+      'use strict';
+
+      if (search instanceof RegExp) {
+        throw TypeError('first argument must not be a RegExp');
+      }
+      if (start === undefined) { start = 0; }
+      return this.indexOf(search, start) !== -1;
+    };
+  }
+
+  
+  Document.prototype.append = Element.prototype.append = function append() {
+    this.appendChild(_mutation(arguments));
+  };
+  function _mutation(nodes) {
+    if (!nodes.length) {
+      throw new Error('DOM Exception 8');
+    } else if (nodes.length === 1) {
+      return typeof nodes[0] === 'string' ? document.createTextNode(nodes[0]) : nodes[0];
+    } else {
+      var
+      fragment = document.createDocumentFragment(),
+      length = nodes.length,
+      index = -1,
+      node;
+
+      while (++index < length) {
+        node = nodes[index];
+
+        fragment.appendChild(typeof node === 'string' ? document.createTextNode(node) : node);
+      }
+
+      return fragment;
+    }
+  }
+
+  
+  if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (searchString, position) {
+      position = position || 0;
+      return this.indexOf(searchString, position) === position;
+    };
+  }
+  
+
+  document.addEventListener('DOMContentLoaded', function () {
+    
+    var summaryContainer = document.querySelector('.summary__container');
+    var searchResult = document.querySelector('.search-result');
+    var searchResultCloseBtn = document.querySelector('.search-result__close');
+    searchResultCloseBtn ? searchResultCloseBtn.addEventListener('click', function (e) {
+      searchResult.setAttribute('data-display', 'none');
+      summaryContainer.setAttribute('data-display', 'block');
+    }) : null;
+    
+
+
+    
+    document.querySelectorAll('.tab') ? 
+    document.querySelectorAll('.tab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var tabLinks = elem.querySelectorAll('.tab__link');
+      var tabContents = elem.querySelectorAll('.tab__content');
+      var ids = [];
+
+      tabLinks && tabLinks.length > 0 ?
+      tabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                tabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              tabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    
+
+
+    
+    document.querySelectorAll('.codetab') ? 
+    document.querySelectorAll('.codetab').forEach(function(elem, idx) {
+      var containerId = elem.getAttribute('id');
+      var containerElem = elem;
+      var codetabLinks = elem.querySelectorAll('.codetab__link');
+      var codetabContents = elem.querySelectorAll('.codetab__content');
+      var ids = [];
+
+      codetabLinks && codetabLinks.length > 0 ?
+      codetabLinks.forEach(function(link, index, self) {
+        link.onclick = function(e) {
+          for (var i = 0; i < self.length; i++) {
+            if (index === parseInt(i, 10)) {
+              if (!self[i].classList.contains('active')) {
+                self[i].classList.add('active');
+                codetabContents[i].style.display = 'block';
+              }
+            } else {
+              self[i].classList.remove('active');
+              codetabContents[i].style.display = 'none';
+            }
+          }
+        }
+      }) : null;
+    }) : null;
+    
+
+
+    
+    var gttBtn = document.getElementById("gtt");
+    gttBtn.style.display = "none";
+    gttBtn.addEventListener('click', function () {
+      if (window.document.documentMode) {
+        document.documentElement.scrollTop = 0;
+      } else {
+        scrollToTop(250);
+      }
+    });
+
+    function scrollToTop(scrollDuration) {
+      var scrollStep = -window.scrollY / (scrollDuration / 15);
+      var scrollInterval = setInterval(function () {
+        if (window.scrollY != 0) {
+          window.scrollBy(0, scrollStep);
+        }
+        else clearInterval(scrollInterval);
+      }, 15);
+    }
+
+    var scrollFunction = function () {
+      if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        gttBtn.style.display = "block";
+      } else {
+        gttBtn.style.display = "none";
+      }
+    }
+    
+
+
+    
+    var expandBtn = document.querySelectorAll('.expand__button');
+
+    for (let i = 0; i < expandBtn.length; i++) {
+      expandBtn[i].addEventListener("click", function () {
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          this.querySelector('svg').classList.add('expand-icon__right');
+          this.querySelector('svg').classList.remove('expand-icon__down');
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          this.querySelector('svg').classList.remove('expand-icon__right');
+          this.querySelector('svg').classList.add('expand-icon__down');
+        }
+      });
+    }
+    
+
+
+    
+    var lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var tocElem = document.querySelector('.toc');
+    var tableOfContentsElem = tocElem ? tocElem.querySelector('#TableOfContents') : null;
+    var toggleTocElem = document.getElementById('toggle-toc');
+    var singleContentsElem = document.querySelector('.single__contents');
+    var navbar = document.querySelector('.navbar');
+    var tocFlexbox = document.querySelector('.toc__flexbox');
+    var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
+    var expandContents = document.querySelectorAll('.expand__content');
+    var boxContents = document.querySelectorAll('.box');
+    var notAllowedTitleIds = null;
+
+    
+    var tocFolding = JSON.parse("false");
+    
+    var tocLevels = JSON.parse("[\"h2\",\"h3\",\"h4\"]");
+    
+    if (tocLevels) {
+      tocLevels = tocLevels.toString();
+    } else {
+      tocLevels = "h1, h2, h3, h4, h5, h6";
+    }
+
+    
+    singleContentsElem && singleContentsElem.querySelectorAll(".tab") ?
+    singleContentsElem.querySelectorAll(".tab").forEach(function (elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    expandContents ? expandContents.forEach(function(elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    boxContents ? boxContents.forEach(function(elem) {
+      elem.querySelectorAll(tocLevels).forEach(function (element) {
+        notAllowedTitleIds = Array.isArray(notAllowedTitleIds) ?
+          notAllowedTitleIds.concat(element.getAttribute('id')) :
+          [element.getAttribute('id')];
+      });
+    }) : null;
+
+    
+    window.onscroll = function () {
+      scrollFunction();
+      
+      var st = window.pageYOffset || document.documentElement.scrollTop;
+      if (st > lastScrollTop) { 
+        if (st < 250) {
+          gttBtn.style.display = "none";
+        } else {
+          gttBtn.style.display = "block";
+        }
+
+        if (st < 45) {
+          return null;
+        }
+        
+        if (!navbar.classList.contains('navbar--hide')) {
+          navbar.classList.add('navbar--hide');
+        } else if (navbar.classList.contains('navbar--show')) {
+          navbar.classList.remove('navbar--show');
+        }
+
+        if (singleContentsElem) {
+          if (singleContentsElem.querySelectorAll(tocLevels).length > 0) {
+            singleContentsElem.querySelectorAll(tocLevels).forEach(function (elem) {
+              if (toggleTocElem && !toggleTocElem.checked) {
+                return null;
+              }
+
+              if (notAllowedTitleIds && notAllowedTitleIds.includes(elem.getAttribute('id'))) {
+                return null;
+              }
+              
+              if (document.documentElement.scrollTop >= elem.offsetTop) {
+                if (tableOfContentsElem) {
+                  var id = elem.getAttribute('id');
+                  tocElem.querySelectorAll('a').forEach(function (elem) {
+                    elem.classList.remove('active');
+                  });
+                  tocElem.querySelector('a[href="#' + id + '"]') ?
+                    tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+
+                  if (false === tocFolding) {
+                    
+                  } else {
+                    tableOfContentsElem.querySelectorAll('ul') ?
+                      tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+                        rootUl.querySelectorAll('li').forEach(function (liElem) {
+                          liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                            ulElem.style.display = 'none';
+                          });
+                        });
+                      }) : null;
+                  }
+
+                  var curElem = tableOfContentsElem.querySelector("[href='#" + id + "']");
+                  if (curElem && curElem.nextElementSibling) {
+                    curElem.nextElementSibling.style.display = 'block';
+                  }
+                  getParents(curElem, 'ul') ?
+                    getParents(curElem, 'ul').forEach(function (elem) {
+                      elem.style.display = 'block';
+                    }) : null;
+                }
+              }
+            });
+          } else {
+            if (tocFlexbox) {
+              tocFlexbox.setAttribute('data-position', '');
+              if (!tocFlexbox.classList.contains('hide')) {
+                tocFlexbox.classList.add('hide');
+              }
+            }
+            if (tocFlexboxOuter) {
+              tocFlexboxOuter.setAttribute('data-position', '');
+              if (!tocFlexboxOuter.classList.contains('hide')) {
+                tocFlexboxOuter.classList.add('hide');
+              }
+            }
+          }
+        }
+      } else { 
+        if (st < 250) {
+          gttBtn.style.display = "none";
+        }
+
+        if (navbar.classList.contains('navbar--hide')) {
+          navbar.classList.remove('navbar--hide');
+        } else if (!navbar.classList.contains('navbar--show')) {
+          navbar.classList.add('navbar--show');
+        }
+
+        if (singleContentsElem) {
+          if (singleContentsElem.querySelectorAll(tocLevels).length > 0) {
+            singleContentsElem.querySelectorAll(tocLevels).forEach(function (elem) {
+              if (toggleTocElem && !toggleTocElem.checked) {
+                return null;
+              }
+              
+              if (notAllowedTitleIds && notAllowedTitleIds.includes(elem.getAttribute('id'))) {
+                return null;
+              }
+
+              if (document.documentElement.scrollTop >= elem.offsetTop) {
+                if (tableOfContentsElem) {
+                  var id = elem.getAttribute('id');
+                  tocElem.querySelectorAll('a').forEach(function (elem) {
+                    elem.classList.remove('active');
+                  });
+                  tocElem.querySelector('a[href="#' + id + '"]') ?
+                    tocElem.querySelector('a[href="#' + id + '"]').classList.add('active') : null;
+
+                  if (false === tocFolding) {
+                    
+                  } else {
+                    tableOfContentsElem.querySelectorAll('ul') ?
+                      tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+                        rootUl.querySelectorAll('li').forEach(function (liElem) {
+                          liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                            ulElem.style.display = 'none';
+                          });
+                        });
+                      }) : null;
+                  }
+
+                  var curElem = tableOfContentsElem.querySelector("[href='#" + id + "']");
+                  if (curElem && curElem.nextElementSibling) {
+                    curElem.nextElementSibling.style.display = 'block';
+                  }
+                  getParents(curElem, 'ul') ?
+                    getParents(curElem, 'ul').forEach(function (elem) {
+                      elem.style.display = 'block';
+                    }) : null;
+                }
+              }
+            });
+          } else {
+            if (tocFlexbox && !tocFlexbox.classList.contains('hide')) {
+              tocFlexbox.classList.add('hide');
+            }
+            if (tocFlexboxOuter && !tocFlexboxOuter.classList.contains('hide')) {
+              tocFlexboxOuter.classList.add('hide');
+            }
+          }
+          
+        }
+
+        if (tableOfContentsElem && document.documentElement.scrollTop < 250) {
+          if (false === tocFolding) {
+
+          } else {
+            tableOfContentsElem.querySelector('ul') ?
+              tableOfContentsElem.querySelector('ul').querySelectorAll('li').forEach(function (liElem) {
+                liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                  ulElem.style.display = 'none';
+                });
+              }) : null;
+          }
+        }
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    };
+  
+
+
+  
+    var navbarBurgerElem = document.querySelector('.navbar__burger');
+    var navbarMenuElem = document.querySelector('.navbar__menu');
+    navbarBurgerElem ?
+    navbarBurgerElem.addEventListener('click', function () {
+      if (navbarBurgerElem.classList.contains('is-active')) {
+        navbarBurgerElem.classList.remove('is-active');
+        navbarMenuElem.classList.remove('is-active');
+      } else {
+        navbarBurgerElem.classList.add('is-active');
+        navbarMenuElem.classList.add('is-active');
+      }
+    }) : null;
+  
+
+
+  
+    var localTheme = localStorage.getItem('theme');
+    var rootEleme = document.getElementById('root');
+    var selectThemeElem = document.querySelectorAll('.select-theme');
+    var selectThemeItemElem = document.querySelectorAll('.select-theme__item');
+    
+    if (localTheme) {
+      selectThemeItemElem ? 
+      selectThemeItemElem.forEach(function (elem) {
+        if (elem.text.trim() === localTheme) {
+          elem.classList.add('is-active');
+        } else {
+          elem.classList.remove('is-active');
+        }
+      }) : null;
+    }
+
+    selectThemeItemElem ? 
+    selectThemeItemElem.forEach(function (v, i) {
+      v.addEventListener('click', function (e) {
+        var selectedThemeVariant = e.target.text.trim();
+        localStorage.setItem('theme', selectedThemeVariant);
+
+        rootEleme.removeAttribute('class');
+        rootEleme.classList.add('theme__' + selectedThemeVariant);
+        selectThemeElem.forEach(function(rootElem) {
+          rootElem.querySelectorAll('a').forEach(function (elem) {
+            if (elem.classList) {
+              if (elem.text.trim() === selectedThemeVariant) {
+                if (!elem.classList.contains('is-active')) {
+                  elem.classList.add('is-active');
+                }
+              } else {
+                if (elem.classList.contains('is-active')) {
+                  elem.classList.remove('is-active');
+                }
+              }
+            }
+          });
+        });
+
+        if (window.mermaid) {
+          if (selectedThemeVariant === "dark" || selectedThemeVariant === "hacker") {
+            mermaid.initialize({ theme: 'dark' });
+            location.reload();
+          } else {
+            mermaid.initialize({ theme: 'default' });
+            location.reload();
+          }
+        }
+
+        var utterances = document.querySelector('iframe');
+        if (utterances) {
+          utterances.contentWindow.postMessage({
+            type: 'set-theme',
+            theme: selectedThemeVariant === "dark" || selectedThemeVariant === "hacker" ? 'photon-dark' : selectedThemeVariant === 'kimbie' ? 'github-dark-orange' : 'github-light',
+          }, 'https://utteranc.es');
+        }
+      });
+    }) : null;
+  
+
+
+  
+    
+    var permalink = JSON.parse("\"http://austinzgx.github.io/metal/pb/\"");
+    var searchResults = null;
+    var searchMenu = null;
+    var searchText = null;
+    
+    
+    var enableSearchHighlight = JSON.parse("true");
+    
+    var searchResultPosition = JSON.parse("null");
+    
+    var sectionType = JSON.parse("\"metal\"");
+
+    var fuse = null;
+
+    (function initFuse() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', permalink + "index.json");
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
+            keys: sectionType.includes('publication') ? ['title', 'description', 'content'] : ['title', 'abstract'],
+            includeMatches: enableSearchHighlight,
+            shouldSort: true,
+            threshold: 0.4,
+            location: 0,
+            distance: 100,
+            maxPatternLength: 32,
+            minMatchCharLength: 1,
+          });
+          window.fuse = fuse;
+        }
+        else {
+          console.error('[' + xhr.status + ']Error:', xhr.statusText);
+        }
+      };
+      xhr.send();
+    })();
+
+    function makeLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      
+      var a = document.createElement('a');
+      a.innerHTML = obj.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.permalink);
+
+      var descDiv = document.createElement('div');
+      descDiv.setAttribute('class', 'search-result__item--desc');
+      if (obj.description) {
+        descDiv.innerHTML = obj.description;
+      } else if (obj.content) {
+        descDiv.innerHTML = obj.content.substring(0, 225);
+      }
+      
+      li.appendChild(a);
+      li.appendChild(descDiv);
+      ulElem.appendChild(li);
+    }
+
+    function makeHighlightLi(ulElem, obj) {
+      var li = document.createElement('li');
+      li.className = 'search-result__item';
+      var descDiv = null;
+
+      var a = document.createElement('a');
+      a.innerHTML = obj.item.title;
+      a.setAttribute('class', 'search-result__item--title');
+      a.setAttribute('href', obj.item.uri);
+
+      if (obj.matches && obj.matches.length) {
+        for (var i = 0; i < obj.matches.length; i++) {
+          if ('title' === obj.matches[i].key) {
+            a = document.createElement('a');
+            a.innerHTML = generateHighlightedText(obj.matches[i].value, obj.matches[i].indices);
+            a.setAttribute('class', 'search-result__item--title');
+            a.setAttribute('href', obj.item.uri);
+          }
+          
+          if ('description' === obj.matches[i].key) {
+            descDiv = document.createElement('div');
+            descDiv.setAttribute('class', 'search-result__item--desc');
+            descDiv.innerHTML = generateHighlightedText(obj.item.description, obj.matches[i].indices);
+          } else if ('content' === obj.matches[i].key) {
+            if (!descDiv) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = generateHighlightedText(obj.item.content.substring(0, 150), obj.matches[i].indices);
+            }
+          } else {
+            if (obj.item.description) {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.description;
+            } else {
+              descDiv = document.createElement('div');
+              descDiv.setAttribute('class', 'search-result__item--desc');
+              descDiv.innerHTML = obj.item.content.substring(0, 150);
+            }
+          }
+        }
+
+        li.appendChild(a);
+        if (descDiv) {
+          li.appendChild(descDiv);
+        }
+        if (li) {
+          ulElem.appendChild(li);
+        }
+      }
+    }
+
+    function renderSearchResultsSide(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dropdown is-active');
+      
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dropdown-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.setAttribute('href', result.uri);
+          a.setAttribute('class', 'dropdown-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.title;
+          titleDiv.setAttribute('class', 'menu-item__title');
+
+          var descDiv = document.createElement('div');
+          descDiv.setAttribute('class', 'menu-item__desc');
+          if (result.description) {
+            descDiv.innerHTML = result.description;
+          } else if (result.content) {
+            descDiv.innerHTML = result.content.substring(0, 150);
+          }
+
+          li.appendChild(titleDiv);
+          li.appendChild(descDiv);
+          ul.appendChild(a);
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchHighlightResultsSide(searchText, results) {
+      searchResults = document.getElementById('search-results');
+      searchMenu = document.getElementById('search-menu');
+      searchResults.setAttribute('class', 'dropdown is-active');
+
+      var ul = document.createElement('ul');
+      ul.setAttribute('class', 'dropdown-content search-content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.setAttribute('class', 'dropdown-item');
+          a.appendChild(li);
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'menu-item__title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'menu-item__desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 150), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'menu-item__desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 150);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var li = document.createElement('li');
+        li.setAttribute('class', 'dropdown-item');
+        li.innerText = 'No results found';
+        ul.appendChild(li);
+      }
+
+      while (searchMenu.hasChildNodes()) {
+        searchMenu.removeChild(
+          searchMenu.lastChild
+        );
+      }
+      searchMenu.appendChild(ul);
+    }
+
+    function renderSearchResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var content = document.createElement('div');
+      content.setAttribute('class', 'mobile-search__content');
+
+      if (results.length > 0) {
+        results.forEach(function (result) {
+          var item = document.createElement('a');
+          item.setAttribute('href', result.uri);
+          item.innerHTML = '<div class="mobile-search__item"><div class="mobile-search__item--title">📄 ' + result.title + '</div><div class="mobile-search__item--desc">' + (result.description ? result.description : result.content) + '</div></div>';
+          content.appendChild(item);
+        });
+      } else {
+        var item = document.createElement('span');
+        content.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(content);      
+    }
+
+    function renderSearchHighlightResultsMobile(searchText, results) {
+      searchResults = document.getElementById('search-mobile-results');
+
+      var ul = document.createElement('div');
+      ul.setAttribute('class', 'mobile-search__content');
+
+      if (results.length) {
+        results.forEach(function (result) {
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          var descDiv = null;
+
+          a.setAttribute('href', result.item.uri);
+          a.appendChild(li);
+          li.setAttribute('class', 'mobile-search__item');
+
+          var titleDiv = document.createElement('div');
+          titleDiv.innerHTML = result.item.title;
+          titleDiv.setAttribute('class', 'mobile-search__item--title');
+          
+          if (result.matches && result.matches.length) {
+            for (var i = 0; i < result.matches.length; i++) {
+              if ('title' === result.matches[i].key) {
+                titleDiv.innerHTML = generateHighlightedText(result.matches[i].value, result.matches[i].indices);
+              }
+
+              if ('description' === result.matches[i].key) {
+                descDiv = document.createElement('div');
+                descDiv.setAttribute('class', 'mobile-search__item--desc');
+                descDiv.innerHTML = generateHighlightedText(result.item.description, result.matches[i].indices);
+              } else if ('content' === result.matches[i].key) {
+                if (!descDiv) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = generateHighlightedText(result.item.content.substring(0, 150), result.matches[i].indices);
+                }
+              } else {
+                if (result.item.description) {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.description;
+                } else {
+                  descDiv = document.createElement('div');
+                  descDiv.setAttribute('class', 'mobile-search__item--desc');
+                  descDiv.innerHTML = result.item.content.substring(0, 150);
+                }
+              }
+            }
+            
+            li.appendChild(titleDiv);
+            if (descDiv) {
+              li.appendChild(descDiv);
+            }
+            ul.appendChild(a);
+          }
+        });
+      } else {
+        var item = document.createElement('span');
+        ul.appendChild(item);
+      }
+
+      let wrap = document.getElementById('search-mobile-results');
+      while (wrap.firstChild) {
+        wrap.removeChild(wrap.firstChild)
+      }
+      searchResults.appendChild(ul);
+    }
+
+    function generateHighlightedText(text, regions) {
+      if (!regions) {
+        return text;
+      }
+
+      var content = '', nextUnhighlightedRegionStartingIndex = 0;
+
+      regions.forEach(function(region) {
+        if (region[0] === region[1]) {
+          return null;
+        }
+        
+        content += '' +
+          text.substring(nextUnhighlightedRegionStartingIndex, region[0]) +
+          '<span class="search__highlight">' +
+            text.substring(region[0], region[1] + 1) +
+          '</span>' +
+        '';
+        nextUnhighlightedRegionStartingIndex = region[1] + 1;
+      });
+
+      content += text.substring(nextUnhighlightedRegionStartingIndex);
+
+      return content;
+    };
+
+    var searchElem = document.getElementById('search');
+    var searchMobile = document.getElementById('search-mobile');
+    var searchResultsContainer = document.getElementById('search-results');
+
+    searchElem ?
+    searchElem.addEventListener('input', function(e) {
+      if (!e.target.value | window.innerWidth < 770) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+      
+      if (searchResultPosition === "main") {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsMain(searchText, results);
+        } else {
+          renderSearchResultsMain(searchText, results);
+        }
+      } else {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsSide(searchText, results);
+        } else {
+          renderSearchResultsSide(searchText, results);
+        }
+        
+        var dropdownItems = searchResultsContainer.querySelectorAll('.dropdown-item');
+        dropdownItems ? dropdownItems.forEach(function(item) {
+          item.addEventListener('mousedown', function(e) {
+            e.target.click();
+          });
+        }) : null;
+      }
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('blur', function() {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+    }) : null;
+
+    searchElem ? 
+    searchElem.addEventListener('click', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+      if (!e.target.value) {
+        searchResultsContainer ? searchResultsContainer.setAttribute('class', 'dropdown') : null;
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+
+      if (searchResultPosition === "main") {
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsMain(searchText, results);
+        } else {
+          renderSearchResultsMain(searchText, results);
+        }
+      } else{
+        if (enableSearchHighlight) {
+          renderSearchHighlightResultsSide(searchText, results);
+        } else {
+          renderSearchResultsSide(searchText, results);
+        }
+
+        var dropdownItems = searchResultsContainer.querySelectorAll('.dropdown-item');
+        dropdownItems ? dropdownItems.forEach(function (item) {
+          item.addEventListener('mousedown', function (e) {
+            e.target.click();
+          });
+        }) : null;
+      }
+    }) : null;
+
+    var searchMenuElem = document.getElementById("search-menu");
+    var activeItem = document.querySelector('#search-menu .dropdown-item.is-active');
+    var activeIndex = null;
+    var items = null;
+    var searchContainerMaxHeight = 350;
+
+    searchElem ? 
+    searchElem.addEventListener('keydown', function(e) {
+      if (window.innerWidth < 770) {
+        return null;
+      }
+
+      if (e.key === 'Escape') {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      }
+
+      var items = document.querySelectorAll('#search-menu .dropdown-item');
+      var keyCode = e.which || e.keyCode;
+
+      if (!items || !items.length) {
+        return null;
+      }
+      
+      if (e.key === 'ArrowDown' || keyCode === 40) {
+        if (activeIndex === null) {
+          activeIndex = 0;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        }
+        items[activeIndex].classList.add('is-active');
+
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel > 0) {
+          document.querySelector(".search-content").scrollTop += items[activeIndex].getBoundingClientRect().height;
+        } else if (activeIndex === 0) {
+          document.querySelector(".search-content").scrollTop = 0;
+        }
+      } else if (e.key === 'ArrowUp' || keyCode === 38) {
+        if (activeIndex === null) {
+          activeIndex = items.length - 1;
+          items[activeIndex].classList.remove('is-active');
+        } else {
+          items[activeIndex].classList.remove('is-active');
+          activeIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        }
+        items[activeIndex].classList.add('is-active');
+        
+        let overflowedPixel = items[activeIndex].offsetTop + items[activeIndex].clientHeight - searchContainerMaxHeight;
+        if (overflowedPixel < 0) {
+          document.querySelector(".search-content").scrollTop -= items[activeIndex].getBoundingClientRect().height;
+        } else {
+          document.querySelector(".search-content").scrollTop = overflowedPixel + items[activeIndex].getBoundingClientRect().height;
+        }
+      } else if (e.key === 'Enter' || keyCode === 13) {
+        if (items[activeIndex] && items[activeIndex].getAttribute('href')) {
+          location.href = items[activeIndex].getAttribute('href');
+        }
+      } else if (e.key === 'Escape' || keyCode === 27) {
+        e.target.value = null;
+        if (searchResults) {
+          searchResults.classList.remove('is-active');
+        }
+      }
+    }) : null;
+
+    searchMobile ? 
+    searchMobile.addEventListener('input', function(e) {
+      if (!e.target.value) {
+        let wrap = document.getElementById('search-mobile-results');
+        while (wrap.firstChild) {
+          wrap.removeChild(wrap.firstChild);
+        }
+        return null;
+      }
+
+      searchText = e.target.value;
+      var results = fuse.search(e.target.value);
+      renderSearchResultsMobile(searchText, results);
+      if (enableSearchHighlight) {
+        renderSearchHighlightResultsMobile(searchText, results);
+      } else {
+        renderSearchResultsMobile(searchText, results);
+      }
+    }) : null;
+  
+
+
+  
+    var mobileSearchInputElem = document.querySelector('#search-mobile');
+    var mobileSearchClassElem = document.querySelector('.mobile-search');
+    var mobileSearchBtnElem = document.querySelector('#mobileSearchBtn');
+    var mobileSearchCloseBtnElem = document.querySelector('#search-mobile-close');
+    var mobileSearchContainer = document.querySelector('#search-mobile-container');
+    var mobileSearchResultsElem = document.querySelector('#search-mobile-results');
+    var htmlElem = document.querySelector('html');
+
+    if (mobileSearchClassElem) {
+      mobileSearchClassElem.style.display = 'none';
+    }
+
+    mobileSearchBtnElem ? 
+    mobileSearchBtnElem.addEventListener('click', function () {
+      if (mobileSearchContainer) {
+        mobileSearchContainer.style.display = 'block';
+      }
+
+      if (mobileSearchInputElem) {
+        mobileSearchInputElem.focus();
+      }
+
+      if (htmlElem) {
+        htmlElem.style.overflowY = 'hidden';
+      }
+    }) : null;
+
+    mobileSearchCloseBtnElem ? 
+    mobileSearchCloseBtnElem.addEventListener('click', function() {
+      if (mobileSearchContainer) {
+        mobileSearchContainer.style.display = 'none';
+      }
+
+      if (mobileSearchInputElem) {
+        mobileSearchInputElem.value = '';
+      }
+      
+      if (mobileSearchResultsElem) {
+        while (mobileSearchResultsElem.firstChild) {
+          mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+        }
+      }
+
+      if (htmlElem) {
+        htmlElem.style.overflowY = 'visible';
+      }
+    }) : null;
+
+    mobileSearchInputElem ?
+    mobileSearchInputElem.addEventListener('keydown', function(e) {
+      var keyCode = e.which || e.keyCode;
+      if (e.key === 'Escape' || keyCode === 27) {
+        if (mobileSearchContainer) {
+          mobileSearchContainer.style.display = 'none';
+        }
+        
+        if (mobileSearchInputElem) {
+          mobileSearchInputElem.value = '';
+        }
+
+        if (mobileSearchResultsElem) {
+          while (mobileSearchResultsElem.firstChild) {
+            mobileSearchResultsElem.removeChild(mobileSearchResultsElem.firstChild);
+          }
+        }
+        if (htmlElem) {
+          htmlElem.style.overflowY = 'visible';
+        }
+      }
+    }) : null;
+  
+
+
+  
+    function renderSearchResultsMain(searchText, results) {
+      var searchBody = document.querySelector('.search-result__body');
+      var originUl = searchBody.querySelector('ul');
+      var ul = document.createElement('ul');
+      
+      if (!searchText) {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      } else if (results) {
+        if (results && results.length) {
+          results.forEach(function (result) {
+            makeLi(ul, result);
+          });
+
+          searchResult ? searchResult.setAttribute('data-display', 'block') : null;
+          summaryContainer ? summaryContainer.setAttribute('data-display', 'none') : null;
+        }
+      }
+
+      originUl.parentNode.replaceChild(ul, originUl);
+    }
+
+    function renderSearchHighlightResultsMain(searchText, results) {
+      var searchBody = document.querySelector('.search-result__body');
+      var originUl = searchBody.querySelector('ul');
+      var ul = document.createElement('ul');
+
+      if (!searchText) {
+        searchResult ? searchResult.setAttribute('data-display', 'none') : null;
+        summaryContainer ? summaryContainer.setAttribute('data-display', 'block') : null;
+      } else if (results) {
+        if (results && results.length) {
+          results.forEach(function (result) {
+            makeHighlightLi(ul, result);
+          });
+
+          searchResult ? searchResult.setAttribute('data-display', 'block') : null;
+          summaryContainer ? summaryContainer.setAttribute('data-display', 'none') : null;
+        }
+      }
+
+      originUl.parentNode.replaceChild(ul, originUl);
+    }
+  
+  });
+</script>    
+    
+
+
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+<meta name="description" content="The Zzo theme for Hugo example site." />
+<meta name="keywords" content="">
+<meta name="created" content="0001-01-01T00:00:00&#43;0000">
+<meta name="modified" content="0001-01-01T00:00:00&#43;0000">
+<meta property="article:published_time" content="0001-01-01T00:00:00&#43;0000">
+
+<meta name="author" content="AustinZGX">
+
+
+<meta property="og:site_name" content="Austin">
+<meta property="og:title" content="Pb">
+<meta property="og:url" content="http://austinzgx.github.io/metal/pb/">
+<meta property="og:type" content="article">
+<meta property="og:description" content="The Zzo theme for Hugo example site.">
+
+<meta name="generator" content="Hugo 0.81.0" />
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="http://austinzgx.github.io/metal/pb/">
+<link rel="manifest" href="/manifest.json">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/logo.svg" sizes="any" type="image/svg+xml" />
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "headline": "Pb",
+    "datePublished": "0001-01-01T00:00:00Z",
+    "dateModified": "0001-01-01T00:00:00Z",
+    "url" : "http://austinzgx.github.io/metal/pb/",
+    "description": "工艺流程 设备连接图 主要生产企业 序号 企业名称 设计规模(kT/a) 投产日期 备 注 1 豫光金铅I 50 2002.7 SKS+ RSKS 2 池州科威 30 2002.8 SKS+BF 3 水 口 山 100 2005.8 SKS+侧吹 4 豫光",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http://austinzgx.github.io/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Austin",
+      "url": "http://austinzgx.github.io/"
+    }
+  }
+</script>
+
+    
+  
+  
+
+
+
+
+
+
+
+    
+</head>
+
+<body id="root" class="theme__dark">
+    <script>
+        var localTheme = localStorage.getItem('theme');
+        if (localTheme) {
+            document.getElementById('root').className = 'theme__' + localTheme;
+        }        
+    </script>
+    
+    <div id="container">
+        
+        <div class="wrapper" data-type="metal" data-kind="page">
+            <nav class="navbar" role="navigation" aria-label="main navigation" data-dir="ltr">
+  <div class="navbar__brand">
+    
+    <a href="/" title="Home" rel="home" class="navbar__logo-link">
+      <img src="/logo.png" alt="Home" class="navbar__logo">
+    </a>
+    
+    
+      <a href="/" title="Home" rel="home" class="navbar__title-link">
+        <h6 class="navbar__title">Austin</h6>
+      </a>
+    
+  </div>
+  
+  
+<div class="theme-mobile">
+  <div class="dropdown">
+    <button class="dropdown-trigger navbar__slide-down" aria-label="Select Theme Button" style="">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M24 0H0v24h24V0z"/><path fill="currentColor" d="M6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58s4.1-.78 5.66-2.34c3.12-3.12 3.12-8.19 0-11.31l-4.95-4.95c-.39-.39-1.02-.39-1.41 0L6.34 7.93zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"/></svg>      
+    </button>
+    <div class="dropdown-content select-theme">
+      
+        
+        <a href="#" class="dropdown-item select-theme__item is-active">
+          dark
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          light
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          hacker
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          solarized
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          kimbie
+        </a>
+        
+      
+    </div>
+  </div>
+</div>
+
+  
+<div id="mobileSearchBtn" class="mobile-search__btn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+</div>
+
+<div id="search-mobile-container" class="mobile-search hide" data-dir="ltr">
+  <div class="mobile-search__top">
+    <input id="search-mobile" type="text" aria-label="Mobile Search" placeholder="Search" class="mobile-search__top--input"/>
+    <div id="search-mobile-close" class="mobile-search__top--icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path opacity=".87" fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg>
+    </div>
+  </div>
+  <div id="search-mobile-results" class="mobile-search__body">
+    
+  </div>
+</div>
+
+  
+  <a role="button" class="navbar__burger" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </a>  
+
+  <div class="navbar__menu">
+    
+<div class="theme">
+  <div class="dropdown">
+    <button class="dropdown-trigger navbar__slide-down" aria-label="Select Theme Button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" d="M24 0H0v24h24V0z"/><path fill="currentColor" d="M6.34 7.93c-3.12 3.12-3.12 8.19 0 11.31C7.9 20.8 9.95 21.58 12 21.58s4.1-.78 5.66-2.34c3.12-3.12 3.12-8.19 0-11.31l-4.95-4.95c-.39-.39-1.02-.39-1.41 0L6.34 7.93zM12 19.59c-1.6 0-3.11-.62-4.24-1.76C6.62 16.69 6 15.19 6 13.59s.62-3.11 1.76-4.24L12 5.1v14.49z"/></svg>      
+    </button>
+    <div class="dropdown-content select-theme">
+      
+        
+        <a href="#" class="dropdown-item select-theme__item is-active">
+          dark
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          light
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          hacker
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          solarized
+        </a>
+        
+        <a href="#" class="dropdown-item select-theme__item ">
+          kimbie
+        </a>
+        
+      
+    </div>
+  </div>
+</div>
+
+    
+    
+      
+      
+      
+      
+      
+        <a href="/life" class="navbar__menu-item navbar__slide-down " dir="ltr">Life</a>
+      
+    
+      
+      
+      
+      
+      
+        <div class="navbar__dropdown navbar__slide-down">
+          <a href="/code" class="navbar__menu-item " dir="ltr">
+            Code
+            <span class="navbar__menu-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7c-.39-.39-.39-1.02 0-1.41.39-.38 1.03-.39 1.42 0z"/></svg>
+            </span>
+          </a>        
+          <div class="navbar__dropdown--content">
+            
+            <a href="/code/angular" class="navbar__dropdown--item" dir="ltr">Angular</a>        
+            
+            <a href="/code/dotnetcore" class="navbar__dropdown--item" dir="ltr">dotnet</a>        
+            
+            <a href="/code/frontend" class="navbar__dropdown--item" dir="ltr">Frontend</a>        
+            
+            <a href="/code/go" class="navbar__dropdown--item" dir="ltr">go</a>        
+            
+            <a href="/code/java" class="navbar__dropdown--item" dir="ltr">Java</a>        
+            
+            <a href="/code/python" class="navbar__dropdown--item" dir="ltr">python</a>        
+            
+            <a href="/code/sql" class="navbar__dropdown--item" dir="ltr">SQL</a>        
+            
+          </div>
+        </div>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/metal" class="navbar__menu-item navbar__slide-down active" dir="ltr">Metal</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/it" class="navbar__menu-item navbar__slide-down " dir="ltr">IT</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/sf" class="navbar__menu-item navbar__slide-down " dir="ltr">Smart</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/oa" class="navbar__menu-item navbar__slide-down " dir="ltr">OA</a>
+      
+    
+      
+      
+      
+      
+      
+        <a href="/about" class="navbar__menu-item navbar__slide-down " dir="ltr">About</a>
+      
+    
+  </div>
+</nav>
+            
+            
+
+<main class="single__main main-main">
+  
+    <nav class="breadcrumb hide" aria-label="breadcrumbs">
+  <script>document.querySelector('.breadcrumb').classList.remove('hide')</script>
+  <ol>
+    
+  
+  
+  
+  
+  
+  <li >
+    
+      <a href="http://austinzgx.github.io/" class="capitalize">Austin</a>
+    
+  </li>
+  
+  
+  <li >
+    
+      <a href="http://austinzgx.github.io/metal/" class="capitalize">Metals</a>
+    
+  </li>
+  
+  
+  <li  class="is-active" >
+    
+      <span>Pb</span>
+    
+  </li>
+  
+  </ol>
+  
+</nav>
+  
+  <noscript>
+    Please enable Javascript to view the contents
+  </noscript>
+  <div class="single hide">
+    <script>document.querySelector('.single').classList.remove('hide')</script>
+    <h2 class="single__title">Pb</h2>
+    <div class="single__meta">
+      
+<div class="single__infos">
+  <time class="single__info" title="Written At">📅&nbsp;Jan 1, 0001 </time>  &middot; <span class="single__info" title="Reading Time"> ☕ 32 min read </span>
+  <span class="single__info">
+    
+  </span>
+</div>
+      
+<div class="single__tags caption">
+
+</div>
+    </div>
+    <article class="single__contents" data-dir="ltr">
+      
+      <h2 id="工艺流程">工艺流程</h2>
+<ul>
+<li>设备连接图<br />
+<img src="/images/metal/SKS_equiment_line.jpg" alt="equiment_line" /><br />
+<img src="/images/metal/SKS_line.png" alt="sks-line" /></li>
+</ul>
+<h2 id="主要生产企业">主要生产企业</h2>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>企业名称</th>
+<th>设计规模(kT/a)</th>
+<th>投产日期</th>
+<th>备　　注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>豫光金铅I</td>
+<td>50</td>
+<td>2002.7</td>
+<td>SKS+ RSKS</td>
+</tr>
+<tr>
+<td>2</td>
+<td>池州科威</td>
+<td>30</td>
+<td>2002.8</td>
+<td>SKS+BF</td>
+</tr>
+<tr>
+<td>3</td>
+<td>水 口 山</td>
+<td>100</td>
+<td>2005.8</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>4</td>
+<td>豫光金铅II</td>
+<td>80</td>
+<td>2005.3</td>
+<td>SKS+ RSKS</td>
+</tr>
+<tr>
+<td>5</td>
+<td>灵宝新凌</td>
+<td>80</td>
+<td>2006.9</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>6</td>
+<td>济源金利 I</td>
+<td>80</td>
+<td>2007.10</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>7</td>
+<td>河南万洋</td>
+<td>80</td>
+<td>2008.3</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>8</td>
+<td>湖南宇腾</td>
+<td>80</td>
+<td>2008</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>9</td>
+<td>陕西汉中</td>
+<td>80</td>
+<td>2008</td>
+<td>SKS+侧吹	在建</td>
+</tr>
+<tr>
+<td>10</td>
+<td>江西金德</td>
+<td>80</td>
+<td>2008</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>11</td>
+<td>内蒙兴安</td>
+<td>80</td>
+<td>2009</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>12</td>
+<td>豫光金铅III</td>
+<td>80</td>
+<td>2009</td>
+<td>SKS+RSKS	新建</td>
+</tr>
+<tr>
+<td>13</td>
+<td>内蒙瑞峰</td>
+<td>80</td>
+<td>2010</td>
+<td>SKS+ RSKS</td>
+</tr>
+<tr>
+<td>14</td>
+<td>郴州金贵</td>
+<td>80</td>
+<td>2010</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>15</td>
+<td>辽宁海城</td>
+<td>80</td>
+<td>2010</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>16</td>
+<td>灵宝志成</td>
+<td>80</td>
+<td>2010</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>17</td>
+<td>江西抚州</td>
+<td>80</td>
+<td>2010</td>
+<td>SKS+侧吹	在建</td>
+</tr>
+<tr>
+<td>18</td>
+<td>济源金利II</td>
+<td>200</td>
+<td>2010</td>
+<td>SKS+侧吹	新建</td>
+</tr>
+<tr>
+<td>19</td>
+<td>湖南桂阳银星</td>
+<td>100</td>
+<td>2011</td>
+<td>SKS+侧吹</td>
+</tr>
+<tr>
+<td>20</td>
+<td>广西苍梧</td>
+<td>60</td>
+<td>2011</td>
+<td>SKS+侧吹	在建</td>
+</tr>
+<tr>
+<td>21</td>
+<td>安阳岷山</td>
+<td>100</td>
+<td>2011</td>
+<td>SKS+RSKS	新建</td>
+</tr>
+<tr>
+<td>22</td>
+<td>山东恒邦</td>
+<td>100</td>
+<td>2013</td>
+<td>SKS+RSKS	新建</td>
+</tr>
+<tr>
+<td>23</td>
+<td>湖南华信</td>
+<td>100</td>
+<td>2013</td>
+<td>SKS+侧吹	新建</td>
+</tr>
+<tr>
+<td>24</td>
+<td>青海豫源</td>
+<td>100</td>
+<td>2013.10</td>
+<td>SKS+侧吹（万洋）</td>
+</tr>
+<tr>
+<td>25</td>
+<td>云南振兴</td>
+<td>100</td>
+<td>2014</td>
+<td>SKS+RSKS	新建</td>
+</tr>
+<tr>
+<td>26</td>
+<td>云南蒙自矿冶</td>
+<td>80</td>
+<td>2014</td>
+<td>SKS+RSKS	新建</td>
+</tr>
+<tr>
+<td>27</td>
+<td>内蒙赤峰山金</td>
+<td>100</td>
+<td>2014</td>
+<td>SKS+RSKS	新建</td>
+</tr>
+<tr>
+<td>28</td>
+<td>焦作东方</td>
+<td>80</td>
+<td>2010</td>
+<td>SKS+RSKS</td>
+</tr>
+<tr>
+<td>29</td>
+<td>豫北金铅I</td>
+<td>100</td>
+<td>2011.9</td>
+<td>SKS+侧吹（万洋）	　</td>
+</tr>
+<tr>
+<td>30</td>
+<td>豫北金铅II</td>
+<td>100</td>
+<td>2012.9</td>
+<td>SKS+侧吹（万洋）	　</td>
+</tr>
+<tr>
+<td>31</td>
+<td>济源万洋II</td>
+<td>100</td>
+<td>2011.3</td>
+<td>SKS+侧吹（万洋）	　</td>
+</tr>
+<tr>
+<td>32</td>
+<td>福建尤溪</td>
+<td>100</td>
+<td>2014.6</td>
+<td>SKS+侧吹	在建　</td>
+</tr>
+<tr>
+<td>33</td>
+<td>安徽铜陵</td>
+<td>100</td>
+<td>2014.6</td>
+<td>SKS+侧吹	在建　</td>
+</tr>
+<tr>
+<td>34</td>
+<td>长明公司</td>
+<td>100</td>
+<td>2014.10</td>
+<td>SKS+侧吹（万洋）	新建　</td>
+</tr>
+<tr>
+<td>35</td>
+<td>灵宝市志成铅业</td>
+<td>100</td>
+<td>2013.1</td>
+<td>SKS+侧吹（金利）	新建　</td>
+</tr>
+<tr>
+<td>36</td>
+<td>栾川石宝矿冶</td>
+<td>80</td>
+<td>2014.12</td>
+<td>SKS+侧吹（金利）	新建　</td>
+</tr>
+<tr>
+<td>37</td>
+<td>云南红铅</td>
+<td>60</td>
+<td>2014.6</td>
+<td>SKS+侧吹（万洋）	新建　</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2016年国家科技进步二等奖">2016年国家科技进步二等奖</h2>
+<ul>
+<li><strong>底吹熔炼—熔融还原—富氧挥发连续炼铅新技术及产业化应用</strong></li>
+<li>完成单位：中国恩菲工程技术有限公司、河南金利金铅有限公司、山东恒邦冶炼股份有限公司、济源市万洋冶炼(集团)有限公司、安阳市岷山有色金属有限责任公司、中南大学</li>
+</ul>
+<h3 id="项背景与研发思路">项背景与研发思路</h3>
+<p>我国是金属铅生产和消费大国，铅产量占世界总产量40% 以上。铅、铅合金及其化合物广泛应用于蓄电池、船舶制造、射线防护等行业。<br />
+铅冶炼的技术难点在于，铅物料具有高多元性、高挥发性、高渗透性和高毒性。国内和引进的铅冶炼技术存在环境污染重、能耗高、原料适应性差、过程不连续、生产成本高等诸多问题，曾几何时，因铅的污染，国人谈铅色变。<br />
+开发环保节能、低成本、原料适应性强、过程连续的炼铅技术是世界冶金界面临的共同难题。<br />
+2007年和2011年，国家两度将铅冶炼技术创新列为重大技术开发专项，由中国恩菲牵头，组织产学研联合攻关。<br />
+在第一代底吹技术基础上，本项目着手在熔融还原和连续炼铅基础理论、关键技术及装备方面进行攻关，突破了高铅渣熔融还原基础理论，攻克了连续炼铅核心技术难题，发明了“底吹熔炼-熔融还原-富氧挥发”三连炉连续炼铅新技术，通过技术创新、装备创新、工程创新，建立了新技术生产线，逐步取代或淘汰了其他炼铅技术，实现了我国铅冶炼技术的全面升级。</p>
+<h3 id="创新点及相关技术内容">创新点及相关技术内容</h3>
+<p>本项目技术创新点主要集中在4个方面。</p>
+<ul>
+<li>
+<p>创新点1，首创发明了“底吹熔炼-熔融还原-富氧挥发”三连炉连续炼铅新技术<br />
+针对国内外炼铅技术存在能耗高，原料适应性差、环境污染严重，过程不连续、安全隐患多等问题，本项目通过建立底吹炼铅过程元素分配模型，明确了多组元多相平衡规律，为复杂物料处理提供了理论支撑；<br />
+首创发明熔融还原技术取代高污染高能耗的鼓风炉；开发富氧挥发炉替代传统烟化炉；<br />
+研究突破了底吹熔炼-熔融还原-富氧挥发三个过程和三个装置之间物质流和能量流相互匹配的技术瓶颈，取消了电热前床，发明了三连炉短流程连续炼铅新技术；<br />
+开发了冶炼过程控制平台，熔炼还原挥发3个过程有机连接，自动控制。<br />
+新技术吨粗铅综合能耗由第一代底吹技术的380kg标煤降至180kg标煤，降低了52%；<br />
+生产操作岗位Pb尘 &lt;0.03 mg/m3，SO2 &lt;5mg/m3 ，低于世界各国标准；<br />
+铅回收率&gt;98.5%，比第一代技术提高1.5个百分点；金银回收率&gt;98%，提高2%;<br />
+新技术大幅降低了炼铅生产成本，有效解决了铅冶炼环境污染，消除了铅生产安全隐患。</p>
+</li>
+<li>
+<p>创新点2，首创发明了含铅物料熔融还原新技术。<br />
+针对鼓风炉还原污染重、能耗高、劳动强度大，其他还原技术同样存在能耗高、生产成本高等问题，本项目通过对熔融状态下还原过程多相平衡、炉内多场模拟耦合作用规律分析，揭示了熔融高铅渣直接还原机理。<br />
+首创发明了侧吹熔融还原新技术，并于2009年9月投入商业运行；<br />
+首创发明了粉煤底吹熔融还原新技术，并于2011年11月投入商业运行。<br />
+和鼓风炉还原技术相比，熔融还原新技术有效利用了液态高铅渣的热焓，采用廉价的还原剂替代了昂贵的冶金焦；采用富氧熔融还原替代了空气气固还原；还原强度大大提高，燃料消耗量大幅降低，烟气排放量成倍减少。<br />
+熔融还原技术一举攻克了铅清洁高效低成本还原技术难题，淘汰了历史悠久的鼓风炉。从对比表中可以看出，和鼓风炉还原相比，能耗降低58%，减排SO266%，减排CO250%。</p>
+</li>
+<li>
+<p>创新点3，首创开发了铅冶炼高锌渣富氧连续挥发新技术及装备。<br />
+针对传统烟化炉采用空气熔炼，能耗高，炉寿短，间断作业等问题，本项目根据创新点2揭示的熔融还原技术原理，创新开发了富氧侧吹挥发新技术及装备。新装备创新了炉体结构，实现了连续作业；开发新型喷枪，大幅提高了富氧浓度和吹炼强度，节能减排效果显著。<br />
+和烟化炉相比，富氧连续挥发技术能耗降低20%，同时提高了铅、锌回收率，进一步节省了铅冶炼生产成本。</p>
+</li>
+<li>
+<p>创新点4，首创开发了世界上单系列产能最大的年产20万吨粗铅的现代炼铅装备。<br />
+针对国内外铅冶炼生产装置普遍存在产能规模小、生产率低等问题，本项目通过建立氧气底吹炉内多场耦合模型，明确了炉体应力场及熔体温度场、速度场耦合作用行为规律，继而通过工程创新，突破了设备大型化的技术瓶颈，开发了世界上单系列产能最大的20万吨底吹炼铅装备并于2011年4月实现工业应用。 与单系列10万吨炼铅装置相比，耐火材料消耗减少40%，生产率成倍提高，促进了产业集中度，进一步提高了环保、社会及经济效益。</p>
+</li>
+<li>
+<p>本技术与国内外同类技术的对比。<br />
+本技术实现了低碳、清洁生产及资源高效循环利用。从对比表中可以看出，本技术在综合能耗、综合回收率、生产成本、建设投资等各项技术经济指标均优于国内外同类技术。<br />
+我国铅锌冶炼龙头企业株洲冶炼厂和韶关冶炼厂、曲靖冶炼厂曾分别从国外引进了Kivcet、ISP、ISA等炼铅技术，生产中由于技术、经济、环保等原因，现决定改用本技术进行绿色升级改造。<br />
+我国最大的铅冶炼企业豫光金铅采用的炼铅工艺流程长，过程不连续，单系列产能低，现决定采用本技术进行升级改造。<br />
+事实胜于雄辩。铅冶炼企业的市场选择充分证明了本技术比国内外同类技术更先进。</p>
+</li>
+</ul>
+<h3 id="应用推广和经济社会效益">应用推广和经济社会效益</h3>
+<ul>
+<li>本项目核心技术一经发明，迅速得到市场高度认可。在实体经济投资意愿普遍低迷的大环境下，短短5年内，国有和民营企业采用本项目核心技术共建设和升级改造了30条铅冶炼生产线，其产能占全国矿铅总产能比例达80%以上。另外还各有5条生产线在建和待建。</li>
+<li>欧洲最大的铅锌企业Nyrstar公司旗下著名的澳大利亚皮里港铅厂采用本技术成功完成了搭配处理锌浸出渣的工业验证试验。 北美最大的铅锌企业墨西哥MMP公司铅冶炼厂决定采用本技术进行升级改造。 乌兹别克斯坦AMMC公司决定采用本技术建设铅厂。 美国最大的炼铅企业杜兰公司总裁一行专程到我国考察本技术，考虑采用本技术进行升级改造。</li>
+<li>项目主要完成单位中的4家铅冶炼企业近3年应用本技术累计生产粗铅190万吨、金20吨、白银4700吨，新增销售额416亿元，新增利润6亿元。</li>
+<li>本技术成功解决了复杂铅原料和锌浸出渣、提金尾渣、废电子铅玻璃、废铅蓄电池、炼铜铅锌烟灰、高炉炼铁铅锌烟尘等二次铅资源高效、经济回收，同时有效解决了这些含铅物料堆放带来的二次污染问题，实现了铅循环经济、清洁生产。</li>
+<li>应用本技术，我国铅冶炼行业全面实现了技术升级。与第一代底吹技术相比，吨粗铅综合能耗由380kg标煤降至180kg标煤，能耗降低52%，减排CO2 52%,减排SO256%。近三年共节省标煤146万吨、减排CO2 336万吨、减排SO2 3.23万吨。为我国冶金行业的节能减排做出了应有的贡献。</li>
+<li>本	术的发明，开启了我国重有色冶金技术走向世界新纪元，引领了世界铅冶金技术发展。</li>
+</ul>
+<h2 id="侧吹浸没燃烧熔池熔炼技术ssc">侧吹浸没燃烧熔池熔炼技术(SSC)</h2>
+<p>熔池熔炼技术一般包括以下三种：</p>
+<ul>
+<li>底吹熔炼技术  （SKS）</li>
+<li>顶吹熔炼技术（ISA/Ausmelt)<br />
+<img src="/images/metal/ISA_Ausmelt.jpg" alt="isa/ausmelt" /></li>
+<li>侧吹熔炼技术<br />
+<img src="/images/metal/ssc.jpg" alt="ssc" /></li>
+</ul>
+<p>侧吹浸没燃烧熔池熔炼技术（Side-Submerged Combustion Smelting Process，SSC技术）是由中国恩菲工程技术有限公司联合合作伙伴开发的具有自主知识产权的一种强化熔池熔炼技术。该技术最初应用于处理液态高铅渣，并于2009年工业化应用成功，同年荣获中国有色金属工业科技一等奖。<br />
+2010年开始，该技术推广到再生铅回收领域，随着在生产过程中的不断完善和改进，SSC技术已经发展为较成熟的一种先进熔池熔炼技术，当前正逐步推进其在锌、铅、锑、锡、铜等金属的氧化矿、红土矿和二次物料处理领域的应用。</p>
+<h3 id="工艺原理">工艺原理</h3>
+<p>以多通道侧吹喷枪以高速向熔池内喷入富氧空气和燃料（天然气、发生炉煤气、焦炉煤气、粉煤）以激烈搅动熔体和直接燃烧向熔体补热为特征。<br />
+炉料加入熔池后，物料随熔体的搅动快速散布于熔体之中，与周围熔体发生快速传热传质，进行炉料的加热、熔化、分解等过程。同时，侧吹喷枪喷入燃料又为物料提供热源。因此，侧吹浸没熔池熔炼是一个较理想的热技术系统。</p>
+<h3 id="侧吹炉">侧吹炉</h3>
+<p><img src="/images/metal/ssc_furnaces_1.jpg" alt="ssc_furnaces" /><br />
+<img src="/images/metal/ssc_furnaces_2.jpg" alt="ssc_furnaces" /></p>
+<h3 id="关键技术">关键技术</h3>
+<ul>
+<li>
+<p>喷枪与燃料<br />
+侧吹喷枪为多通道、多层套管浸没高速喷枪，根据火焰传播原理，当喷枪燃料传播速度大于火焰传播速度会形成脱火现象，当喷枪燃料传播速度小于火焰传播速度会形成回火现象，无论是脱火、回火都会对喷枪、炉衬寿命带来不利影响，喷枪流速至关重要。控制喷枪流速关键是控制喷枪燃料供应压力。<br />
+<img src="/images/metal/ssc_furnaces_3.jpg" alt="ssc_furnaces" /><br />
+<img src="/images/metal/ssc_furnaces_4.jpg" alt="ssc_furnaces" /></p>
+</li>
+<li>
+<p>喷枪布置方式<br />
+侧吹浸没燃烧熔池熔炼炉喷枪布置采用对吹方式，可有效减缓喷枪对对面侧墙的冲刷，选择合理喷枪流速和工作压力，喷枪寿命可达半年以上。侧吹浸没燃烧熔池熔炼炉免去了频繁的更换风口或喷枪操作，自动化操作水平得以提高，减轻工人劳动强度。</p>
+</li>
+<li>
+<p>炉墙结构及炉缸<br />
+侧吹浸没燃烧熔池熔炼炉是一种强化熔炼设备，冶炼过程中，温度可达1100-1550℃。使用单一的耐火砖抵抗不了高温流体的冲刷与腐蚀。对侧墙耐火材料必须采取冷却措施，这对高冶炼强度的现代冶炼炉尤为重要。耐火材料及其冷却成为能否采用高富氧浓度、高投料量、和高温度操作的关键。</p>
+<p>熔池内与熔渣接触的耐火材料受到熔渣的持续侵蚀，直到耐火材料由于冷却而使其表面结成一层固体渣壳为止。此后，这一层渣壳就起到了保护耐火砖和铜水套的作用。实际生产中，最重要的是被冷却耐火砖受熔体侵蚀后的残余厚度，在炉子运行后期，该砖层的厚度还有100mm，形成稳定挂渣，并一直稳定在此，不再腐蚀。</p>
+</li>
+<li>
+<p>炉体框架结构<br />
+炉子的钢结构采用先进成熟的“约束构架”，避免了刚性约束结构无法自由膨胀的缺点。采用约束构架对炉体整体稳定性至关重要，同时对炉体冷却效果也有着影响。侧吹浸没燃烧熔池熔炼炉采用整体“约束构架”结构，保持炉体钢板整体膨胀均匀，可有效防止熔池熔炼时的炉体位移与晃动。</p>
+</li>
+<li>
+<p>炉体安全运行监控系统<br />
+在炉底、铜水套表面，以及炉墙砖内部平均分布设置有若干温度测点。铜水套进出水管均设有流量检测和温度检测，对炉体进行实时检测，检测信号均进DCS控制系统。</p>
+</li>
+<li>
+<p>余热锅炉<br />
+余热锅炉根据处理不同的物料，按不同运行压力及出口温度进行设计。蒸汽需要余热发电时，则配套余热锅炉以主产蒸汽为主，锅炉设有垂直段和水平辐射段，锅炉出口控制在280-360℃；烟气量小不作发电之用，余热锅炉可只设计垂直段以节约投资，烟气出口控制在600℃，后接喷淋冷却器及布袋收尘器。</p>
+</li>
+</ul>
+<h3 id="技术特点">技术特点</h3>
+<ul>
+<li>
+<p>富氧浓度高、热利用率高<br />
+侧吹浸没燃烧熔池熔炼工艺采用富氧熔炼，燃料及助燃气体喷入熔池内，在熔池内燃烧，搅拌强度大，传质传热快，热利用率高，单位容积热强度大。熔炼炉产生的高温烟气通过余热锅炉回收余热，产生的蒸汽可进行发电和送到其它蒸汽用点，余热得到充分利用。<br />
+该炉与其它采用铜水套直接挂渣的侧吹还原炉相比，具有保温效果好、炉子热损失低的优点.</p>
+</li>
+<li>
+<p>作业率高<br />
+侧吹浸没燃烧熔池熔炼炉炉墙为二层结构形式。从内到外为耐火砖、铜水套。耐火材料起隔热作用，减少炉子的热损失。而外层铜水套在炉墙上形成了一个冷却强度很大的冷却层，使得炉墙耐火材料始终在低温下工作。铜水套和内衬砖的结构有利于冷却和挂渣，大大延长了炉子寿命。炉底为耐火砖，抗渣和金属侵蚀能力强，炉子整体大修周期两年以上。</p>
+</li>
+<li>
+<p>安全性好<br />
+炉墙采用二层结构形式，内层为耐火砖砌体，外层为铜水套镶嵌耐火砖，镶嵌的耐火砖有效保护了铜水套，从而确保了炉体安全，炉体不易发生火焰泄露着火。</p>
+</li>
+<li>
+<p>喷枪寿命长<br />
+喷枪结构和布置的优化，提高了熔池搅动效率和反应速率，提高了气体的燃烧效率。喷枪使用寿命达6个月以上。免去了频繁风口人工封堵操作及喷枪更换操作，提高了作业率，实现了生产自动化和改善生产劳动环境。</p>
+</li>
+<li>
+<p>原料适应性广，炉料备料系统简单<br />
+侧吹浸没燃烧熔池熔炼炉采用铜水套内衬耐火砖结构，燃料和富氧空气直接喷入熔池内，能够适应对各种物料的处理，而且备料系统简单，各种物料可以直接入炉</p>
+</li>
+<li>
+<p>有价金属综合回收率高、冶炼弃渣无害化<br />
+该工艺独特的炉体结构，使的炉内各熔池相分离效率高。金属相位于喷枪下层，基本处于静止层，对金属熔体和液态渣两相澄清效果非常好，可通过金属层的高度来调节分离效果。生产厂指标表明，侧吹浸没燃烧熔池熔炼炉排出弃渣含铅低于1.5%，属于一般固体废物，可直接作为建筑材料。</p>
+</li>
+</ul>
+<h3 id="再生铅处理工艺">再生铅处理工艺</h3>
+<p><img src="/images/metal/ssc_reuse_pb.png" alt="ssc_reuse_pb" /></p>
+<ul>
+<li>主要技术经济指标</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>№</th>
+<th>名称</th>
+<th>单位</th>
+<th>计算值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><strong>加料熔化过程</strong></td>
+<td>　</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>铅膏处理量</td>
+<td>t/a</td>
+<td>70000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>铅栅处理量</td>
+<td>t/a</td>
+<td>30000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>侧吹炉面积</td>
+<td>m2</td>
+<td>15</td>
+</tr>
+<tr>
+<td>4</td>
+<td>FeO/SiO2</td>
+<td>%</td>
+<td>1.39</td>
+</tr>
+<tr>
+<td>5</td>
+<td>CaO/SiO2</td>
+<td>%</td>
+<td>0.50</td>
+</tr>
+<tr>
+<td>6</td>
+<td>富氧空气</td>
+<td>Nm3/h</td>
+<td>4961</td>
+</tr>
+<tr>
+<td>7</td>
+<td>富氧浓度</td>
+<td>%</td>
+<td>50</td>
+</tr>
+<tr>
+<td>8</td>
+<td>粉煤量</td>
+<td>t/h</td>
+<td>1.90</td>
+</tr>
+<tr>
+<td>9</td>
+<td>碎煤量</td>
+<td>t/h</td>
+<td>0.83</td>
+</tr>
+<tr>
+<td>10</td>
+<td>煤率</td>
+<td>%</td>
+<td>16.03</td>
+</tr>
+<tr>
+<td>11</td>
+<td>粉煤率</td>
+<td>%</td>
+<td>11.28</td>
+</tr>
+<tr>
+<td>12</td>
+<td>块煤率</td>
+<td>%</td>
+<td>4.75</td>
+</tr>
+<tr>
+<td>13</td>
+<td>烧渣率</td>
+<td>%</td>
+<td>3.91</td>
+</tr>
+<tr>
+<td>14</td>
+<td>石灰石率</td>
+<td>%</td>
+<td>2.08</td>
+</tr>
+<tr>
+<td>15</td>
+<td>熔炼烟尘率</td>
+<td>%</td>
+<td>15.00</td>
+</tr>
+<tr>
+<td>16</td>
+<td>总烟尘率</td>
+<td>%</td>
+<td>18.53</td>
+</tr>
+<tr>
+<td>17</td>
+<td>熔炼渣含Pb</td>
+<td>%</td>
+<td>48.00</td>
+</tr>
+<tr>
+<td>18</td>
+<td>炉渣量</td>
+<td>t/batch</td>
+<td>39.26</td>
+</tr>
+<tr>
+<td>19</td>
+<td>粗铅量</td>
+<td>t/batch</td>
+<td>107.65</td>
+</tr>
+<tr>
+<td>20</td>
+<td>混合渣含Pb</td>
+<td>%</td>
+<td>22.23</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>还原过程</strong>　</td>
+<td>　</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>氧化渣量</td>
+<td>t/batch</td>
+<td>39.26</td>
+</tr>
+<tr>
+<td>2</td>
+<td>FeO/SiO2</td>
+<td>%</td>
+<td>1.32</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CaO/SiO2</td>
+<td>%</td>
+<td>0.47</td>
+</tr>
+<tr>
+<td>4</td>
+<td>富氧空气</td>
+<td>Nm3/h</td>
+<td>3600</td>
+</tr>
+<tr>
+<td>5</td>
+<td>富氧浓度</td>
+<td>%</td>
+<td>31.29</td>
+</tr>
+<tr>
+<td>6</td>
+<td>粉煤量</td>
+<td>t/h</td>
+<td>1.11</td>
+</tr>
+<tr>
+<td>7</td>
+<td>碎煤量</td>
+<td>t/h</td>
+<td>0.42</td>
+</tr>
+<tr>
+<td>8</td>
+<td>煤率</td>
+<td>%</td>
+<td>5.83</td>
+</tr>
+<tr>
+<td>9</td>
+<td>粉煤率</td>
+<td>%</td>
+<td>4.24</td>
+</tr>
+<tr>
+<td>10</td>
+<td>碎煤率</td>
+<td>%</td>
+<td>1.59</td>
+</tr>
+<tr>
+<td>11</td>
+<td>烟尘率</td>
+<td>%</td>
+<td>10.00</td>
+</tr>
+<tr>
+<td>12</td>
+<td>炉渣含Pb</td>
+<td>%</td>
+<td>2.00</td>
+</tr>
+<tr>
+<td>13</td>
+<td>粗铅量</td>
+<td>t/batch</td>
+<td>14.28</td>
+</tr>
+<tr>
+<td>14</td>
+<td>还原炉渣量</td>
+<td>t/batch</td>
+<td>18.25</td>
+</tr>
+</tbody>
+</table>
+<h2 id="氧气底吹熔炼-底吹熔融电热还原炼铅工艺低碳技术创新和产业化实施方案">氧气底吹熔炼-底吹熔融电热还原炼铅工艺低碳技术创新和产业化实施方案</h2>
+<h3 id="专项行业背景">专项行业背景</h3>
+<ul>
+<li>
+<p>我国铅冶炼技术正在向节能环保方向转变<br />
+上世纪，我国炼铅工业存在整体工艺装备水平落后、生产集中度低、清洁生产急待加强等问题。根据有关的统计资料，中国铅冶炼企业均采用传统的烧结—鼓风炉工艺。大型铅冶炼厂烧结过程采用的设备为烧结机，而数量众多的中小型铅厂采用的是更为简陋的烧结锅烧结。由于烧结过程产出的烟气含S02仅2～3%，难以制酸而直接排入大气。同时烧结过程由于烧结工艺的需要，大量返粉（含铅物料）的破碎造成了铅尘的飞扬，引起了操作岗位及周边环境铅尘严重超过国家卫生标准，导致职业病铅中毒頻頻发生。在有色冶金工业中铅冶炼的污染一直难以解决，它不但危及着从事铅冶炼的操作工人的健康，也对环境造成了严重的危害。多年来，在原国家计委、国家科技部等有关部门的大力支持下，2002年“氧气底吹熔炼-鼓风炉还原炼铅法”产业化试验获得成功，为彻底解决这一问题提供了技术支撑。<br />
+氧气底吹熔炼—鼓风炉还原炼铅法是中国有色工程设计研究总院和水口山有色金属公司联合开发的具有国际先进水平的炼铅技术，该工艺获得了国家科技进步二等奖和中国有色金属工业科技进步一等奖。应用该技术已有13个铅冶炼厂建成投产，还有15个冶炼厂处在施工建设阶段，另有6个厂家在设计中，这34个厂全部投产后，我国铅冶炼的污染状况将会根本改善。</p>
+</li>
+<li>
+<p>氧气底吹熔炼—鼓风炉还原炼铅工艺技术的特点<br />
+分析传统炼铅工艺，污染问题集中在烧结，氧气底吹熔炼—鼓风炉还原炼铅工艺采用氧气底吹熔炼取代烧结过程，解决了环保问题。由于富铅渣含硫（≤0.5%）远低于烧结块(含硫≥1.5%),鼓风炉还原富铅渣块,不仅烟尘率低且烟气S02含量远低于烧结块熔炼,因此,烟气仅通过除尘后就达标直接排放。<br />
+氧气底吹熔炼—鼓风炉还原炼铅工艺技术利用氧气底吹炉氧化，替代烧结工艺，有效解决了烧结过程中S02烟气和铅尘严重污染环境的问题。从采用该技术的工厂运行的情况看，该工艺具有许多优点：投资省，综合能耗低，环保好，金属回收率高，生产成本比传统工艺低，并低于国外新工艺。用其改造传统铅冶炼产业，能充分利用原有设施，投资更省，效益更佳，因此推广应用及其迅速。</p>
+</li>
+<li>
+<p>氧气底吹熔炼—鼓风炉还原炼铅工艺技术的缺点<br />
+氧气底吹熔炼—鼓风炉还原炼铅工艺技术立足于改善传统炼铅工艺的环境治理，氧气底吹熔炼脱硫率高，烟气SO2浓度高，适于双转双吸制酸，尾气达到国家排放标准，同时取消了烧结工艺及返料破碎筛分系统，显著减少了污染源，改善了环境。<br />
+但底吹炉产出的高铅渣需要用铸渣机冷却铸块，再送入鼓风炉中用焦炭还原。这样，一方面损失了高铅渣的物理热(约占鼓风炉能耗的15%)，另外鼓风炉送风要白白燃烧掉部分焦炭，致使鼓风炉焦率达13%～17%。2004年全国平均鼓风炉产吨铅焦耗达437kg，近期焦炭价格突升，使鼓风炉熔炼成本有所增加。且铸渣机和鼓风炉备料系统及炉顶，均存在粉尘的逸散源，需要完备的卫生除尘系统，为此需要进一步持续技术开发工作。<br />
+2007年液态高铅渣直接还原技术开发被确定为国家“十二五”重大产业技术开发项目，国家拨付专项资金予以支持。</p>
+</li>
+</ul>
+<h3 id="专项总体思路及主要内容">专项总体思路及主要内容</h3>
+<ul>
+<li>替代传统鼓风炉还原<br />
+鼓风炉操作已经有一百多年的历史，工艺畅通，技术可靠，操作简单。鼓风炉炉内有很好的温度梯度，烟气直接预热炉料，出炉烟气温度低，烟尘率低，热利用率好。<br />
+但鼓风炉实际生产中还存在以下一些问题：
+<ul>
+<li>(1)提升炉门加料时，烟气外溢严重；</li>
+<li>(2)炉结严重，作业率降低；</li>
+<li>(3)捅风眼作业，工人劳动强度大；</li>
+<li>(4)工艺流程长，备料及上料系统较为复杂。</li>
+</ul>
+</li>
+</ul>
+<p>底吹电热还原炉是替代传统鼓风炉的理想工艺选择，原因如下：<br />
+* (1)利用了高铅渣的熔融潜热，避免了二次熔化带来的燃料消耗，同时可实现无焦冶炼，低碳效果显著，节能效果显著；<br />
+* (2)炉体密封性好，加料口无烟气外逸，操作环境好；<br />
+* (3)无捅风眼作业，工人劳动强度低；<br />
+* (4)渣含铅低，冶炼回收率高；<br />
+* (5)环保效益好，SO2排放量明显减少；<br />
+* (6)炉寿长，作业率高；<br />
+* (7)经济效益好，生产成本明显降低；<br />
+* (8)有价金属(Ag、Au、Cu、Sb、Bi)回收率高；<br />
+* (9)缩短工艺流程，减少污染源；<br />
+* (10)取消了铸渣机，减小占地面积，节省设备及土地投资。</p>
+<ul>
+<li>
+<p>新工艺流程及特点<br />
+氧气底吹炉产出的高铅渣，熔融状态下通过溜槽加入到底吹电热还原炉中，配以石灰石为熔剂造渣，粉煤为还原剂，不需昂贵的冶金焦，产出粗铅和还原终渣。高温烟气通过余热锅炉回收余热，表面冷却器降温，布袋收尘器收尘后，是否经尾气处理，视煤质含硫而定。<br />
+石墨电极装置提供还原反应所需热量，粉煤仅用于氧化铅还原，减少燃料消耗，同时采用工业氧熔炼，达到减少烟气量及减小烟尘率的目的，从而减小后续烟气处理系统以及提高铅直收率。</p>
+</li>
+<li>
+<p>底吹电热还原炉结构特点<br />
+底吹电热还原炉是由中国恩菲工程技术有限公司自主开发的创新设备，具有如下特点：</p>
+</li>
+<li>
+<p>(1)底吹电热还原炉分为炉体、石墨电极装置和粉煤喷枪三大部分。</p>
+</li>
+<li>
+<p>(2)炉体包括传动装置、炉壳、耐火炉衬、固定端托轮及滚圈、滑动端托轮及滚圈、进渣口装置、冷料口装置、出渣口装置、出烟口装置、转角控制装置、主副油枪等部件。</p>
+</li>
+<li>
+<p>(3)炉体为筒形卧式结构，环形耐火材料砌筑形式有利于提高炉寿；炉壳采用轧制钢板卷制拼焊而成，端盖采用碟形封头结构。</p>
+</li>
+<li>
+<p>(4)托轮采用滚动轴承结构，降低了电机的功率。</p>
+</li>
+<li>
+<p>(5)还原炉底部砖体加厚并形成缓坡，这样有利于还原过程中粗铅的沉降和凝聚，提高了还原效率。</p>
+</li>
+<li>
+<p>(6)电极孔密封装置的设计兼顾了炉体对密封、绝缘和绝磁的三项要求。</p>
+</li>
+</ul>
+<h3 id="专项的研发和产业化目标">专项的研发和产业化目标</h3>
+<ul>
+<li>(1)成功应用液态铅氧化渣直接还原技术及装置，达到降低工艺生产能耗、减少生产环节和节省建设投资，更进一步改善铅冶炼生产环境等目的；</li>
+<li>(2)新工艺要达到的主要技术指标是：粗铅单位产品综合能耗由氧气底吹熔炼-鼓风炉还原的380kgbm/t粗铅降至280kgbm/t粗铅；</li>
+<li>(3)粗铅冶炼回收率98.5%；</li>
+<li>(4)整体技术与装备水平达到国际领先水平，具备完全自主知识产权；</li>
+<li>(5)取得1～3项核心专利技术。</li>
+</ul>
+<h3 id="专项产业化示范工程">专项产业化示范工程</h3>
+<p>新工艺应用于河南安阳岷山有色金属有限责任公司富氧底吹强化熔炼节能技改项目。该项目经河南省安阳市发改委批复立项，生产规模为10万t/a电铅。<br />
+项目生产指标要求：铅冶炼综合能耗为420kgbm/t电铅，铅冶炼回收率为97.5%，总硫利用率为96.5%，循环水利用率为96%，电铅直流电耗&lt;110kWh/t电铅。<br />
+环境评价报告通过河南省环境保护局审批，文件号：豫环审[2008]227号，项目污染物排放总量控制要求：SO2150t。目前该项目正在建设中，预计2010年10月份投产。</p>
+<h3 id="节能减排效果及预期经济效益">节能减排效果及预期经济效益</h3>
+<p>氧气底吹熔炼-底吹电热还原炼铅法将粗铅综合能耗降至280kgbm/t-Pb，较传统烧结工艺综合能耗(630kgbm/t-Pb)降低约56%；较氧气底吹熔炼-鼓风炉还原炼铅工艺综合能耗(380kgbm/t-Pb)降低约26%。按照10万t/a粗铅生产规模计算，较烧结工艺每年可减少80500t二氧化碳排放，较氧气底吹熔炼-鼓风炉还原炼铅工艺每年可减少23000t二氧化碳排放。采用余热锅炉回收余热，如扣除余热发电，新工艺粗铅综合能耗进一步降低为240kgbm/t-Pb，是迄今为止能耗最低的炼铅工艺。同时，按照10万t/a粗铅规模计算，较烧结工艺每年可节约3.5万t标准煤，较氧气底吹熔炼-鼓风炉还原炼铅工艺每年可节约1万t标准煤，标煤每吨按1000元计，折合经济效益分别为3500万元、1000万元。</p>
+<h3 id="产业化推广目标及社会效益">产业化推广目标及社会效益</h3>
+<p>新工艺可广泛应用于国内铅冶炼新建和技改项目，包括已采用氧气底吹熔炼—鼓风炉还原炼铅法铅冶炼厂进一步的技术革新和采用传统工艺铅冶炼厂的技术改造，项目市场潜力大。另外，依靠中国恩菲工程技术有限公司的技术和价格优势，可以广泛开拓国外铅冶炼技术市场。<br />
+新工艺不使用昂贵的冶金焦，可实现无焦冶炼，粗铅单位生产成本大幅度下降，经济效益显著。<br />
+新工艺达到了节能减排、低碳创新、资源高效利用的目标，符合国家产业政策，具有充分的技术经济和社会效益，对我国铅冶炼行业可持续发展具有重要意义。</p>
+<h3 id="项目依托单位情况">项目依托单位情况</h3>
+<p>安阳岷山有色金属有限责任公司始建于1992年，是一家集矿山开发、冶炼、综合回收、产品销售开发为一体综合经营有色金属的民营企业，是国家发改委循环经济、清洁生产试点企业，河南省产业结构调整重点支持企业，年产值8亿元。</p>
+<h3 id="投资估算">投资估算</h3>
+<p>本项目投资估算不包括烟化炉系统、铅电解精炼系统及综合回收系统等.</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>建筑工程</th>
+<th>设备</th>
+<th>安装费用</th>
+<th>其他</th>
+<th>总投资估算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>投资(万元)</td>
+<td>5000</td>
+<td>12000</td>
+<td>2000</td>
+<td>3000</td>
+<td>22000</td>
+</tr>
+<tr>
+<td>占投资比例</td>
+<td>22.73%</td>
+<td>54.55%</td>
+<td>9.09%</td>
+<td>13.63%</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="济源金利侧吹熔融还原炉炼铅工艺试生产报告">济源金利侧吹熔融还原炉炼铅工艺试生产报告</h2>
+<p>济源市金利有限责任公司和中国恩菲工程技术有限公司合作开发的侧吹熔融还原炉已完成前期准备工作，经过两次试验改造后，在第三次试车成功后，已平稳运行了153天，并取得了良好的技术经济指标，本文对试生产情况进行了总结。</p>
+<h3 id="工艺">工艺</h3>
+<p>济源市金利有限责任公司铅冶炼工艺流程见图1。<br />
+<img src="/images/metal/ssc_reduce.png" alt="ssc_pfd" /><br />
+侧吹熔融还原炉于2009年9月1日，正式投料试生产，截止2010年1月31日24:00，平稳运行了153天，入炉的高铅渣量55080吨、石灰石1469吨、煤气4039200m3、氧气1836000 m3、无烟煤粒2387吨。</p>
+<h3 id="金利炉冶炼回收率">金利炉冶炼回收率</h3>
+<p>试生产的153天，投入的高铅渣平均品位45%，含铅量24786吨；产粗铅23373.33吨；粗铅品位96.5%，含铅量22555.26吨；产出31665.13吨熔炼渣，渣含铅平均1.8%，含铅量569.97吨；产出烟尘3216.91吨，平均品位47%，含铅量1511.95吨。铅平衡表见表1。<br />
+表1 侧吹熔融还原炉铅平衡表</p>
+<table>
+<thead>
+<tr>
+<th>投  入</th>
+<th></th>
+<th>产  出</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高铅渣</td>
+<td></td>
+<td>粗铅</td>
+<td></td>
+<td>熔炼渣</td>
+<td></td>
+<td>烟尘</td>
+<td></td>
+<td>合计</td>
+<td></td>
+</tr>
+<tr>
+<td>数量/t</td>
+<td>铅品位%</td>
+<td>数量/t</td>
+<td>铅品位%</td>
+<td>数量/t</td>
+<td>铅品位%</td>
+<td>数量/t</td>
+<td>铅品位%</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>55080</td>
+<td>45.00</td>
+<td>23373.33</td>
+<td>96.50</td>
+<td>31665.13</td>
+<td>1.80</td>
+<td>3216.91</td>
+<td>47.00</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>金属量/t</td>
+<td>百分比%</td>
+<td>金属量/t</td>
+<td>百分比%</td>
+<td>金属量/t</td>
+<td>百分比%</td>
+<td>金属量/t</td>
+<td>百分比%</td>
+<td>金属量/t</td>
+<td>百分比%</td>
+</tr>
+<tr>
+<td>24786</td>
+<td>100.00</td>
+<td>22555.26</td>
+<td>91.00</td>
+<td>569.97</td>
+<td>2.30</td>
+<td>1511.95</td>
+<td>6.10</td>
+<td>24635.78</td>
+<td>99.40</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>1、损失损的铅量有148.82t，占总量的0.6%，为铅挥发损失以及管理损失和误差。</li>
+<li>2、根据以上统计，侧吹熔融还原炉铅回收率为97.10%，还原炉直收率为91.00%。</li>
+</ul>
+<h3 id="回收率和直收率">回收率和直收率</h3>
+<p>试生产期间渣含铅见表2。<br />
+表2 侧吹熔融还原炉渣含铅统计</p>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>高铅渣品位</th>
+<th>还原炉渣含铅</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9月1日—9月30日</td>
+<td>44.25</td>
+<td>1.92</td>
+</tr>
+<tr>
+<td>10月1日—10月31日</td>
+<td>45.73</td>
+<td>1.63</td>
+</tr>
+<tr>
+<td>11月1日—11月30日</td>
+<td>45.21</td>
+<td>1.80</td>
+</tr>
+<tr>
+<td>12月1日—12月31日</td>
+<td>44.82</td>
+<td>2.05</td>
+</tr>
+<tr>
+<td>1月1日—1月31日</td>
+<td>44.99</td>
+<td>1.60</td>
+</tr>
+<tr>
+<td>平均值</td>
+<td>45</td>
+<td>1.80</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>侧吹熔融还原炉平均烟尘率为5.84%，原有与底吹炉配套的鼓风炉烟尘率为6%左右，和侧吹熔融还原炉相近；</li>
+<li>侧吹熔融还原炉渣含铅1.8%，鼓风炉渣含铅平均在2.9%；</li>
+<li>侧吹熔融还原炉熔剂率为2.67%，远低于原有鼓风炉的15.32%（2009年平均值）；</li>
+<li>三项指标较鼓风炉都有所提高，即回收率、直收率和熔剂率都比鼓风炉先进，目前国内的高铅渣鼓风炉回收率和直收率一般为95%和88%，熔剂率不低于10%。</li>
+</ul>
+<h3 id="能耗">能耗</h3>
+<ul>
+<li>煤耗<br />
+试验的153天中，侧吹熔融还原炉共消耗无烟煤粒2387.0吨，焦炉煤气4039200m3，焦炉煤气的发热量平均为16750kJ/m3,折标系数为0.5714 kgce /m3，无烟煤的发热量按25100kJ/kg，折标系数为0.9000 kgce/kg，则消耗的无烟煤粒和煤气折合标煤4456.3吨，得出吨铅平均煤耗为197.57kgce/t—Pb,较鼓风炉的吨铅焦耗380kg，折合标准煤369.13 kgce/t—Pb的指标有大幅度的降低。</li>
+<li>电耗<br />
+153天中侧吹熔融还原炉耗电为567465.5kWh，折合吨铅耗电为25.16 kWh，较鼓风炉的吨铅耗电65.12kWh有大幅度的降低。</li>
+<li>氧耗<br />
+153天中侧吹熔融还原炉耗氧为1836000 m3，折合吨铅耗氧为81.40 m3，较鼓风炉的75.54 m3略有增加。<br />
+电的折标系数按0.1229 kgce/ kWh，氧气的折标系数按0.400 kgce/ m3，综合计算，侧吹熔融还原炉吨铅能耗为233.22 kgce/t—Pb，远低于原有鼓风炉的402.92 kgce/t—Pb。</li>
+</ul>
+<h3 id="经济效益">经济效益</h3>
+<p>侧吹熔融还原炉和原有鼓风炉成本对比情况见表3。侧吹熔融还原炉吨铅成本较鼓风炉明显下降。<br />
+表3    侧吹熔融还原炉和鼓风炉粗铅加工成本对比表</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>子编号</th>
+<th>项目</th>
+<th>侧吹熔融还原炉</th>
+<th></th>
+<th></th>
+<th>鼓风炉</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>吨铅消耗</td>
+<td>单位价格</td>
+<td>吨铅成本</td>
+<td>吨铅消耗</td>
+<td>单位价格</td>
+<td>吨铅成本</td>
+</tr>
+<tr>
+<td>1</td>
+<td>辅助材料</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>1.1</td>
+<td>石灰石</td>
+<td>0.065</td>
+<td>22</td>
+<td>1.43</td>
+<td>0.167</td>
+<td>22</td>
+<td>3.67</td>
+</tr>
+<tr>
+<td></td>
+<td>1.2</td>
+<td>铁矿石</td>
+<td></td>
+<td></td>
+<td></td>
+<td>0.120</td>
+<td>220</td>
+<td>26.40</td>
+</tr>
+<tr>
+<td></td>
+<td>1.3</td>
+<td>耐火材料</td>
+<td>0.008</td>
+<td>100</td>
+<td>0.80</td>
+<td>0.006</td>
+<td>100</td>
+<td>0.60</td>
+</tr>
+<tr>
+<td>2</td>
+<td>燃料</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2.1</td>
+<td>焦炭</td>
+<td></td>
+<td></td>
+<td></td>
+<td>380</td>
+<td>1.65</td>
+<td>627</td>
+</tr>
+<tr>
+<td></td>
+<td>2.2</td>
+<td>无烟煤粒</td>
+<td>105.83</td>
+<td>0.85</td>
+<td>89.96</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2.3</td>
+<td>焦炉煤气</td>
+<td>179.08</td>
+<td>0.60</td>
+<td>107.45</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>水电动力</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>3.1</td>
+<td>电力</td>
+<td>25.16</td>
+<td>0.56</td>
+<td>14.09</td>
+<td>65.12</td>
+<td>0.56</td>
+<td>36.47</td>
+</tr>
+<tr>
+<td></td>
+<td>3.2</td>
+<td>水</td>
+<td>5.2</td>
+<td>1.3</td>
+<td>6.76</td>
+<td>5.2</td>
+<td>1.3</td>
+<td>6.76</td>
+</tr>
+<tr>
+<td></td>
+<td>3.3</td>
+<td>氧气</td>
+<td>81.40</td>
+<td>0.53</td>
+<td>40.7</td>
+<td>75.54</td>
+<td>0.53</td>
+<td>40.04</td>
+</tr>
+<tr>
+<td>4</td>
+<td>工资福利</td>
+<td></td>
+<td></td>
+<td></td>
+<td>39.55</td>
+<td></td>
+<td></td>
+<td>45.48</td>
+</tr>
+<tr>
+<td>5</td>
+<td>折旧维修</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>5.1</td>
+<td>折旧费</td>
+<td></td>
+<td></td>
+<td>61.25</td>
+<td></td>
+<td></td>
+<td>17.25</td>
+</tr>
+<tr>
+<td></td>
+<td>5.2</td>
+<td>维修费</td>
+<td></td>
+<td></td>
+<td>110.22</td>
+<td></td>
+<td></td>
+<td>33.48</td>
+</tr>
+<tr>
+<td>合计</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>482.19</td>
+<td></td>
+<td></td>
+<td>837.15</td>
+</tr>
+</tbody>
+</table>
+<h3 id="环保效益">环保效益</h3>
+<p>侧吹熔融还原炉吨铅消耗焦炉煤气179.08 m3，煤气CO2产生量为63.76g/m3, SO2含量为300mg/m3；无烟煤粒105.83kg，无烟煤CO2产生量为2.57kg/kg无烟煤SO2产生量为8g/kg，合计吨铅产出CO2283.40kg，SO274.28g；鼓风炉吨铅焦耗380kg，焦炭吨铅焦耗为380kg，焦炭CO2产生量为2.97kg/kg，SO2产生量为1.6g/kg，吨铅产出CO21128.60kg，SO2608.0g吨。侧吹熔融还原炉CO2 和SO2排放量均较原有鼓风炉明显减少。</p>
+<h3 id="综合回收">综合回收</h3>
+<p>生产实践证明，侧吹熔融还原炉渣含Cu为0.3-0.5%,渣含Sb为0.03-0.05%,渣含Bi小于0.1%，Cu、Sb、Bi回收率较原有鼓风炉提高10-20%。</p>
+<h3 id="工艺特点">工艺特点</h3>
+<p>生产实践表明，侧吹熔融还原炉具有如下特点：</p>
+<ul>
+<li>⑴侧吹熔融还原炉是侧吹熔池熔炼在铅冶炼领域的应用和发展，具有很高的实践推广价值。</li>
+<li>⑵设备全部国产化，拥有自主知识产权。</li>
+<li>⑶自动化程度高，整个过程实现DCS在线监控。</li>
+<li>⑷炉体密封性好，加料口无外溢烟气，操作环境好。</li>
+<li>⑸无打风口作业，工人劳动强度低。</li>
+<li>⑹冶炼回收率高，达97%以上，渣含铅1.5% - 2.0%，较鼓风炉好。</li>
+<li>⑺节能效果好，充分利用了高铅渣的熔融潜热，较鼓风炉明显节能。</li>
+<li>⑻环保效益好，CO2 和SO2排放量均较鼓风炉明显减少。</li>
+<li>⑼经济效果好，成本较鼓风炉明显降低。</li>
+<li>⑽渣量少，炉渣含锌高，有利于烟化炉的生产。</li>
+<li>⑾铜、锑、铋等伴生有价金属回收率高。</li>
+</ul>
+<h3 id="结束语">结束语</h3>
+<p>试生产实践证明，侧吹熔融还原炉各项经济技术指标均优于鼓风炉，具有回收率高、直收率高、熔剂率低、能耗低、成本低、操作简单、自动化程度高、环保效果好的特点。试生产期间，停炉时间较多，今后的生产会更加顺利，侧吹熔融还原炉的各项经济技术指标将更好。</p>
+<h2 id="安阳岷山底吹熔炼-液态高铅渣底吹电热还原炼铅工艺产业化开发示范工程报告">安阳岷山底吹熔炼-液态高铅渣底吹电热还原炼铅工艺产业化开发示范工程报告</h2>
+<h3 id="项目背景">项目背景</h3>
+<ul>
+<li>我国铅冶炼技术正在向节能环保方向转变<br />
+上世纪，我国炼铅工业存在整体工艺装备水平落后、生产集中度低、清洁生产急待加强等问题。根据有关的统计资料，中国铅冶炼企业均采用传统的烧结—鼓风炉工艺。大型铅冶炼厂烧结过程采用的设备为烧结机，而数量众多的中小型铅厂采用的是更为简陋的烧结锅烧结。由于烧结过程产出的烟气含S02仅2～3%，难以制酸而直接排入大气。同时烧结过程由于烧结工艺的需要，大量返粉（含铅物料）的破碎造成了铅尘的飞扬，引起了操作岗位及周边环境铅尘严重超过国家卫生标准，导致职业病铅中毒頻頻发生。在有色冶金工业中铅冶炼的污染一直难以解决，它不但危及着从事铅冶炼的操作工人的健康，也对环境造成了严重的危害。多年来，在原国家计委、国家科技部等有关部门的大力支持下，2002年“氧气底吹熔炼-鼓风炉还原炼铅法”产业化试验获得成功，为彻底解决这一问题提供了技术支撑。<br />
+氧气底吹熔炼—鼓风炉还原炼铅法是中国有色工程设计研究总院和水口山有色金属公司联合开发的具有国际先进水平的炼铅技术，该工艺获得了国家科技进步二等奖和中国有色金属工业科技进步一等奖。应用该技术已有11个铅冶炼厂建成投产，还有17个冶炼厂处在施工建设阶段，另有6个厂家在设计中，这34个厂全部投产后，我国铅冶炼的污染状况将会根本改善。</li>
+<li>氧气底吹熔炼—鼓风炉还原炼铅工艺技术的特点<br />
+分析传统炼铅工艺，污染问题集中在烧结，氧气底吹熔炼—鼓风炉还原炼铅工艺采用氧气底吹熔炼取代烧结过程，解决了环保问题。由于富铅渣含硫（≤0.5%）远低于烧结块(含硫≥1.5%),鼓风炉还原富铅渣块,不仅烟尘率低且烟气S02含量远低于烧结块熔炼,因此,烟气仅通过除尘后就达标直接排放。<br />
+氧气底吹熔炼—鼓风炉还原炼铅工艺技术利用氧气底吹炉氧化，替代烧结工艺，有效解决了烧结过程中S02烟气和铅尘严重污染环境的问题。从采用该技术的工厂运行的情况看，该工艺具有许多优点：投资省，综合能耗低，环保好，金属回收率高，生产成本比传统工艺低，并低于国外新工艺。用其改造传统铅冶炼产业，能充分利用原有设施，投资更省，效益更佳，因此推广应用及其迅速。</li>
+<li>氧气底吹熔炼—鼓风炉还原炼铅工艺技术的缺点<br />
+氧气底吹熔炼—鼓风炉还原炼铅工艺技术立足于改善传统炼铅工艺的环境治理，氧气底吹熔炼脱硫率高，烟气SO2浓度高，适于双转双吸制酸，尾气达到国家排放标准，同时取消了烧结工艺及返料破碎筛分系统，显著减少了污染源，改善了环境。<br />
+但底吹炉产出的高铅渣需要用铸渣机冷却铸块，再送入鼓风炉中用焦炭还原。这样，一方面损失了高铅渣的物理热(约占鼓风炉能耗的15%)，另外鼓风炉送风要白白燃烧掉部分焦炭，致使鼓风炉焦率达13%～17%。2004年全国平均鼓风炉产吨铅焦耗达437kg，近期焦炭价格突升，使鼓风炉熔炼成本有所增加。且铸渣机和鼓风炉备料系统及炉顶，均存在粉尘的逸散源，需要完备的卫生除尘系统，为此需要进一步持续技术开发工作。<br />
+2007年液态高铅渣直接还原技术开发被确定为国家“十二五”重大产业技术开发项目，国家拨付专项资金予以支持。</li>
+<li>与其他炼铅工艺的对比<br />
+氧气底吹熔炼-底吹电热还原炼铅法在经济技术指标上达到或超过目前世界先进炼铅技术，实现综合指标的国际领先水平，与世界几种先进炼铅技术比较见下表。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>氧气底吹熔炼-底吹电热还原炼铅</th>
+<th>氧气底吹熔炼-鼓风炉还原炼铅</th>
+<th>KIVCET法</th>
+<th>QSL法</th>
+<th>顶吹熔炼法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规模</td>
+<td>8-20万t/a粗铅</td>
+<td>6-12万t/a粗铅</td>
+<td>8-10万t/a粗铅</td>
+<td>5-10万t/a粗铅</td>
+<td>3-10万t/a粗铅</td>
+</tr>
+<tr>
+<td>原料</td>
+<td>铅精矿及铅二次物料</td>
+<td>铅精矿及铅二次物料</td>
+<td>铅精矿及铅二次物料</td>
+<td>铅精矿及铅二次物料</td>
+<td>铅精矿及铅二次物料</td>
+</tr>
+<tr>
+<td>备料</td>
+<td>简单，只需制粒</td>
+<td>简单，只需制粒</td>
+<td>精矿必需深度干燥</td>
+<td>简单，只需制</td>
+<td>粒	简单，只需制粒</td>
+</tr>
+<tr>
+<td>烟气浓度(S02)</td>
+<td>8-10%</td>
+<td>8-10%</td>
+<td>15-20%</td>
+<td>8-10%</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>氧气</td>
+<td>300-400m3/t-Pb</td>
+<td>250-350m3/t-Pb</td>
+<td>500-600m3/t-Pb</td>
+<td>300-400m3/t-Pb</td>
+<td>0-100m3/t-Pb</td>
+</tr>
+<tr>
+<td>铅回收率</td>
+<td>98.5%</td>
+<td>97%-98%</td>
+<td>98%(设计值)</td>
+<td>97%-98%(设计值)</td>
+<td>97%-98%</td>
+</tr>
+<tr>
+<td>氧枪寿命</td>
+<td>&gt;6周</td>
+<td>&gt;6周</td>
+<td></td>
+<td>2-4周</td>
+<td>3-4d</td>
+</tr>
+<tr>
+<td>能耗</td>
+<td>0.28t标煤/t粗铅</td>
+<td>0.38t标煤/t粗铅</td>
+<td>0.4t标煤/t粗铅</td>
+<td>0.3t标煤/t粗铅</td>
+<td>0.4t标煤/t粗铅</td>
+</tr>
+<tr>
+<td>投资</td>
+<td>1.9亿元-2.4亿元</td>
+<td>2.0亿元-2.5亿元</td>
+<td>6-7亿元</td>
+<td>3.5-4.0亿元</td>
+<td>3.0-3.5亿元</td>
+</tr>
+<tr>
+<td>环境条件</td>
+<td>良好、消除了SO2和铅尘污染</td>
+<td>良好、消除了SO2和铅尘污染</td>
+<td>良好、消除了SO2和铅尘污染</td>
+<td>良好、消除了SO2和铅尘污染</td>
+<td>良好、消除了SO2和铅尘污染</td>
+</tr>
+</tbody>
+</table>
+<p>附注：Kivcet和QSL法铅回收率是有关工厂的设计指标，但实际生产渣含Pb5～7%，如按实际渣含铅数据计算，熔炼回收率与设计值差异较大。</p>
+<h3 id="研发和产业化内容">研发和产业化内容</h3>
+<ul>
+<li>
+<p>替代传统鼓风炉还原<br />
+鼓风炉操作已经有一百多年的历史，工艺畅通，技术可靠，操作简单。鼓风炉炉内有很好的温度梯度，烟气直接预热炉料，出炉烟气温度低，烟尘率低，热利用率好。<br />
+但鼓风炉实际生产中还存在以下一些问题：</p>
+<ul>
+<li>(1)提升炉门加料时，烟气外溢严重；</li>
+<li>(2)炉结严重，作业率降低；</li>
+<li>(3)捅风眼作业，工人劳动强度大；</li>
+<li>(4)工艺流程长，备料及上料系统较为复杂。</li>
+</ul>
+<p>底吹电热还原炉是替代传统鼓风炉的理想工艺选择，原因如下：</p>
+<ul>
+<li>(1)利用了高铅渣的熔融潜热，避免了二次熔化带来的燃料消耗，同时可实现无焦冶炼，低碳效果显著，节能效果显著；</li>
+<li>(2)炉体密封性好，加料口无烟气外逸，操作环境好；</li>
+<li>(3)无捅风眼作业，工人劳动强度低；</li>
+<li>(4)渣含铅低，冶炼回收率高；</li>
+<li>(5)环保效益好，SO2排放量明显减少；</li>
+<li>(6)炉寿长，作业率高；</li>
+<li>(7)经济效益好，生产成本明显降低；</li>
+<li>(8)有价金属(Ag、Au、Cu、Sb、Bi)回收率高；</li>
+<li>(9)缩短工艺流程，减少污染源；</li>
+<li>(10)取消了铸渣机，减小占地面积，节省设备及土地投资。</li>
+</ul>
+</li>
+<li>
+<p>新工艺流程及特点<br />
+氧气底吹炉产出的高铅渣，熔融状态下通过溜槽加入到底吹电热还原炉中，配以石灰石为熔剂造渣，粉煤为还原剂，不需昂贵的冶金焦，产出粗铅和还原终渣。高温烟气通过余热锅炉回收余热，表面冷却器降温，布袋收尘器收尘后，是否经尾气处理，视煤质含硫而定。<br />
+石墨电极装置提供还原反应所需热量，粉煤仅用于氧化铅还原，减少燃料消耗，同时采用工业氧熔炼，达到减少烟气量及减小烟尘率的目的，从而减小后续烟气处理系统以及提高铅直收率。</p>
+</li>
+<li>
+<p>底吹电热还原炉结构特点<br />
+底吹电热还原炉是由中国恩菲工程技术有限公司自主开发的创新设备，具有如下特点：<br />
+(1)底吹电热还原炉分为炉体、石墨电极装置和粉煤喷枪三大部分。<br />
+(2)炉体包括传动装置、炉壳、耐火炉衬、固定端托轮及滚圈、滑动端托轮及滚圈、进渣口装置、冷料口装置、出渣口装置、出烟口装置、转角控制装置、主副油枪等部件。<br />
+(3)炉体为筒形卧式结构，环形耐火材料砌筑形式有利于提高炉寿；炉壳采用轧制钢板卷制拼焊而成，端盖采用碟形封头结构。<br />
+(4)托轮采用滚动轴承结构，降低了电机的功率。<br />
+(5)还原炉底部砖体加厚并形成缓坡，这样有利于还原过程中粗铅的沉降和凝聚，提高了还原效率。<br />
+(6)电极孔密封装置的设计兼顾了炉体对密封、绝缘和绝磁的三项要求。</p>
+</li>
+</ul>
+<h3 id="研发和产业化目标">研发和产业化目标</h3>
+<ul>
+<li>(1)成功应用液态铅氧化渣直接还原技术及装置，达到降低工艺生产能耗、减少生产环节和节省建设投资，更进一步改善铅冶炼生产环境等目的；</li>
+<li>(2)新工艺要达到的主要技术指标是：粗铅单位产品综合能耗由氧气底吹熔炼-鼓风炉还原的380kgbm/t粗铅降至280kgbm/t粗铅；</li>
+<li>(3)粗铅冶炼回收率98.5%；</li>
+<li>(4)整体技术与装备水平达到国际领先水平，具备完全自主知识产权；</li>
+<li>(5)取得1～3项核心专利技术。</li>
+</ul>
+<h3 id="产业化示范工程">产业化示范工程</h3>
+<p>新工艺应用于河南安阳岷山有色金属有限责任公司富氧底吹强化熔炼节能技改项目。该项目经河南省安阳市发改委批复立项，生产规模为10万t/a电铅。<br />
+项目生产指标要求：铅冶炼综合能耗为420kgbm/t电铅，铅冶炼回收率为97.5%，总硫利用率为96.5%，循环水利用率为96%，电铅直流电耗&lt;110kWh/t电铅。<br />
+环境评价报告通过河南省环境保护局审批，文件号：豫环审[2008]227号，项目污染物排放总量控制要求：SO2150t。目前该项目正在建设中，预计2010年10月份投产。</p>
+<h3 id="节能减排效果">节能减排效果</h3>
+<p>氧气底吹熔炼-底吹电热还原炼铅法将粗铅综合能耗降至280kgbm/t-Pb，较传统烧结工艺综合能耗(630kgbm/t-Pb)降低约56%；较氧气底吹熔炼-鼓风炉还原炼铅工艺综合能耗(380kgbm/t-Pb)降低约26%。按照10万t/a粗铅生产规模计算，较烧结工艺每年可减少80500t二氧化碳排放，较氧气底吹熔炼-鼓风炉还原炼铅工艺每年可减少23000t二氧化碳排放。采用余热锅炉回收余热，如扣除余热发电，新工艺粗铅综合能耗进一步降低为240kgbm/t-Pb，是迄今为止能耗最低的炼铅工艺。</p>
+<h3 id="产业化推广目标和对行业低碳的贡献">产业化推广目标和对行业低碳的贡献</h3>
+<p>新工艺可广泛应用于国内铅冶炼新建和技改项目，包括已采用氧气底吹熔炼—鼓风炉还原炼铅法铅冶炼厂进一步的技术革新和采用传统工艺铅冶炼厂的技术改造，项目市场潜力大。另外，依靠中国恩菲工程技术有限公司的技术和价格优势，可以广泛开拓国外铅冶炼技术市场。<br />
+新工艺不使用昂贵的冶金焦，可实现无焦冶炼，粗铅单位生产成本大幅度下降，经济效益显著。<br />
+新工艺达到了节能减排、低碳创新、资源高效利用的目标，符合国家产业政策，具有充分的技术经济和社会效益，对我国铅冶炼行业可持续发展具有重要意义。</p>
+<h3 id="项目依托单位情况-1">项目依托单位情况</h3>
+<p>安阳岷山有色金属有限责任公司始建于1992年，是一家集矿山开发、冶炼、综合回收、产品销售开发为一体综合经营有色金属的民营企业，是国家发改委循环经济、清洁生产试点企业，河南省产业结构调整重点支持企业，年产值8亿元。<br />
+河南安阳岷山有色金属有限责任公司富氧底吹强化熔炼节能技改项目指标表</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>粗铅综合能耗</th>
+<th>排放二氧化碳</th>
+<th>排放二氧化硫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行业现状</td>
+<td>2009年国内平均水平</td>
+<td>460kgbm/t-Pb</td>
+<td>1058kg/t-Pb</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2009年国内先进水平</td>
+<td>380kgbm/t-Pb</td>
+<td>874kg/t-Pb</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2008年国外先进水平</td>
+<td>300kgbm/t-Pb</td>
+<td>690kg/t-Pb</td>
+<td></td>
+</tr>
+<tr>
+<td>项目目标</td>
+<td></td>
+<td>240kgbm/t-Pb</td>
+<td>552kg/t-Pb</td>
+<td></td>
+</tr>
+<tr>
+<td>预期效果</td>
+<td></td>
+<td>280kgbm/t-Pb</td>
+<td>644kg/t-Pb</td>
+<td></td>
+</tr>
+<tr>
+<td>行业准入条件</td>
+<td>粗铅综合能耗：≤400kgbm/t-Pb</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+    </article>
+    <script>
+  'use strict';
+  
+  function wrap(el, wrapper) {
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+  }
+
+  (function () {
+    var singleContentsElem = document.querySelector('.single__contents');
+    singleContentsElem ? 
+    singleContentsElem.querySelectorAll('pre > code').forEach(function(elem) {
+      var dataLang = elem.getAttribute('data-lang');
+      var dataLangWrapper = document.createElement('div');
+      var code = null;
+      var codeTitle = null;
+
+      if (dataLang && dataLang.includes(':')) {
+        code = dataLang.split(':')[0];
+        codeTitle = dataLang.split(':')[1];
+
+        dataLangWrapper.className = 'language-' + code;
+        dataLangWrapper.setAttribute('data-lang', codeTitle);
+
+        elem.className = 'language-' + code;
+        elem.setAttribute('data-lang', codeTitle);
+        elem.setAttribute('id', codeTitle);
+      } else if (!dataLang) {
+        dataLangWrapper.setAttribute('data-lang', 'Code');
+        dataLangWrapper.className = 'language-code';
+      }
+
+      if (!dataLang || codeTitle) {
+        wrap(elem.parentNode, dataLangWrapper);
+      }
+
+    }) : null;
+  })();
+
+  var langCodeElem = document.querySelectorAll('.language-code');
+  langCodeElem ? langCodeElem.forEach(function (elem) {
+    var newElem = document.createElement('span');
+    newElem.className = 'copy-to-clipboard';
+    newElem.setAttribute('title', 'Copy to clipboard');
+    elem.append(newElem);
+  }) : null;
+  
+</script>
+    
+<div class="donation">
+  <div class="donation__message">
+    Share on
+  </div>
+  <div class="donation__icons">
+    
+    
+    
+      
+        <a href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://service.weibo.com/share/share.php?url='+e(d.location.href)+'&title='+e(d.title),x=function(){if(!window.open(r,'weibo','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()" class="donation__item" target="_blank" rel="noreferer" title="Weibo" aria-label="Weibo Share Button" data-type="share">
+          <svg data-name="weibo" enable-background="new 0 0 24 24" viewBox="0 0 24 24" width="35" height="35" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="m23.977 8.171c.103 1.315-.123 2.891-1.006 2.969-1.442.127-.69-1.435-.671-2.375.053-2.725-2.312-4.618-4.629-4.618-.656 0-2.181.438-1.946-.924.106-.6.623-.592 1.14-.66 3.897-.51 6.838 2.125 7.112 5.608z"/><path d="m17.604 11.337c1.675.901 3.687 1.35 3.354 4.024-.614 4.929-11.054 8.24-17.575 4.618-1.788-.994-3.639-2.448-3.354-5.344.246-2.493 1.95-4.424 3.623-6.069 1.596-1.57 3.278-2.798 5.567-3.364 2.484-.614 3.218 1.422 2.549 3.43 1.439-.095 4.488-1.674 5.836-.132.594.68.367 1.897 0 2.837zm-1.811 6.333c.537-.598 1.076-1.51 1.073-2.572-.01-4.395-7.635-5.376-11.806-2.969-4.747 2.74-2.743 7.664 3.086 8.048 3.088.204 6.179-.868 7.647-2.507z"/><path d="m19.952 10.084c-.977.064-.612-.658-.671-1.517-.037-.529-.483-1.14-.872-1.32-.763-.352-1.945.256-1.945-.791 0-.778.686-.697 1.074-.726 3.555-.266 3.775 4.265 2.414 4.354z"/><path d="m12.842 14.768c1.429 4.248-6.017 6.223-7.379 2.573-.911-2.441 1.277-4.383 3.555-4.618 1.945-.201 3.395.775 3.824 2.045zm-3.422.726c.303.516 1 .145.939-.264-.073-.473-.945-.403-.939.264zm-1.207 2.243c1.252-.293 1.42-2.612-.47-2.177-1.587.364-1.28 2.586.47 2.177z"/></svg>
+        </a>
+      
+    
+      
+        <a href='https://telegram.me/share/url?url=' onclick='window.open(&apos;https://telegram.me/share/url?url=&apos;+encodeURIComponent(location.href)+&apos;&amp;bodytext=&amp;tags=&amp;text=&apos;+encodeURIComponent(document.title));return false;' class="donation__item" target="_blank" rel="noreferer" title="Telegram" aria-label="Telegram Share Button" data-type="share">
+          <svg data-name="telegram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="35" height="35"><path fill="currentColor" d="M 26.070313 3.996094 C 25.734375 4.011719 25.417969 4.109375 25.136719 4.21875 L 25.132813 4.21875 C 24.847656 4.332031 23.492188 4.902344 21.433594 5.765625 C 19.375 6.632813 16.703125 7.757813 14.050781 8.875 C 8.753906 11.105469 3.546875 13.300781 3.546875 13.300781 L 3.609375 13.277344 C 3.609375 13.277344 3.25 13.394531 2.875 13.652344 C 2.683594 13.777344 2.472656 13.949219 2.289063 14.21875 C 2.105469 14.488281 1.957031 14.902344 2.011719 15.328125 C 2.101563 16.050781 2.570313 16.484375 2.90625 16.722656 C 3.246094 16.964844 3.570313 17.078125 3.570313 17.078125 L 3.578125 17.078125 L 8.460938 18.722656 C 8.679688 19.425781 9.949219 23.597656 10.253906 24.558594 C 10.433594 25.132813 10.609375 25.492188 10.828125 25.765625 C 10.933594 25.90625 11.058594 26.023438 11.207031 26.117188 C 11.265625 26.152344 11.328125 26.179688 11.390625 26.203125 C 11.410156 26.214844 11.429688 26.21875 11.453125 26.222656 L 11.402344 26.210938 C 11.417969 26.214844 11.429688 26.226563 11.441406 26.230469 C 11.480469 26.242188 11.507813 26.246094 11.558594 26.253906 C 12.332031 26.488281 12.953125 26.007813 12.953125 26.007813 L 12.988281 25.980469 L 15.871094 23.355469 L 20.703125 27.0625 L 20.8125 27.109375 C 21.820313 27.550781 22.839844 27.304688 23.378906 26.871094 C 23.921875 26.433594 24.132813 25.875 24.132813 25.875 L 24.167969 25.785156 L 27.902344 6.65625 C 28.007813 6.183594 28.035156 5.742188 27.917969 5.3125 C 27.800781 4.882813 27.5 4.480469 27.136719 4.265625 C 26.769531 4.046875 26.40625 3.980469 26.070313 3.996094 Z M 25.96875 6.046875 C 25.964844 6.109375 25.976563 6.101563 25.949219 6.222656 L 25.949219 6.234375 L 22.25 25.164063 C 22.234375 25.191406 22.207031 25.25 22.132813 25.308594 C 22.054688 25.371094 21.992188 25.410156 21.667969 25.28125 L 15.757813 20.75 L 12.1875 24.003906 L 12.9375 19.214844 C 12.9375 19.214844 22.195313 10.585938 22.59375 10.214844 C 22.992188 9.84375 22.859375 9.765625 22.859375 9.765625 C 22.886719 9.3125 22.257813 9.632813 22.257813 9.632813 L 10.082031 17.175781 L 10.078125 17.15625 L 4.242188 15.191406 L 4.242188 15.1875 C 4.238281 15.1875 4.230469 15.183594 4.226563 15.183594 C 4.230469 15.183594 4.257813 15.171875 4.257813 15.171875 L 4.289063 15.15625 L 4.320313 15.144531 C 4.320313 15.144531 9.53125 12.949219 14.828125 10.71875 C 17.480469 9.601563 20.152344 8.476563 22.207031 7.609375 C 24.261719 6.746094 25.78125 6.113281 25.867188 6.078125 C 25.949219 6.046875 25.910156 6.046875 25.96875 6.046875 Z"/></svg>
+        </a>
+      
+    
+  </div>
+</div>
+
+    
+    
+<div class="whoami__gutter"></div>
+<hr class="hr-slash whoami-hr"/>
+<section class="whoami">
+  <div class="whoami__image-wrapper">
+    
+    
+      
+        <img data-src="/images/whoami/avatar.jpg" src="data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath fill='%23aaa' d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm-4.44-6.19l-2.35 3.02-1.56-1.88c-.2-.25-.58-.24-.78.01l-1.74 2.23c-.26.33-.02.81.39.81h8.98c.41 0 .65-.47.4-.8l-2.55-3.39c-.19-.26-.59-.26-.79 0z'/%3E%3C/svg%3E" alt="AustinZGX" class="lazyload whoami__image"/>
+      
+    
+  </div>
+  <div class="whoami__contents">
+    <div class="whoami__written-by">
+      WRITTEN BY
+    </div>
+    <div class="whoami__title">
+      
+        AustinZGX
+      
+    </div>
+    <div class="whoami__desc">
+      
+        Non_Ferrous Industry Architect
+      
+    </div>
+    <div class="whoami__social">
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="mailto:your@email.com" title="email" aria-label="email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"/></svg>
+      </a>
+      
+      
+      
+      <a href="http://example.org/" title="facebook" aria-label="facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" version="1.1">
+<g id="surface2747">
+<path fill="currentColor" d="M 11.664062 2.003906 C 6.621094 2.171875 2.375 6.25 2.023438 11.289062 C 1.65625 16.617188 5.46875 21.121094 10.507812 21.878906 L 10.507812 14.648438 L 8.890625 14.648438 C 8.164062 14.648438 7.578125 14.0625 7.578125 13.335938 C 7.578125 12.609375 8.164062 12.023438 8.890625 12.023438 L 10.503906 12.023438 L 10.503906 10.273438 C 10.503906 7.378906 11.914062 6.105469 14.324219 6.105469 C 14.679688 6.105469 14.984375 6.113281 15.242188 6.128906 C 15.878906 6.15625 16.371094 6.6875 16.371094 7.324219 C 16.371094 7.988281 15.835938 8.523438 15.171875 8.523438 L 14.730469 8.523438 C 13.710938 8.523438 13.351562 9.492188 13.351562 10.585938 L 13.351562 12.023438 L 15.222656 12.023438 C 15.8125 12.023438 16.265625 12.550781 16.175781 13.132812 L 16.066406 13.835938 C 15.992188 14.304688 15.589844 14.652344 15.113281 14.652344 L 13.351562 14.652344 L 13.351562 21.898438 C 18.234375 21.234375 22 17.0625 22 12 C 22 6.367188 17.339844 1.820312 11.664062 2.003906 Z M 11.664062 2.003906 "/>
+</g>
+</svg>
+
+      </a>
+      
+      
+      
+      
+      
+      <a href="https://github.com/zzossig/hugo-theme-zzo" title="github" aria-label="github">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 24 24" version="1.1">
+<g id="surface3680">
+<path fill="currentColor" d="M 10.898438 2.101562 C 6.300781 2.601562 2.601562 6.300781 2.101562 10.800781 C 1.601562 15.5 4.300781 19.699219 8.398438 21.300781 C 8.699219 21.398438 9 21.199219 9 20.800781 L 9 19.199219 C 9 19.199219 8.601562 19.300781 8.101562 19.300781 C 6.699219 19.300781 6.101562 18.101562 6 17.398438 C 5.898438 17 5.699219 16.699219 5.398438 16.398438 C 5.101562 16.300781 5 16.300781 5 16.199219 C 5 16 5.300781 16 5.398438 16 C 6 16 6.5 16.699219 6.699219 17 C 7.199219 17.800781 7.800781 18 8.101562 18 C 8.5 18 8.800781 17.898438 9 17.800781 C 9.101562 17.101562 9.398438 16.398438 10 16 C 7.699219 15.5 6 14.199219 6 12 C 6 10.898438 6.5 9.800781 7.199219 9 C 7.101562 8.800781 7 8.300781 7 7.601562 C 7 7.199219 7 6.601562 7.300781 6 C 7.300781 6 8.699219 6 10.101562 7.300781 C 10.601562 7.101562 11.300781 7 12 7 C 12.699219 7 13.398438 7.101562 14 7.300781 C 15.300781 6 16.800781 6 16.800781 6 C 17 6.601562 17 7.199219 17 7.601562 C 17 8.398438 16.898438 8.800781 16.800781 9 C 17.5 9.800781 18 10.800781 18 12 C 18 14.199219 16.300781 15.5 14 16 C 14.601562 16.5 15 17.398438 15 18.300781 L 15 20.898438 C 15 21.199219 15.300781 21.5 15.699219 21.398438 C 19.398438 19.898438 22 16.300781 22 12.101562 C 22 6.101562 16.898438 1.398438 10.898438 2.101562 Z M 10.898438 2.101562 "/>
+</g>
+</svg>
+
+      </a>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <a href="http://example.org/" title="twitter" aria-label="twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 32 32" version="1.1">
+<g id="surface676">
+<path fill="currentColor" d="M 28 8.558594 C 27.117188 8.949219 26.167969 9.214844 25.171875 9.332031 C 26.1875 8.722656 26.96875 7.757812 27.335938 6.609375 C 26.386719 7.171875 25.332031 7.582031 24.210938 7.804688 C 23.3125 6.847656 22.03125 6.246094 20.617188 6.246094 C 17.898438 6.246094 15.691406 8.453125 15.691406 11.171875 C 15.691406 11.558594 15.734375 11.933594 15.820312 12.292969 C 11.726562 12.089844 8.097656 10.128906 5.671875 7.148438 C 5.246094 7.875 5.003906 8.722656 5.003906 9.625 C 5.003906 11.332031 5.871094 12.839844 7.195312 13.722656 C 6.386719 13.695312 5.628906 13.476562 4.964844 13.105469 C 4.964844 13.128906 4.964844 13.148438 4.964844 13.167969 C 4.964844 15.554688 6.660156 17.546875 8.914062 17.996094 C 8.5 18.109375 8.066406 18.171875 7.617188 18.171875 C 7.300781 18.171875 6.988281 18.140625 6.691406 18.082031 C 7.316406 20.039062 9.136719 21.460938 11.289062 21.503906 C 9.605469 22.824219 7.480469 23.609375 5.175781 23.609375 C 4.777344 23.609375 4.386719 23.585938 4 23.539062 C 6.179688 24.9375 8.765625 25.753906 11.546875 25.753906 C 20.605469 25.753906 25.558594 18.25 25.558594 11.742188 C 25.558594 11.53125 25.550781 11.316406 25.542969 11.105469 C 26.503906 10.410156 27.339844 9.542969 28 8.558594 Z M 28 8.558594 "/>
+</g>
+</svg>
+
+      </a>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
+</section>
+<hr class="hr-slash whoami-hr" />
+
+
+    <section class="related">
+    
+    
+  </section>
+    <div class="grow"></div>
+<nav class="pagination-single">
+  
+    
+      <a href="http://austinzgx.github.io/metal/total/" class="pagination-single__left">
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M19 11H7.83l4.88-4.88c.39-.39.39-1.03 0-1.42-.39-.39-1.02-.39-1.41 0l-6.59 6.59c-.39.39-.39 1.02 0 1.41l6.59 6.59c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L7.83 13H19c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+        </div>
+        <div class="pagination-single__left-title">有色金属2020</div>      
+      </a>
+    
+    <div class="grow"></div>
+    
+      <a href="http://austinzgx.github.io/metal/ni/" class="pagination-single__right">      
+        <div class="pagination-single__right-title">Ni</div>
+        <div class="pagination-single__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M5 13h11.17l-4.88 4.88c-.39.39-.39 1.03 0 1.42.39.39 1.02.39 1.41 0l6.59-6.59c.39-.39.39-1.02 0-1.41l-6.58-6.6c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L16.17 11H5c-.55 0-1 .45-1 1s.45 1 1 1z"/></svg>
+        </div>
+      </a>
+    
+  
+</nav>
+    
+  
+
+    <div class="modal micromodal-slide" id="modal" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      
+      <div class="modal__content" id="modal-content">
+        <div id="mySwipe" class="swipe">
+          <div class="swipe-wrap">
+          </div>
+        </div>
+      </div>
+
+      <span class="modal__items">
+        
+        <span class="modal__header">
+          <div class="modal__paging" title="Page Info" aria-label="Current Page">
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--close" title="Close" aria-label="Close Button" data-micromodal-close>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="25" height="25"><path fill="currentColor" d="M 21.734375 19.640625 L 19.636719 21.734375 C 19.253906 22.121094 18.628906 22.121094 18.242188 21.734375 L 13 16.496094 L 7.761719 21.734375 C 7.375 22.121094 6.746094 22.121094 6.363281 21.734375 L 4.265625 19.640625 C 3.878906 19.253906 3.878906 18.628906 4.265625 18.242188 L 9.503906 13 L 4.265625 7.761719 C 3.882813 7.371094 3.882813 6.742188 4.265625 6.363281 L 6.363281 4.265625 C 6.746094 3.878906 7.375 3.878906 7.761719 4.265625 L 13 9.507813 L 18.242188 4.265625 C 18.628906 3.878906 19.257813 3.878906 19.636719 4.265625 L 21.734375 6.359375 C 22.121094 6.746094 22.121094 7.375 21.738281 7.761719 L 16.496094 13 L 21.734375 18.242188 C 22.121094 18.628906 22.121094 19.253906 21.734375 19.640625 Z"/></svg>
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--full" title="Full Screen" aria-label="Full Screen Button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25"><path fill="currentColor" d="M 5 3 C 3.9069372 3 3 3.9069372 3 5 L 3 8 A 1.0001 1.0001 0 1 0 5 8 L 5 5 L 8 5 A 1.0001 1.0001 0 1 0 8 3 L 5 3 z M 16 3 A 1.0001 1.0001 0 1 0 16 5 L 19 5 L 19 8 A 1.0001 1.0001 0 1 0 21 8 L 21 5 C 21 3.9069372 20.093063 3 19 3 L 16 3 z M 3.984375 14.986328 A 1.0001 1.0001 0 0 0 3 16 L 3 19 C 3 20.093063 3.9069372 21 5 21 L 8 21 A 1.0001 1.0001 0 1 0 8 19 L 5 19 L 5 16 A 1.0001 1.0001 0 0 0 3.984375 14.986328 z M 19.984375 14.986328 A 1.0001 1.0001 0 0 0 19 16 L 19 19 L 16 19 A 1.0001 1.0001 0 1 0 16 21 L 19 21 C 20.093063 21 21 20.093063 21 19 L 21 16 A 1.0001 1.0001 0 0 0 19.984375 14.986328 z"/></svg>
+          </div>
+          <div class="modal__icon modal__toolbar modal__toolbar--normal" title="Normal Screen" aria-label="Normal Screen Button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="25" height="25"><path fill="currentColor" d="M 16.96875 4.972656 C 15.867188 4.988281 14.984375 5.894531 15 7 L 15 15 L 7 15 C 6.277344 14.988281 5.609375 15.367188 5.246094 15.992188 C 4.878906 16.613281 4.878906 17.386719 5.246094 18.007813 C 5.609375 18.632813 6.277344 19.011719 7 19 L 19 19 L 19 7 C 19.007813 6.460938 18.796875 5.941406 18.414063 5.558594 C 18.03125 5.175781 17.511719 4.964844 16.96875 4.972656 Z M 32.96875 4.972656 C 31.921875 4.988281 31.0625 5.8125 31.003906 6.859375 C 31 6.90625 31 6.953125 31 7 L 31 19 L 43 19 C 43.066406 19 43.132813 19 43.199219 18.992188 C 44.269531 18.894531 45.070313 17.972656 45.015625 16.902344 C 44.964844 15.828125 44.074219 14.988281 43 15 L 35 15 L 35 7 C 35.007813 6.460938 34.796875 5.941406 34.414063 5.558594 C 34.03125 5.175781 33.511719 4.964844 32.96875 4.972656 Z M 7 31 C 6.277344 30.988281 5.609375 31.367188 5.246094 31.992188 C 4.878906 32.613281 4.878906 33.386719 5.246094 34.007813 C 5.609375 34.632813 6.277344 35.011719 7 35 L 15 35 L 15 43 C 14.988281 43.722656 15.367188 44.390625 15.992188 44.753906 C 16.613281 45.121094 17.386719 45.121094 18.007813 44.753906 C 18.632813 44.390625 19.011719 43.722656 19 43 L 19 31 Z M 31 31 L 31 43 C 30.988281 43.722656 31.367188 44.390625 31.992188 44.753906 C 32.613281 45.121094 33.386719 45.121094 34.007813 44.753906 C 34.632813 44.390625 35.011719 43.722656 35 43 L 35 35 L 43 35 C 43.722656 35.011719 44.390625 34.632813 44.753906 34.007813 C 45.121094 33.386719 45.121094 32.613281 44.753906 31.992188 C 44.390625 31.367188 43.722656 30.988281 43 31 Z"/></svg>
+          </div>
+        </span>
+        
+        <div class="modal__icon modal__arrow modal__arrow--left" title="Arrow Left" aria-label="Arrow Left Button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="28" height="28"><path fill="currentColor" d="M 23.28125 11 L 10 10 L 10 6.851563 C 10 6.523438 9.839844 6.277344 9.519531 6.03125 C 9.199219 5.949219 8.878906 5.949219 8.640625 6.113281 C 5.359375 8.410156 2.238281 12.257813 2.160156 12.421875 C 2.082031 12.578125 2.007813 12.8125 2.003906 12.976563 C 2.003906 12.980469 2 12.988281 2 12.992188 C 2 13.15625 2.078125 13.402344 2.160156 13.484375 C 2.238281 13.648438 5.28125 17.507813 8.640625 19.804688 C 8.960938 19.96875 9.28125 20.050781 9.519531 19.886719 C 9.839844 19.722656 10 19.476563 10 19.148438 L 10 16 L 23.28125 15 C 23.679688 14.679688 24 13.875 24 12.992188 C 24 12.195313 23.761719 11.320313 23.28125 11 Z"/></svg>
+        </div>
+        
+        <div class="modal__icon modal__arrow modal__arrow--right" title="Arrow Right" aria-label="Arrow Right Button">
+
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="28" height="28"><path fill="currentColor" d="M 2.71875 11.023438 L 16 10.023438 L 16 6.875 C 16 6.546875 16.160156 6.300781 16.480469 6.054688 C 16.800781 5.972656 17.121094 5.972656 17.359375 6.136719 C 20.640625 8.433594 23.761719 12.28125 23.839844 12.445313 C 23.917969 12.601563 23.992188 12.835938 23.996094 13 C 23.996094 13.003906 24 13.011719 24 13.015625 C 24 13.179688 23.921875 13.425781 23.839844 13.507813 C 23.761719 13.671875 20.71875 17.53125 17.359375 19.828125 C 17.039063 19.992188 16.71875 20.074219 16.480469 19.910156 C 16.160156 19.746094 16 19.5 16 19.171875 L 16 16.023438 L 2.71875 15.023438 C 2.320313 14.703125 2 13.898438 2 13.015625 C 2 12.21875 2.238281 11.34375 2.71875 11.023438 Z"/></svg>
+        </div>
+
+        <div class="modal__caption">
+          <div class="modal__caption--text">
+          </div>
+        </div>
+
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<script defer src="/js/swipe.min.d70095d96ef6a016133ea2c732c5d4713539d335b739178e356af46f54cf0a16.js"></script>
+
+<script defer src="/js/micromodal.min.de01b44b2f383056bbcaf6ee921fd385d79108ec1129afd0eb2f3f5a07e11f45.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  
+   
+  var docElem = document.documentElement;
+
+   
+  function openFullscreen() {
+    if (docElem.requestFullscreen) {
+      docElem.requestFullscreen();
+    } else if (docElem.mozRequestFullScreen) {  
+      docElem.mozRequestFullScreen();
+    } else if (docElem.webkitRequestFullscreen) {  
+      docElem.webkitRequestFullscreen();
+    } else if (docElem.msRequestFullscreen) {  
+      docElem.msRequestFullscreen();
+    }
+  }
+
+   
+  function closeFullscreen() {
+    if (document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement) {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {  
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {  
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {  
+        document.msExitFullscreen();
+      }
+    }
+  }
+
+  var modal = document.getElementById('modal');
+  var galleryContainerElem = document.querySelector('.gallery__container');
+  var swipeWrapElem = document.querySelector('.swipe-wrap');
+  var mySwipeElem = document.getElementById('mySwipe');
+  var arrowLeftElem = document.querySelector('.modal__arrow--left');
+  var arrowRightElem = document.querySelector('.modal__arrow--right');
+  var closeElem = document.querySelector('.modal__toolbar--close');
+  var fullElem = document.querySelector('.modal__toolbar--full');
+  var normalElem = document.querySelector('.modal__toolbar--normal');
+  var captionElem = document.querySelector('.modal__caption');
+  var pagingElem = document.querySelector('.modal__paging');
+  var itemsElem = document.querySelector('.modal__items');
+  var imgTotalNum = null;
+  var myFadeTimeout = null;
+  var mySwipe = null;
+  var keydownFunction = function (e) {
+    if (e.key === 'ArrowRight') {
+      if (modal && modal.classList.contains('is-open')) {
+        mySwipe.next();
+      }
+    } else if (e.key === 'ArrowLeft') {
+      if (modal && modal.classList.contains('is-open')) {
+        mySwipe.prev();
+      }
+    }
+  }
+
+  if (galleryContainerElem) {
+    imgTotalNum = galleryContainerElem.querySelectorAll('img').length;
+  } else {
+    galleryContainerElem = document.querySelector('.single__contents');
+    imgTotalNum = galleryContainerElem.querySelectorAll('img').length;
+  }
+
+  MicroModal.init({
+    onClose: function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+        closeFullscreen();
+      }
+      window.removeEventListener('keydown', keydownFunction);
+    },
+    disableScroll: true,
+    disableFocus: true,
+    awaitOpenAnimation: false,
+    awaitCloseAnimation: false,
+    debugMode: false,
+  });
+
+  var imageLoad = function(src) {
+    return new Promise(function(resolve, reject) {
+      var newImg = new Image;
+      newImg.onload = function() {
+        resolve(newImg);
+      }
+      newImg.onerror = reject;
+      newImg.src = src;
+    });
+  }
+
+  galleryContainerElem.querySelectorAll('img').forEach(function (elem, idx) {
+    elem.style.cursor = 'pointer';
+
+    var clonedElem = elem.cloneNode(true);
+    clonedElem.style.maxHeight = '100%';
+    clonedElem.style.maxWidth = '100%';
+    clonedElem.onclick = function (e) {
+      e.stopPropagation();
+    }
+
+    var wrapper = document.createElement('div');
+    wrapper.style.width = '100%';
+    wrapper.style.height = '100vh';
+    wrapper.setAttribute('data-micromodal-close', '');
+    wrapper.onclick = function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+    }
+    wrapper.onmouseenter = function () {
+      clearTimeout(myFadeTimeout);
+      fadeIn(itemsElem, 200);
+    };
+    wrapper.onmouseleave = function () {
+      myFadeTimeout = setTimeout(function () {
+        fadeOut(itemsElem, 200);
+      }, 2500);
+    }
+    wrapper.ontouchstart = function() {
+      fadeIn(itemsElem, 200);
+    }
+    wrapper.append(clonedElem);
+    swipeWrapElem.append(wrapper);
+
+    elem.addEventListener('click', async function (e) {
+      MicroModal.show('modal');
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+
+      var imgSrc = e.target.getAttribute('data-src') || e.target.getAttribute('src');
+      var img = await imageLoad(imgSrc);
+      clonedElem.style.width = img.width + 'px';
+      clonedElem.style.height = img.height + 'px';
+      
+      
+      mySwipe = new Swipe(mySwipeElem, {
+        startSlide: idx,
+        draggable: true,
+        autoRestart: false,
+        continuous: false,
+        disableScroll: true,
+        stopPropagation: true,
+        callback: async function (index, element) {
+          
+          var imgElem = element.querySelector('img');
+          var imgSrc = imgElem.getAttribute('data-src') || imgElem.getAttribute('src');
+          var img = await imageLoad(imgSrc);
+          imgElem.style.width = img.width + 'px';
+          imgElem.style.height = img.height + 'px';
+
+          
+          if (captionElem && imgElem) {
+            var caption = null;
+            if (imgElem.getAttribute('data-caption')) {
+              caption = imgElem.getAttribute('data-caption');
+            } else if (imgElem.getAttribute('title')) {
+              caption = imgElem.getAttribute('title');
+            } else if (imgElem.getAttribute('alt')) {
+              caption = imgElem.getAttribute('alt');
+            } else {
+              caption = imgElem.getAttribute('src');
+            }
+
+            captionElem.querySelector('.modal__caption--text').innerText = caption;
+            pagingElem.innerText = (index + 1) + ' / ' + imgTotalNum;
+
+            clearTimeout(myFadeTimeout);
+            fadeIn(itemsElem, 200);
+          }
+        },
+      });
+
+      fadeIn(itemsElem);
+
+      
+      if (captionElem) {
+        var caption = null;
+        if (e.target.getAttribute('data-caption')) {
+          caption = e.target.getAttribute('data-caption');
+        } else if (e.target.getAttribute('title')) {
+          caption = e.target.getAttribute('title');
+        } else if (e.target.getAttribute('alt')) {
+          caption = e.target.getAttribute('alt');
+        } else {
+          caption = e.target.getAttribute('src');
+        }
+
+        captionElem.querySelector('.modal__caption--text').innerText = caption;
+        pagingElem.innerText = (idx + 1) + ' / ' + imgTotalNum;
+      }
+
+      if (normalElem && fullElem) {
+        normalElem.style.zIndex = -1;
+        normalElem.style.opacity = 0;
+        fullElem.style.zIndex = 25;
+        fullElem.style.opacity = 1;
+      }
+    });
+
+    window.addEventListener('keydown', keydownFunction);
+  });
+
+  arrowLeftElem ?
+    arrowLeftElem.addEventListener('click', function (e) {
+      if (mySwipe) {
+        mySwipe.prev();
+      }
+    }) : null;
+  arrowRightElem ?
+    arrowRightElem.addEventListener('click', function (e) {
+      if (mySwipe) {
+        mySwipe.next();
+      }
+    }) : null;
+
+  closeElem ?
+    closeElem.addEventListener('click', function () {
+      if (mySwipe) {
+        mySwipe.kill();
+        mySwipe = null;
+      }
+      closeFullscreen();
+      MicroModal.close('modal');
+    }) : null;
+
+  fullElem ?
+    fullElem.addEventListener('click', function (e) {
+      openFullscreen();
+      if (normalElem) {
+        normalElem.style.zIndex = 25;
+        normalElem.style.opacity = 1;
+        fullElem.style.zIndex = -1;
+        fullElem.style.opacity = 0;
+      }
+    }) : null;
+
+  normalElem ?
+    normalElem.addEventListener('click', function (e) {
+      closeFullscreen();
+      if (fullElem) {
+        fullElem.style.zIndex = 25;
+        fullElem.style.opacity = 1;
+        normalElem.style.zIndex = -1;
+        normalElem.style.opacity = 0;
+      }
+    }) : null;
+  
+});
+</script>
+
+    <div class="hide">
+      
+
+<div class="search">
+  <span class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+  </span>
+  <input id="search" aria-label="Site Search" class="input" type="text" placeholder="Search" autocomplete="off">
+  <div id="search-results" class="dropdown">
+    <div id="search-menu" class="dropdown-menu" role="menu">
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</main>
+
+
+<aside class="single__side main-side">
+  
+
+
+<section class="sidebar hide">
+  <script>document.querySelector('.sidebar').classList.remove('hide')</script>
+  <div class="toc__flexbox" data-position="fixed">
+    <h6 class="toc__title">What&#39;s on this Page</h6>
+    
+      <label class="switch">
+        <input id="toggle-toc" aria-label="Toggle TOC" type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+    
+  </div>
+  <div class="toc " data-dir="ltr" data-folding="false">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#工艺流程">工艺流程</a></li>
+    <li><a href="#主要生产企业">主要生产企业</a></li>
+    <li><a href="#2016年国家科技进步二等奖">2016年国家科技进步二等奖</a>
+      <ul>
+        <li><a href="#项背景与研发思路">项背景与研发思路</a></li>
+        <li><a href="#创新点及相关技术内容">创新点及相关技术内容</a></li>
+        <li><a href="#应用推广和经济社会效益">应用推广和经济社会效益</a></li>
+      </ul>
+    </li>
+    <li><a href="#侧吹浸没燃烧熔池熔炼技术ssc">侧吹浸没燃烧熔池熔炼技术(SSC)</a>
+      <ul>
+        <li><a href="#工艺原理">工艺原理</a></li>
+        <li><a href="#侧吹炉">侧吹炉</a></li>
+        <li><a href="#关键技术">关键技术</a></li>
+        <li><a href="#技术特点">技术特点</a></li>
+        <li><a href="#再生铅处理工艺">再生铅处理工艺</a></li>
+      </ul>
+    </li>
+    <li><a href="#氧气底吹熔炼-底吹熔融电热还原炼铅工艺低碳技术创新和产业化实施方案">氧气底吹熔炼-底吹熔融电热还原炼铅工艺低碳技术创新和产业化实施方案</a>
+      <ul>
+        <li><a href="#专项行业背景">专项行业背景</a></li>
+        <li><a href="#专项总体思路及主要内容">专项总体思路及主要内容</a></li>
+        <li><a href="#专项的研发和产业化目标">专项的研发和产业化目标</a></li>
+        <li><a href="#专项产业化示范工程">专项产业化示范工程</a></li>
+        <li><a href="#节能减排效果及预期经济效益">节能减排效果及预期经济效益</a></li>
+        <li><a href="#产业化推广目标及社会效益">产业化推广目标及社会效益</a></li>
+        <li><a href="#项目依托单位情况">项目依托单位情况</a></li>
+        <li><a href="#投资估算">投资估算</a></li>
+      </ul>
+    </li>
+    <li><a href="#济源金利侧吹熔融还原炉炼铅工艺试生产报告">济源金利侧吹熔融还原炉炼铅工艺试生产报告</a>
+      <ul>
+        <li><a href="#工艺">工艺</a></li>
+        <li><a href="#金利炉冶炼回收率">金利炉冶炼回收率</a></li>
+        <li><a href="#回收率和直收率">回收率和直收率</a></li>
+        <li><a href="#能耗">能耗</a></li>
+        <li><a href="#经济效益">经济效益</a></li>
+        <li><a href="#环保效益">环保效益</a></li>
+        <li><a href="#综合回收">综合回收</a></li>
+        <li><a href="#工艺特点">工艺特点</a></li>
+        <li><a href="#结束语">结束语</a></li>
+      </ul>
+    </li>
+    <li><a href="#安阳岷山底吹熔炼-液态高铅渣底吹电热还原炼铅工艺产业化开发示范工程报告">安阳岷山底吹熔炼-液态高铅渣底吹电热还原炼铅工艺产业化开发示范工程报告</a>
+      <ul>
+        <li><a href="#项目背景">项目背景</a></li>
+        <li><a href="#研发和产业化内容">研发和产业化内容</a></li>
+        <li><a href="#研发和产业化目标">研发和产业化目标</a></li>
+        <li><a href="#产业化示范工程">产业化示范工程</a></li>
+        <li><a href="#节能减排效果">节能减排效果</a></li>
+        <li><a href="#产业化推广目标和对行业低碳的贡献">产业化推广目标和对行业低碳的贡献</a></li>
+        <li><a href="#项目依托单位情况-1">项目依托单位情况</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+
+</aside>
+
+<script>
+  
+  
+  
+
+  var enableToc = JSON.parse("true");
+  var toc = JSON.parse("null");
+  var tocPosition = JSON.parse("\"inner\"");
+  
+  var singleMainElem = document.querySelector('.single__main');
+  var singleSideElem = document.querySelector('.single__side');
+
+  enquire.register("screen and (max-width: 769px)", {
+    match: function () {
+      if ((enableToc || toc) && tocPosition !== "outer") {
+        if (singleMainElem && singleSideElem) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+          singleSideElem.classList.remove('main-side');
+          singleSideElem.classList.add('hide');
+        }
+      } else if (tocPosition === "outer") {
+        if (singleMainElem && !singleMainElem.classList.contains('main-main')) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+        }
+        if (singleSideElem && !singleSideElem.classList.contains('hide')) {
+          singleSideElem.classList.add('hide');
+        }
+      }
+    },
+    unmatch: function () {
+      if ((enableToc || toc) && tocPosition !== "outer") {
+        singleMainElem.classList.remove('main');
+        singleMainElem.classList.add('main-main');
+        singleSideElem.classList.remove('hide');
+        singleSideElem.classList.add('main-side');
+      } else if (tocPosition === "outer") {
+        if (singleMainElem && !singleMainElem.classList.contains('main-main')) {
+          singleMainElem.classList.remove('main-main');
+          singleMainElem.classList.add('main');
+        }
+        if (singleSideElem && !singleSideElem.classList.contains('hide')) {
+          singleSideElem.classList.add('hide');
+        }
+      }
+
+      document.getElementsByClassName('navbar__burger')[0].classList.remove('is-active');
+      document.getElementsByClassName('navbar__menu')[0].classList.remove('is-active');
+      document.getElementsByClassName('mobile-search')[0].classList.add('hide');
+    },
+    setup: function () { },
+    deferSetup: true,
+    destroy: function () { },
+  });
+</script>
+
+
+
+
+<script defer src="/js/clipboard.min.1626706afc88d95ebe1173b553ec732c6dc82a576989315fdf5e7779af738a44.js"></script>
+
+<script defer src="/js/helper/getParents.min.js"></script>
+
+<script defer src="/js/helper/closest.min.js"></script>
+
+<script defer src="/js/helper/prev.min.js"></script>
+
+<script defer src="/js/helper/prop.min.js"></script>
+
+<script defer src="/js/helper/fadeinout.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  'use strict';
+
+  window.onload = function() {
+    var navbar = document.querySelector('.navbar');
+    var singleContentsElem = document.querySelector('.single__contents');
+
+    
+    
+    
+    var enableBusuanzi = JSON.parse("false");
+    var busuanziPagePV = JSON.parse("true");
+    
+    if (enableBusuanzi && busuanziPagePV) {
+      var pagePvElem = document.querySelector('#busuanzi_value_page_pv');
+      pagePvElem.textContent = pagePvElem.textContent.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    }    
+    
+
+
+    
+    
+    
+    
+    
+    
+    var enableToc = JSON.parse("true");
+    var toc = JSON.parse("null");
+    var hideToc = JSON.parse("false");
+    var tocFlexbox = document.querySelector('.toc__flexbox');
+    var tocFlexboxOuter = document.querySelector('.toc__flexbox--outer');
+    var tocFolding = JSON.parse("false");
+    
+    if ((enableToc || toc) && document.querySelector('.toc')) {
+      var tableOfContentsElem = document.querySelector('.toc').querySelector('#TableOfContents');
+
+      if (false === tocFolding) {
+
+      } else {
+        tableOfContentsElem.querySelectorAll('ul') ?
+          tableOfContentsElem.querySelectorAll('ul').forEach(function (rootUl) {
+            rootUl.querySelectorAll('li').forEach(function (liElem) {
+              liElem.querySelectorAll('ul').forEach(function (ulElem) {
+                ulElem.style.display = 'none';
+              });
+            });
+          }) : null;
+      }
+
+      if (tableOfContentsElem) {
+        if (tableOfContentsElem.querySelectorAll('a').length > 0) {
+          tableOfContentsElem.querySelectorAll('a').forEach(function (elem) {
+            elem.addEventListener('click', function () {
+              var id = elem.getAttribute('id');
+              navbar.classList.remove('navbar--show');
+              navbar.classList.remove('navbar--hide');
+              navbar.classList.add('navbar--hide');
+
+              document.querySelector('.toc').querySelectorAll('a').forEach(function (elem) {
+                elem.classList.remove('active');
+              });
+              elem.classList.add('active');
+
+              var curElem = tableOfContentsElem.querySelector('[href="#' + id + '"]');
+              if (curElem && curElem.nextElementSibling) {
+                curElem.nextElementSibling.style.display = 'block';
+              }
+              if (curElem) {
+                getParents(curElem, 'ul') ?
+                  getParents(curElem, 'ul').forEach(function (elem) {
+                    elem.style.display = 'block';
+                  }) : null;
+              }
+            });
+          });
+        } else {
+          if (tocFlexbox) {
+            tocFlexbox.setAttribute('data-position', '');
+            if (!tocFlexbox.classList.contains('hide')) {
+              tocFlexbox.classList.add('hide');
+            }
+          }
+          if (tocFlexboxOuter) {
+            tocFlexboxOuter.setAttribute('data-position', '');
+            if (!tocFlexboxOuter.classList.contains('hide')) {
+              tocFlexboxOuter.classList.add('hide');
+            }
+          }
+        }
+      }
+
+      
+      var toggleTocElem = document.getElementById("toggle-toc");
+      var visibleTocElem = document.getElementById('visible-toc');
+      var tocElem = document.querySelector('.toc');
+      var mainElem = document.querySelector('main');
+      var sideElem = document.querySelector('side');
+      var tocFlexboxElem = document.querySelector('.toc__flexbox');
+
+      toggleTocElem ? 
+      toggleTocElem.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          if (tocElem) {
+            fadeIn(tocElem, 200);
+          }
+          if (tocFlexboxElem) {
+            tocFlexboxElem.setAttribute('data-position', 'fixed');
+          }
+
+          if (mainElem) {
+            mainElem.classList.remove('main-main');
+            mainElem.classList.remove('main');
+            mainElem.classList.add('main-main');
+          }
+          if (sideElem) {
+            sideElem.classList.remove('main-side');
+          }
+        } else {
+          if (tocElem) {
+            fadeOut(tocElem, 200);
+          }
+          if (tocFlexboxElem) {
+            tocFlexboxElem.setAttribute('data-position', 'absolute');
+          }
+
+          if (mainElem) {
+            mainElem.classList.remove('main-main');
+            mainElem.classList.remove('main');
+            mainElem.classList.add('main');
+          }
+          if (sideElem) {
+            sideElem.classList.remove('main-side');
+          }
+        }
+      }) : null;
+
+      visibleTocElem ?
+      visibleTocElem.addEventListener('change', function(e) {
+        if (e.target.checked) {
+          if (tocElem) {
+            fadeIn(tocElem, 200);
+          }
+        } else {
+          if (tocElem) {
+            fadeOut(tocElem, 200);
+          }
+        }
+      }) : null;
+    }
+    
+
+
+    
+    var tables = document.querySelectorAll('.single__contents > table');
+    for (let i = 0; i < tables.length; i++) {
+      var table = tables[i];
+      var wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+      table.parentElement.replaceChild(wrapper, table);
+      wrapper.appendChild(table);
+    }
+    
+
+
+    
+    var text, clip = new ClipboardJS('.anchor');
+    var headers = singleContentsElem.querySelectorAll("h1, h2, h3, h4");
+
+    
+    var languagedir = JSON.parse("\"ltr\"");
+
+    headers ? 
+    headers.forEach(function (elem) {
+      var url = encodeURI(document.location.origin + document.location.pathname);
+      var link = url + "#" + elem.getAttribute('id');
+      var newElemOuter = document.createElement('span');
+      newElemOuter.classList.add('anchor');
+      newElemOuter.classList.add('hide');
+      newElemOuter.setAttribute('data-clipboard-text', link);
+      newElemOuter.style.position = 'relative';
+
+      var newElemInner = document.createElement('span');
+      newElemInner.style.fontSize = '1rem';
+      newElemInner.style.position = 'absolute';
+      newElemInner.style.top = '50%';
+      newElemInner.style.transform = 'translateY(-50%)';
+      newElemInner.innerText = "🔗";
+
+      if (languagedir === "rtl") {
+        newElemInner.style.left = '-2rem';
+      } else {
+        newElemInner.style.right = '-2rem';
+      }
+
+      newElemOuter.append(newElemInner);
+      elem.append(newElemOuter);
+
+      elem.addEventListener('mouseenter', function() {
+        this.querySelector('.anchor').classList.remove('hide');
+      });
+      elem.addEventListener('mouseleave', function () {
+        this.querySelector('.anchor').classList.add('hide');
+      });
+    }) : null;
+
+    document.querySelectorAll('.anchor').forEach(function(elem) {
+      elem.addEventListener('mouseleave', function() {
+        elem.setAttribute('aria-label', null);
+        elem.classList.remove('tooltipped');
+        elem.classList.remove('tooltipped-s');
+        elem.classList.remove('tooltipped-w');
+      });
+    });
+
+    clip.on('success', function (e) {
+      e.clearSelection();
+      e.trigger.setAttribute('aria-label', 'Link copied to clipboard!');
+      e.trigger.classList.add('tooltipped');
+      e.trigger.classList.add('tooltipped-s');
+    });
+    
+
+
+    
+    var clipInit = false;
+    var preChromaElem = document.querySelectorAll('pre.chroma');
+    var langCodeElem = document.querySelectorAll('.language-code');
+    var dolorCodeElem = document.querySelectorAll('div.language-\\$');
+    var gtCodeElem = document.querySelectorAll('div.language-\\>');
+
+    var makeClipboard = function(elem) {
+      var code = elem,
+        text = elem.textContent;
+        
+      if (text.length > 15) {
+        if (!clipInit) {
+          var text, clip = new ClipboardJS('.copy-to-clipboard', {
+            text: function (trigger) {
+              var codeElem = prev(trigger).querySelectorAll('code');
+              if (codeElem.length > 1) {
+                text = prev(trigger).querySelector('code[class^="language-"]').textContent;
+              } else {
+                text = prev(trigger).querySelector('code').textContent;
+              }
+
+              return text.replace(/^\$\s/gm, '');
+            }
+          });
+
+          var inPre;
+          clip.on('success', function (e) {
+            e.clearSelection();
+            inPre = prop(e.trigger.parentNode, 'tagName') == 'PRE';
+            e.trigger.setAttribute('aria-label', 'Copied to clipboard!');
+            e.trigger.classList.add('tooltipped');
+            e.trigger.classList.add('tooltipped-w');
+          });
+
+          clip.on('error', function (e) {
+            inPre = prop(e.trigger.parentNode, 'tagName') == 'PRE';
+            e.trigger.setAttribute('aria-label', e.action.toString());
+            e.trigger.classList.add('tooltipped');
+            e.trigger.classList.add('tooltipped-w');
+          });
+
+          clipInit = true;
+        }
+
+        var notAllowedClass = ['language-mermaid', 'language-viz', 'language-wave', 'language-chart', 'language-msc', 'language-flowchart'];
+        var isNotAllowedIncluded = false;
+        var curClassName = code.getAttribute('class');
+
+        for (var i = 0; i < notAllowedClass.length; i++) {
+          if (curClassName && curClassName.startsWith(notAllowedClass[i])) {
+            isNotAllowedIncluded = true;
+            break;
+          }
+        }
+
+        if (!isNotAllowedIncluded) {
+          if (curClassName) {
+            var newClipboardElem = document.createElement('span');
+            newClipboardElem.setAttribute('class', 'copy-to-clipboard');
+            newClipboardElem.setAttribute('title', 'Copy to clipboard');
+            closest(code, 'div.chroma').append(newClipboardElem);
+          }
+        }
+      }
+    }
+
+    var makeSymbolClipboard = function(elem) {
+      var clipboardSpan = document.createElement('span');
+      clipboardSpan.setAttribute('class', 'copy-to-clipboard');
+      clipboardSpan.setAttribute('title', 'Copy to clipboard');
+      elem.parentNode.parentNode.insertBefore(clipboardSpan, elem.parentNode.nextElementSibling);
+    }
+
+    preChromaElem ? 
+    preChromaElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function(codeElem) {
+        makeClipboard(codeElem);
+      });
+    }) : null;
+    
+    langCodeElem ? 
+    langCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeClipboard(codeElem);
+      });
+    }) : null;
+
+    dolorCodeElem ? 
+    dolorCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeSymbolClipboard(codeElem);
+      });
+    }) : null;
+
+    gtCodeElem ?
+    gtCodeElem.forEach(function(elem) {
+      elem.querySelectorAll('code').forEach(function (codeElem) {
+        makeSymbolClipboard(codeElem);
+      });
+    }) : null;
+    
+
+
+    
+    dolorCodeElem ?
+    dolorCodeElem.forEach(function(elem) {
+      var lnts = elem.parentNode.parentNode ? elem.parentNode.parentNode.querySelectorAll('.lnt') : null;
+      lnts ? 
+      lnts.forEach(function(lnt) {
+        lnt.innerHTML = '$<br/>';
+      }) : null;
+    }) : null;
+
+    gtCodeElem ?
+    gtCodeElem.forEach(function(elem) {
+      var lnts = elem.parentNode.parentNode ? elem.parentNode.parentNode.querySelectorAll('.lnt') : null;
+      lnts ? 
+      lnts.forEach(function(lnt) {
+        lnt.innerHTML = '><br/>';
+      }) : null;
+    }) : null;
+    
+
+
+    
+    
+    var lib = JSON.parse("null");
+
+    if (lib && lib.includes('mermaid')) {
+      
+      var themeVariant = localStorage.getItem('theme') || JSON.parse("\"dark\"");
+
+      if (themeVariant === "dark" || themeVariant === "hacker") {
+        mermaid.initialize({ theme: 'dark' });
+      } else {
+        mermaid.initialize({ theme: 'default' });
+      }
+      
+      var mermaids = [];
+      [].push.apply(mermaids, document.getElementsByClassName('language-mermaid'));
+      mermaids.forEach(function(elem) {
+        var elemParentNode = elem.parentNode;
+
+        if (elemParentNode !== document.body) {
+          elemParentNode.parentNode.insertBefore(elem, elemParentNode);
+          elemParentNode.parentNode.removeChild(elemParentNode);
+        }
+
+        var newElemWrapper = document.createElement('div');
+        newElemWrapper.classList.add('mermaid');
+        newElemWrapper.style.padding = '34px 4px 6px';
+        newElemWrapper.innerHTML = elem.innerHTML;
+        elem.replaceWith(newElemWrapper);
+      });
+    }
+    
+    
+
+    
+    if (lib && lib.includes('katex')) {
+      var mathElements = document.getElementsByClassName('math');
+      var options = {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false }
+        ],
+      };
+
+      renderMathInElement(document.querySelector('.single__contents'), options);
+    }
+    
+
+
+    
+    if (lib && lib.includes('flowchartjs')) {
+      
+      var options = JSON.parse("{\"arrow-end\":\"block\",\"element-color\":\"black\",\"fill\":\"white\",\"flowstate\":{\"approved\":{\"fill\":\"#58C4A3\",\"font-size\":12,\"no-text\":\"n/a\",\"yes-text\":\"APPROVED\"},\"current\":{\"fill\":\"yellow\",\"font-color\":\"red\",\"font-weight\":\"bold\"},\"future\":{\"fill\":\"#FFFF99\"},\"invalid\":{\"fill\":\"#444444\"},\"past\":{\"fill\":\"#CCCCCC\",\"font-size\":12},\"rejected\":{\"fill\":\"#C45879\",\"font-size\":12,\"no-text\":\"REJECTED\",\"yes-text\":\"n/a\"},\"request\":{\"fill\":\"blue\"}},\"font-color\":\"black\",\"font-size\":14,\"line-color\":\"black\",\"line-length\":50,\"line-width\":3,\"no-text\":\"no\",\"scale\":1,\"symbols\":{\"end\":{\"class\":\"end-element\"},\"start\":{\"element-color\":\"green\",\"fill\":\"yellow\",\"font-color\":\"red\"}},\"text-margin\":10,\"x\":0,\"y\":0,\"yes-text\":\"yes\"}");
+      var jsonContent = null;
+
+      var flowchartPrefix = "language-flowchart";
+      var index = 0;
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + flowchartPrefix + "]"), function(x){
+          x.style.display = 'none'
+          x.parentNode.style.backgroundColor = "transparent"
+          jsonContent = x.innerText;
+
+          var node0 = document.createElement('div');
+          node0.id = 'flowchart' + index;
+          x.parentNode.insertBefore(node0, x);
+
+          var diagram = flowchart.parse(jsonContent);
+          diagram.drawSVG("flowchart"+index, options);
+
+          index +=1;
+      });      
+    }
+    
+
+
+    
+    
+
+
+    
+    if (lib && lib.includes('msc')) {
+      
+      var options = JSON.parse("{\"theme\":\"hand\"}");
+      var jsonContent = null;
+
+      var index = 0;
+      var chartPrefix = "language-msc";
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('div');
+        node0.id = 'msc' + index;
+        x.parentNode.insertBefore(node0, x);
+        var diagram = Diagram.parse(jsonContent);
+        diagram.drawSVG("msc" + index, options);
+        index += 1;
+      });
+    }
+    
+
+
+    
+    if (lib && lib.includes('chart')) {
+      var borderColor = "#666";
+      var bgColor = "#ddd";
+      var borderWidth = 2;
+
+      Chart.defaults.global.elements.rectangle.borderWidth = borderWidth;
+      Chart.defaults.global.elements.rectangle.borderColor = borderColor;
+      Chart.defaults.global.elements.rectangle.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.line.borderWidth = borderWidth;
+      Chart.defaults.global.elements.line.borderColor = borderColor;
+      Chart.defaults.global.elements.line.backgroundColor = bgColor;
+
+      Chart.defaults.global.elements.point.borderWidth = borderWidth;
+      Chart.defaults.global.elements.point.borderColor = borderColor;
+      Chart.defaults.global.elements.point.backgroundColor = bgColor;
+
+      var chartPrefix = "language-chart";
+      var index = 0;
+      var jsonContent = null;
+
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('canvas');
+        var source = null;
+        node0.height = 200;
+        node0.style.height = 200;
+        node0.id = 'myChart' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        var ctx = document.getElementById('myChart' + index).getContext('2d');
+        var myChart = new Chart(ctx, source);
+        index += 1;
+      });            
+    }
+    
+
+
+    
+    if (lib && lib.includes('wavedrom')) {
+      var wavePrefix = "language-wave";
+      var index = 0;
+      var jsonContent = null;
+      
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + wavePrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+        var node0 = document.createElement('div');
+        var source = null;
+        node0.id = 'WaveDrom_Display_' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        WaveDrom.RenderWaveForm(index, source, "WaveDrom_Display_");
+        index += 1;
+      });
+    }
+    
+
+
+    
+    if (lib && lib.includes('viz')) {
+      var vizPrefix = "language-viz-";
+      Array.prototype.forEach.call(document.querySelectorAll("[class^=" + vizPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        var engine;
+        x.getAttribute("class").split(" ").forEach(function (cls) {
+          if (cls.startsWith(vizPrefix)) {
+            engine = cls.substr(vizPrefix.length);
+          }
+        });
+        var viz = new Viz();
+        viz.renderSVGElement(x.innerText, { engine: engine })
+          .then(function (element) {
+            element.style.width = "100%";
+            x.parentNode.insertBefore(element, x);
+          })
+      });
+    }
+    
+    
+  }
+</script>
+
+
+            
+            <footer class="footer">
+    
+<div class="dropdown">
+  <button class="dropdown-trigger" aria-label="Select Theme Button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M12.65 15.67c.14-.36.05-.77-.23-1.05l-2.09-2.06.03-.03c1.74-1.94 2.98-4.17 3.71-6.53h1.94c.54 0 .99-.45.99-.99v-.02c0-.54-.45-.99-.99-.99H10V3c0-.55-.45-1-1-1s-1 .45-1 1v1H1.99c-.54 0-.99.45-.99.99 0 .55.45.99.99.99h10.18C11.5 7.92 10.44 9.75 9 11.35c-.81-.89-1.49-1.86-2.06-2.88-.16-.29-.45-.47-.78-.47-.69 0-1.13.75-.79 1.35.63 1.13 1.4 2.21 2.3 3.21L3.3 16.87c-.4.39-.4 1.03 0 1.42.39.39 1.02.39 1.42 0L9 14l2.02 2.02c.51.51 1.38.32 1.63-.35zM17.5 10c-.6 0-1.14.37-1.35.94l-3.67 9.8c-.24.61.22 1.26.87 1.26.39 0 .74-.24.88-.61l.89-2.39h4.75l.9 2.39c.14.36.49.61.88.61.65 0 1.11-.65.88-1.26l-3.67-9.8c-.22-.57-.76-.94-1.36-.94zm-1.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+  </button>
+  <div class="dropdown-content">
+    
+    
+    
+  </div>
+</div>
+
+    
+<div class="footer__social">
+  <div class="social">
+    
+            
+    
+            
+    
+            
+    
+      
+      <a href="mailto:your@email.com" title="email" aria-label="email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"/></svg>
+      </a>
+            
+    
+      
+      <a href="http://example.org/" title="facebook" aria-label="facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 24 24" version="1.1">
+<g id="surface2747">
+<path fill="currentColor" d="M 11.664062 2.003906 C 6.621094 2.171875 2.375 6.25 2.023438 11.289062 C 1.65625 16.617188 5.46875 21.121094 10.507812 21.878906 L 10.507812 14.648438 L 8.890625 14.648438 C 8.164062 14.648438 7.578125 14.0625 7.578125 13.335938 C 7.578125 12.609375 8.164062 12.023438 8.890625 12.023438 L 10.503906 12.023438 L 10.503906 10.273438 C 10.503906 7.378906 11.914062 6.105469 14.324219 6.105469 C 14.679688 6.105469 14.984375 6.113281 15.242188 6.128906 C 15.878906 6.15625 16.371094 6.6875 16.371094 7.324219 C 16.371094 7.988281 15.835938 8.523438 15.171875 8.523438 L 14.730469 8.523438 C 13.710938 8.523438 13.351562 9.492188 13.351562 10.585938 L 13.351562 12.023438 L 15.222656 12.023438 C 15.8125 12.023438 16.265625 12.550781 16.175781 13.132812 L 16.066406 13.835938 C 15.992188 14.304688 15.589844 14.652344 15.113281 14.652344 L 13.351562 14.652344 L 13.351562 21.898438 C 18.234375 21.234375 22 17.0625 22 12 C 22 6.367188 17.339844 1.820312 11.664062 2.003906 Z M 11.664062 2.003906 "/>
+</g>
+</svg>
+
+      </a>
+            
+    
+            
+    
+      
+      <a href="https://github.com/zzossig/hugo-theme-zzo" title="github" aria-label="github">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 24 24" version="1.1">
+<g id="surface3680">
+<path fill="currentColor" d="M 10.898438 2.101562 C 6.300781 2.601562 2.601562 6.300781 2.101562 10.800781 C 1.601562 15.5 4.300781 19.699219 8.398438 21.300781 C 8.699219 21.398438 9 21.199219 9 20.800781 L 9 19.199219 C 9 19.199219 8.601562 19.300781 8.101562 19.300781 C 6.699219 19.300781 6.101562 18.101562 6 17.398438 C 5.898438 17 5.699219 16.699219 5.398438 16.398438 C 5.101562 16.300781 5 16.300781 5 16.199219 C 5 16 5.300781 16 5.398438 16 C 6 16 6.5 16.699219 6.699219 17 C 7.199219 17.800781 7.800781 18 8.101562 18 C 8.5 18 8.800781 17.898438 9 17.800781 C 9.101562 17.101562 9.398438 16.398438 10 16 C 7.699219 15.5 6 14.199219 6 12 C 6 10.898438 6.5 9.800781 7.199219 9 C 7.101562 8.800781 7 8.300781 7 7.601562 C 7 7.199219 7 6.601562 7.300781 6 C 7.300781 6 8.699219 6 10.101562 7.300781 C 10.601562 7.101562 11.300781 7 12 7 C 12.699219 7 13.398438 7.101562 14 7.300781 C 15.300781 6 16.800781 6 16.800781 6 C 17 6.601562 17 7.199219 17 7.601562 C 17 8.398438 16.898438 8.800781 16.800781 9 C 17.5 9.800781 18 10.800781 18 12 C 18 14.199219 16.300781 15.5 14 16 C 14.601562 16.5 15 17.398438 15 18.300781 L 15 20.898438 C 15 21.199219 15.300781 21.5 15.699219 21.398438 C 19.398438 19.898438 22 16.300781 22 12.101562 C 22 6.101562 16.898438 1.398438 10.898438 2.101562 Z M 10.898438 2.101562 "/>
+</g>
+</svg>
+
+      </a>
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+      
+      <a href="http://example.org/" title="twitter" aria-label="twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32" version="1.1">
+<g id="surface676">
+<path fill="currentColor" d="M 28 8.558594 C 27.117188 8.949219 26.167969 9.214844 25.171875 9.332031 C 26.1875 8.722656 26.96875 7.757812 27.335938 6.609375 C 26.386719 7.171875 25.332031 7.582031 24.210938 7.804688 C 23.3125 6.847656 22.03125 6.246094 20.617188 6.246094 C 17.898438 6.246094 15.691406 8.453125 15.691406 11.171875 C 15.691406 11.558594 15.734375 11.933594 15.820312 12.292969 C 11.726562 12.089844 8.097656 10.128906 5.671875 7.148438 C 5.246094 7.875 5.003906 8.722656 5.003906 9.625 C 5.003906 11.332031 5.871094 12.839844 7.195312 13.722656 C 6.386719 13.695312 5.628906 13.476562 4.964844 13.105469 C 4.964844 13.128906 4.964844 13.148438 4.964844 13.167969 C 4.964844 15.554688 6.660156 17.546875 8.914062 17.996094 C 8.5 18.109375 8.066406 18.171875 7.617188 18.171875 C 7.300781 18.171875 6.988281 18.140625 6.691406 18.082031 C 7.316406 20.039062 9.136719 21.460938 11.289062 21.503906 C 9.605469 22.824219 7.480469 23.609375 5.175781 23.609375 C 4.777344 23.609375 4.386719 23.585938 4 23.539062 C 6.179688 24.9375 8.765625 25.753906 11.546875 25.753906 C 20.605469 25.753906 25.558594 18.25 25.558594 11.742188 C 25.558594 11.53125 25.550781 11.316406 25.542969 11.105469 C 26.503906 10.410156 27.339844 9.542969 28 8.558594 Z M 28 8.558594 "/>
+</g>
+</svg>
+
+      </a>
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+            
+    
+    
+  
+  
+    
+      <a href="http://austinzgx.github.io/metal//index.xml" type="application/rss+xml" title="RSS" aria-label="RSS Feed Link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><circle fill="currentColor" cx="6.18" cy="17.82" r="2.18"/><path fill="currentColor" d="M5.59 10.23c-.84-.14-1.59.55-1.59 1.4 0 .71.53 1.28 1.23 1.4 2.92.51 5.22 2.82 5.74 5.74.12.7.69 1.23 1.4 1.23.85 0 1.54-.75 1.41-1.59-.68-4.2-3.99-7.51-8.19-8.18zm-.03-5.71C4.73 4.43 4 5.1 4 5.93c0 .73.55 1.33 1.27 1.4 6.01.6 10.79 5.38 11.39 11.39.07.73.67 1.28 1.4 1.28.84 0 1.5-.73 1.42-1.56-.73-7.34-6.57-13.19-13.92-13.92z"/></svg>
+      </a>
+    
+  
+
+  </div>
+</div>
+
+    
+<div id="gtt">
+  <div class="gtt">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M8.12 14.71L12 10.83l3.88 3.88c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L12.7 8.71c-.39-.39-1.02-.39-1.41 0L6.7 13.3c-.39.39-.39 1.02 0 1.41.39.38 1.03.39 1.42 0z"/></svg>
+  </div>
+</div>
+
+    <hr />
+
+    <div class="basicflex">
+        
+            <a href="" class="footer__link" target="_blank" rel="noreferrer"></a>
+        
+            <a href="" class="footer__link" target="_blank" rel="noreferrer"></a>
+        
+    </div>
+
+    <div class="footer__poweredby">
+        
+                
+            <p class="caption">
+                
+                    ©2021, All Rights Reserved
+                
+            </p>
+        
+
+        
+            <p class="caption">Powered by <a href="https://gohugo.io/" rel="noreferrer">Hugo</a> and the <a href="https://github.com/zzossig/hugo-theme-zzo" rel="noreferrer">Zzo theme</a></p>
+        
+        
+    </div> 
+</footer>
+        </div>
+        
+<div class="wrapper__right hide" dir="ltr">
+  <script>document.querySelector('.wrapper__right').classList.remove('hide')</script>
+  
+</div>
+
+    </div>
+</body>
+
+</html>
